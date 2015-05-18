@@ -13,4 +13,7 @@ public class Hipermercado {
     private ICatalog produtos;
     private IContabilidade contabilidade;
     private IComprasDB compras;
+    
+    public Hipermercado(){
+    }
 }

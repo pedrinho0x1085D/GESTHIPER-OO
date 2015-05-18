@@ -14,5 +14,6 @@ import java.util.ArrayList;
 public interface ICatalog {
     public void insertCode(String code);
     public ArrayList<String> getCodigosToArray(char primLetra);
+    public boolean codeExists(String code);
     
 }

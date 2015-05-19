@@ -17,7 +17,9 @@ public class Catalog implements ICatalog,Serializable {
 
     private HashMap<Character, TreeSet<String>> catalogo;
 
-    /*Duvida aqui na inicializacao*/
+  /**
+   * Função que inicializa um novo catálogo
+   */
     public Catalog() {
         this.catalogo = new HashMap<>();
         for (Character c = 'A'; c <= 'Z'; c++) {

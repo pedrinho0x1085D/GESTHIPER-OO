@@ -19,6 +19,13 @@ public class Contabilidade implements IContabilidade, Serializable {
         this.contabilidade = new HashMap<>();
     }
 
+    public Contabilidade(HashMap<String, NodoContabilidade> cont) {
+        this.contabilidade = new HashMap<>();
+        for (NodoContabilidade nc : cont.values()) {
+            this.contabilidade.put(nc.getCodigo(), nc.clone());
+        }
+    }
+
     public Contabilidade(Contabilidade other) {
         this.contabilidade = other.getContabilidade();
     }

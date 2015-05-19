@@ -1,14 +1,18 @@
+
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Objects;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Pedro Cunha
  */
-public class NodoContabilidade {
+public class NodoContabilidade implements Serializable{
 
     private String codigo;
     private int qtdVendidaN[], qtdVendidaP[], nVendasN[], nVendasP[];
@@ -134,23 +138,64 @@ public class NodoContabilidade {
         }
     }
 
-    public void incrementaQtdComprada(char modo, int mes,int qtd) {
-        if(modo=='P') this.qtdVendidaP[mes-1]+=qtd;
-        else if(modo=='N') this.qtdVendidaN[mes-1]+=qtd;
+    public void incrementaQtdComprada(char modo, int mes, int qtd) {
+        if (modo == 'P') {
+            this.qtdVendidaP[mes - 1] += qtd;
+        } else if (modo == 'N') {
+            this.qtdVendidaN[mes - 1] += qtd;
+        }
     }
-    
-    public void incrementaNVendas(char modo, int mes){
-        if(modo=='P') this.nVendasP[mes-1]++;
-        else if(modo=='N')this.nVendasN[mes-1]++;
+
+    public void incrementaNVendas(char modo, int mes) {
+        if (modo == 'P') {
+            this.nVendasP[mes - 1]++;
+        } else if (modo == 'N') {
+            this.nVendasN[mes - 1]++;
+        }
     }
-    
-    public void incrementaFaturacao(char modo, int mes, int qtd, float valorUni){
-        if(modo=='P') this.faturacaoP[mes-1]+=(qtd*valorUni);
-        else if(modo=='N') this.faturacaoN[mes-1]+=(qtd*valorUni);
+
+    public void incrementaFaturacao(char modo, int mes, int qtd, float valorUni) {
+        if (modo == 'P') {
+            this.faturacaoP[mes - 1] += (qtd * valorUni);
+        } else if (modo == 'N') {
+            this.faturacaoN[mes - 1] += (qtd * valorUni);
+        }
     }
 
     public NodoContabilidade clone() {
         return new NodoContabilidade(this);
     }
-/*Falta equals e hash code*/
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else if (!(this.getClass().getSimpleName().equals(o.getClass().getSimpleName())) || o == null) {
+            return false;
+        } else {
+            NodoContabilidade nc = (NodoContabilidade) o;
+            boolean flag = true;
+            for (int i = 0; i < 12 && flag; i++) {
+                if (this.faturacaoN[i] != nc.getFaturacaoMes('N', i + 1)) {
+                    flag = false;
+                } else if (this.faturacaoP[i] != nc.getFaturacaoMes('P', i + 1)) {
+                    flag = false;
+                } else if (this.nVendasN[i] != nc.getNComprasMes('N', i + 1)) {
+                    flag = false;
+                } else if (this.nVendasP[i] != nc.getNComprasMes('P', i + 1)) {
+                    flag = false;
+                } else if (this.qtdVendidaN[i] != nc.getQtdCompradaMes('N', i + 1)) {
+                    flag = false;
+                } else if (this.qtdVendidaP[i] != nc.getQtdCompradaMes('P', i + 1)) {
+                    flag = true;
+                }
+            }
+            return flag && (this.codigo.equals(nc.getCodigo()));
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(new Object[]{this.codigo, this.faturacaoN, this.faturacaoP, this.nVendasN, this.nVendasP, this.qtdVendidaN, this.qtdVendidaP});
+    }
+
 }

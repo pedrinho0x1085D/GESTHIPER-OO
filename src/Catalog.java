@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeSet;
@@ -12,7 +13,7 @@ import java.util.TreeSet;
  *
  * @author Pedro Cunha
  */
-public class Catalog implements ICatalog {
+public class Catalog implements ICatalog,Serializable {
 
     private HashMap<Character, TreeSet<String>> catalogo;
 
@@ -89,4 +90,6 @@ public class Catalog implements ICatalog {
     public ICatalog clone(){
         return new Catalog(this);
     }
+    
+    
 }

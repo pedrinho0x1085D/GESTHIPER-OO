@@ -1,3 +1,7 @@
+
+import java.io.Serializable;
+import java.util.Arrays;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,7 +12,7 @@
  *
  * @author Pedro Cunha
  */
-public class Compra {
+public class Compra implements Serializable{
 
     private String codigoProd;
     private float valorUni;
@@ -89,7 +93,7 @@ public class Compra {
         return "";
     }
 
-    /*To Do*/
+    
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -101,10 +105,10 @@ public class Compra {
         }
     }
 
-    /*TO DO*/
+    
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Arrays.hashCode(new Object[]{this.codigoCli,this.codigoProd,this.mes,this.modo,this.quantidade,this.valorUni});
     }
 
 }

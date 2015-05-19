@@ -1,3 +1,6 @@
+
+import java.io.Serializable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,7 +11,7 @@
  *
  * @author Pedro Cunha
  */
-public class Hipermercado {
+public class Hipermercado implements Serializable {
 
     private ICatalog clientes;
     private ICatalog produtos;
@@ -18,6 +21,7 @@ public class Hipermercado {
     public Hipermercado() {
         this.clientes=new Catalog();
         this.produtos=new Catalog();
+        this.contabilidade=new Contabilidade();
     }
 
     public ICatalog getClientes(){

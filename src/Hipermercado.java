@@ -28,12 +28,28 @@ public class Hipermercado {
         return this.produtos.clone();
     }
     
+    public IContabilidade getContabilidade(){
+        return this.contabilidade.clone();
+    }
+    
+    public IComprasDB getCompras(){
+        return this.compras.clone();
+    }
+    
     public void setClientes(ICatalog icata){
         this.clientes=icata.clone();
     }
     
     public void setProdutos(ICatalog icata){
         this.produtos=icata.clone();
+    }
+    
+    public void setContabilidade(IContabilidade icont){
+        this.contabilidade=icont.clone();
+    }
+    
+    public void setCompras(IComprasDB icomp){
+        this.compras=icomp.clone();
     }
     
     public void insertCliente(String codigoC) {

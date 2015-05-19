@@ -11,4 +11,5 @@
 public interface IContabilidade {
     public void insertCode(String code);
     public void registerSale(Compra c);
+    public IContabilidade clone();
 }

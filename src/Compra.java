@@ -9,6 +9,7 @@
  * @author Pedro Cunha
  */
 public class Compra {
+
     private String codigoProd;
     private float valorUni;
     private int quantidade;
@@ -17,12 +18,12 @@ public class Compra {
     private int mes;
 
     public Compra() {
-    this.codigoProd=new String();
-    this.valorUni=0;
-    this.quantidade=0;
-    this.modo='N';
-    this.codigoCli=new String();
-    this.mes=0;
+        this.codigoProd = new String();
+        this.valorUni = 0;
+        this.quantidade = 0;
+        this.modo = 'N';
+        this.codigoCli = new String();
+        this.mes = 0;
     }
 
     public Compra(String codigoProd, float valorUni, int quantidade, char modo, String codigoCli, int mes) {
@@ -81,26 +82,29 @@ public class Compra {
     public void setValorUni(float valorUni) {
         this.valorUni = valorUni;
     }
-    
+
     /*To Do*/
     @Override
-    public String toString(){
+    public String toString() {
         return "";
     }
-    
+
     /*To Do*/
-    public boolean equals(Object o){
-        if(!(o instanceof Compra)) return false;
-        else return true;
-    }
-    /*To Do*/
-    @Override
-    public int hashCode() {
-        return 0;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else if ((!(this.getClass().getSimpleName().equals(o.getClass().getSimpleName()))) || o == null) {
+            return false;
+        } else {
+            Compra co = (Compra) o;
+            return (this.codigoCli.equals(co.getCodigoCli()) && this.codigoProd.equals(co.getCodigoProd()) && this.mes == co.getMes() && this.modo == co.getModo() && this.quantidade == co.getQuantidade() && this.valorUni == co.getValorUni());
+        }
     }
 
-    
-    
-    
-    
+    /*TO DO*/
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
 }

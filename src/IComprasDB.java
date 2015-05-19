@@ -12,4 +12,5 @@ public interface IComprasDB {
     public void insertCodigoCliente(String codigoC);
     public void insertCodigoProduto(String codigoP);
     public void registerSale(Compra c);
+    public IComprasDB clone();
 }

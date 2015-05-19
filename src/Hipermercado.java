@@ -16,13 +16,32 @@ public class Hipermercado {
     private IComprasDB compras;
 
     public Hipermercado() {
+        this.clientes=new Catalog();
+        this.produtos=new Catalog();
     }
 
+    public ICatalog getClientes(){
+        return this.clientes.clone();
+    }
+    
+    public ICatalog getProdutos(){
+        return this.produtos.clone();
+    }
+    
+    public void setClientes(ICatalog icata){
+        this.clientes=icata.clone();
+    }
+    
+    public void setProdutos(ICatalog icata){
+        this.produtos=icata.clone();
+    }
+    
     public void insertCliente(String codigoC) {
         this.clientes.insertCode(codigoC);
         this.compras.insertCodigoCliente(codigoC);
     }
-
+    
+        
     public void insertProduto(String codigoP) {
         this.produtos.insertCode(codigoP);
         this.contabilidade.insertCode(codigoP);

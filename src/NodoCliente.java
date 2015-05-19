@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /*
@@ -11,7 +12,7 @@ import java.util.HashMap;
  *
  * @author Pedro Cunha
  */
-public class NodoCliente {
+public class NodoCliente implements Serializable{
     private String codigoC;
     private int compraMes[];
     private int nCompras;

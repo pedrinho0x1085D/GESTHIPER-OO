@@ -1,5 +1,6 @@
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /*
@@ -89,4 +90,13 @@ public class NodoProduto implements Serializable{
         this.nVezesComprado = nVezesComprado;
     }
     
+    //public int equals(Object o)
+    //public String toString()
+    public NodoProduto clone(){
+        return new NodoProduto(this);
+    }
+    
+    public int hashCode(){
+        return Arrays.hashCode(new Object[]{this.clientesComp,this.codigoP,this.compradoMes,this.nVezesComprado,this.qtdComprada});
+    }
 }

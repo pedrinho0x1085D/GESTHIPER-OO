@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /*
@@ -11,7 +12,7 @@ import java.util.Arrays;
  *
  * @author Pedro Cunha
  */
-public class NodoClienteComprador {
+public class NodoClienteComprador implements Serializable{
     private String codigoC;
     private int qtdCompradaN[],qtdCompradaP[];
     private float valorN[],valorP[];

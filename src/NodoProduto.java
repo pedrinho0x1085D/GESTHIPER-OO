@@ -9,5 +9,5 @@
  * @author Pedro Cunha
  */
 public class NodoProduto {
-    
+    private String codigoP;
 }

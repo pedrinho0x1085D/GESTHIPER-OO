@@ -2,6 +2,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeSet;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -60,9 +61,14 @@ public class Contabilidade implements IContabilidade, Serializable {
     }
     
     public ArrayList<String> getNuncaComprados(){
+        TreeSet<String> resaux=new TreeSet<>();
         ArrayList<String> res=new ArrayList<>();
         for(NodoContabilidade nc:this.contabilidade.values())
-            if(nc.nuncaComprado()) res.add(nc.getCodigo());
+            if(nc.nuncaComprado()) resaux.add(nc.getCodigo());
+        
+        for(String st:resaux)
+            res.add(st);
+        
         return res;
     }
 

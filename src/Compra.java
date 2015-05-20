@@ -212,7 +212,7 @@ public class Compra implements Serializable{
  * 
  * @return 
  */
-
+    @Override
     public Compra clone(){
         return new Compra(this);
     } 

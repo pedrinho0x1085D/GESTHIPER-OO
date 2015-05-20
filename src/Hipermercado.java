@@ -22,6 +22,7 @@ public class Hipermercado implements Serializable {
         this.clientes=new Catalog();
         this.produtos=new Catalog();
         this.contabilidade=new Contabilidade();
+        this.compras=new ComprasDB();
     }
 
     public ICatalog getClientes(){

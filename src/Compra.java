@@ -162,22 +162,22 @@ public class Compra implements Serializable{
        StringBuilder sb = new StringBuilder();
        
        
-       sb.append("Código do produto");
+       sb.append("Código do produto ");
        sb.append(this.codigoProd);
        sb.append("\n");
-       sb.append("Valor Unitário");
+       sb.append("Valor Unitário ");
        sb.append(this.valorUni);
        sb.append("\n");
-       sb.append("Quantidade");
+       sb.append("Quantidade ");
        sb.append(this.quantidade);
        sb.append("\n");
-       sb.append("Modo");
+       sb.append("Modo ");
        sb.append(this.modo);
        sb.append("\n");
-       sb.append("Código de Cliente");
+       sb.append("Código de Cliente ");
        sb.append(this.codigoCli);
        sb.append("\n");
-       sb.append("Mês");
+       sb.append("Mês ");
        sb.append(this.mes);
        sb.append("\n");
         

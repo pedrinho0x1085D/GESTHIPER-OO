@@ -85,8 +85,8 @@ public class NodoCliente implements Serializable {
 
     }
 
-    public void atualizaProdutos(Compra c) {
-        if (this.prodComprados.containsKey(c.getCodigoProd())) {
+    private void atualizaProdutos(Compra c) {
+        if (!(this.prodComprados.containsKey(c.getCodigoProd()))) {
             this.prodComprados.put(c.getCodigoProd(), new NodoProdutoComprado());
         }
         this.prodComprados.get(c.getCodigoProd()).incrementaQuantidade(c.getModo(), c.getMes(), c.getQuantidade());

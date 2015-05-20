@@ -83,7 +83,7 @@ public class ComprasDB implements IComprasDB{
     public void registerSale(Compra c) {
         this.clientes.get(c.getCodigoCli()).registaCompra(c.clone());
         this.compras.add(c.clone());
-        //this.produtos.get(c.getCodigoProd()).registaCompra(c.clone());
+        this.produtos.get(c.getCodigoProd()).registaCompra(c.clone());
     }
 
     @Override

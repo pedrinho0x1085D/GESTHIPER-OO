@@ -1,5 +1,6 @@
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -73,7 +74,14 @@ public class Hipermercado implements Serializable {
         this.contabilidade.registerSale(c);
         this.compras.registerSale(c);
     }
+    
+    public ArrayList<String> getProdutosNuncaComprados(){
+        return this.contabilidade.getNuncaComprados();
+    }
 
+    public ArrayList<String> getClientesNaoCompradores(){
+        return this.compras.clientesNaoCompradores();
+    }
     public boolean compraValida(Compra c) {
         if (this.clientes.codeExists(c.getCodigoCli()) && this.produtos.codeExists(c.getCodigoProd())) {
             return true;

@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeSet;
 
@@ -89,6 +90,17 @@ public class ComprasDB implements IComprasDB{
     @Override
     public IComprasDB clone() {
         return new ComprasDB(this);
+    }
+
+    
+    public ArrayList<String> clientesNaoCompradores() {
+        TreeSet<String> resaux=new TreeSet<>();
+        ArrayList<String> res=new ArrayList<>();
+        for(NodoCliente nc:this.clientes.values())
+            if(nc.getnCompras()==0) resaux.add(nc.getCodigoC());
+        for(String st:resaux)
+            res.add(st);
+        return res;
     }
     
     

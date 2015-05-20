@@ -162,6 +162,13 @@ public class NodoContabilidade implements Serializable{
         }
     }
 
+    public boolean nuncaComprado(){
+        boolean flag=false;
+        for(int i = 0; i<12&&!flag;i++)
+            if(this.nVendasN[i]!=0||this.nVendasP[i]!=0) flag=true;
+        return flag;
+    }
+    
     public NodoContabilidade clone() {
         return new NodoContabilidade(this);
     }

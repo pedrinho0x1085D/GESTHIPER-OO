@@ -1,5 +1,6 @@
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
@@ -45,7 +46,7 @@ public class Contabilidade implements IContabilidade, Serializable {
         }
         return res;
     }
-
+    
     @Override
     public void insertCode(String code) {
         this.contabilidade.put(code, new NodoContabilidade(code));
@@ -56,6 +57,13 @@ public class Contabilidade implements IContabilidade, Serializable {
         this.contabilidade.get(c.getCodigoProd()).incrementaFaturacao(c.getModo(), c.getMes(), c.getQuantidade(), c.getValorUni());
         this.contabilidade.get(c.getCodigoProd()).incrementaNVendas(c.getModo(), c.getMes());
         this.contabilidade.get(c.getCodigoProd()).incrementaQtdComprada(c.getModo(), c.getMes(), c.getQuantidade());
+    }
+    
+    public ArrayList<String> getNuncaComprados(){
+        ArrayList<String> res=new ArrayList<>();
+        for(NodoContabilidade nc:this.contabilidade.values())
+            if(nc.nuncaComprado()) res.add(nc.getCodigo());
+        return res;
     }
 
     @Override

@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,4 +15,5 @@ public interface IContabilidade {
     public void insertCode(String code);
     public void registerSale(Compra c);
     public IContabilidade clone();
+    public ArrayList<String> getNuncaComprados();
 }

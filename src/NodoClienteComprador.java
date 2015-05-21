@@ -113,4 +113,10 @@ public class NodoClienteComprador implements Serializable{
     public NodoClienteComprador clone(){
         return new NodoClienteComprador(this);
     }
+    public boolean equals(Object obj){
+        if(this == obj) return true;
+        if((obj == null) || (this.getClass() != obj.getClass())) return false;
+        NodoClienteComprador e = (NodoClienteComprador) obj;
+        return (this.codigoC.equals(e.getCodigoC()) && this.qtdCompradaN.equals(e.getQtdCompradaN()) && this.qtdCompradaP.equals(e.getQtdCompradaP()) && this.valorN.equals(e.getValorN()) && this.valorP.equals(e.getValorP()));
+    }
 }

@@ -111,4 +111,11 @@ public class NodoProdutoComprado implements Serializable{
     public int hashCode(){
         return Arrays.hashCode(new Object[]{this.codigoP,this.qtdCompN,this.qtdCompP,this.valorN,this.valorP});
     }
+    
+    public boolean equals(Object obj){
+        if(this == obj) return true;
+        if((obj == null) || (this.getClass() != obj.getClass())) return false;
+        NodoProdutoComprado e = (NodoProdutoComprado) obj;
+        return (this.codigoP.equals(e.getCodigoP()) && this.qtdCompN.equals(e.getQtdCompN()) && this.qtdCompP.equals(e.getQtdCompP()) && this.valorN.equals(e.getValorN()) && this.valorP.equals(e.getValorP()));
+    }
 }

@@ -96,5 +96,10 @@ public class NodoCliente implements Serializable {
     public NodoCliente clone() {
         return new NodoCliente(this);
     }
-
+    public boolean equals(Object obj){
+        if(this == obj) return true;
+        if((obj == null) || (this.getClass() != obj.getClass())) return false;
+        NodoCliente e = (NodoCliente) obj;
+        return (this.codigoC.equals(e.getCodigoC()) && this.compraMes.equals(e.getCompraMes()) && this.nCompras.equals(e.getnCompras()) && this.prodComprados.equals(e.getProdComprados()));
+    }
 }

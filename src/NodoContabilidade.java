@@ -204,5 +204,13 @@ public class NodoContabilidade implements Serializable{
     public int hashCode() {
         return Arrays.hashCode(new Object[]{this.codigo, this.faturacaoN, this.faturacaoP, this.nVendasN, this.nVendasP, this.qtdVendidaN, this.qtdVendidaP});
     }
+    
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj) return true;
+        if((obj == null) || (this.getClass() != obj.getClass())) return false;
+        NodoContabilidade e = (NodoContabilidade) obj;
+        return (this.codigo.equals(e.getCodigo()) && this.qtdVendidaN.equals(e.getQtdVendidaN()) && this.qtdVendidaP.equals(e.getQtdVendidaP()) && this.nVendasN.equals(e.getnVendasN()) && this.nVendasP.equals(e.getnVendasP()) && this.faturacaoN.equals(e.getFaturacaoN()) && this.faturacaoP.equals(e.getFaturacaoP()));
+    }
 
 }

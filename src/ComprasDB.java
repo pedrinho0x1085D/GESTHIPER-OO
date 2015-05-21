@@ -103,5 +103,39 @@ public class ComprasDB implements IComprasDB{
         return res;
     }
     
+    public ParNComprasNClientes getTotCompTotCli(int mes){
+        ParNComprasNClientes pncnc=new ParNComprasNClientes();
+        for(NodoProduto np:this.produtos.values()){
+            pncnc.adicionaCompras(np.comprasMes(mes));
+            pncnc.incClientes(np.getNClientesCompradores(mes));
+                           
+        }
+        return pncnc.clone();
+    }
+    
+    public Table getTableCliente(String codigoC){
+        int mesCount;
+        Table tab=new Table(codigoC);
+        NodoCliente nc=this.clientes.get(codigoC);
+        for(mesCount=1;mesCount<=12;mesCount++){
+            tab.adicionaDistintos(nc.getNProdutosComprados(mesCount), mesCount);
+            tab.adicionaFaturacaoMensal(nc.getFaturacao(mesCount), mesCount);
+            tab.adicionaNCompras(nc.getCompraMes(mesCount), mesCount);
+        }
+        return tab.clone();
+    }
+    
+    public Table getTableProduto(String codigoP){
+        int mesCount;
+        Table tab=new Table(codigoP);
+        NodoProduto nc=this.produtos.get(codigoP);
+        for(mesCount=1;mesCount<=12;mesCount++){
+            tab.adicionaDistintos(nc.getNClientesCompradores(mesCount), mesCount);
+            tab.adicionaFaturacaoMensal(nc.getFaturacao(mesCount), mesCount);
+            tab.adicionaNCompras(nc.comprasMes(mesCount), mesCount);
+        }
+        return tab.clone();
+    }
+    
     
 }

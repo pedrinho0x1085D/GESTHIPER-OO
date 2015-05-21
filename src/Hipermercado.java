@@ -7,55 +7,54 @@ import java.util.ArrayList;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Pedro Cunha
  */
 public class Hipermercado implements Serializable {
-
+    
     private ICatalog clientes;
     private ICatalog produtos;
     private IContabilidade contabilidade;
     private IComprasDB compras;
-
+    
     public Hipermercado() {
-        this.clientes=new Catalog();
-        this.produtos=new Catalog();
-        this.contabilidade=new Contabilidade();
-        this.compras=new ComprasDB();
+        this.clientes = new Catalog();
+        this.produtos = new Catalog();
+        this.contabilidade = new Contabilidade();
+        this.compras = new ComprasDB();
     }
-
-    public ICatalog getClientes(){
+    
+    public ICatalog getClientes() {
         return this.clientes.clone();
     }
     
-    public ICatalog getProdutos(){
+    public ICatalog getProdutos() {
         return this.produtos.clone();
     }
     
-    public IContabilidade getContabilidade(){
+    public IContabilidade getContabilidade() {
         return this.contabilidade.clone();
     }
     
-    public IComprasDB getCompras(){
+    public IComprasDB getCompras() {
         return this.compras.clone();
     }
     
-    public void setClientes(ICatalog icata){
-        this.clientes=icata.clone();
+    public void setClientes(ICatalog icata) {
+        this.clientes = icata.clone();
     }
     
-    public void setProdutos(ICatalog icata){
-        this.produtos=icata.clone();
+    public void setProdutos(ICatalog icata) {
+        this.produtos = icata.clone();
     }
     
-    public void setContabilidade(IContabilidade icont){
-        this.contabilidade=icont.clone();
+    public void setContabilidade(IContabilidade icont) {
+        this.contabilidade = icont.clone();
     }
     
-    public void setCompras(IComprasDB icomp){
-        this.compras=icomp.clone();
+    public void setCompras(IComprasDB icomp) {
+        this.compras = icomp.clone();
     }
     
     public void insertCliente(String codigoC) {
@@ -63,31 +62,37 @@ public class Hipermercado implements Serializable {
         this.compras.insertCodigoCliente(codigoC);
     }
     
-        
     public void insertProduto(String codigoP) {
         this.produtos.insertCode(codigoP);
         this.contabilidade.insertCode(codigoP);
         this.compras.insertCodigoProduto(codigoP);
     }
-
+    
     public void registerSale(Compra c) {
         this.contabilidade.registerSale(c);
         this.compras.registerSale(c);
     }
     
-    public ArrayList<String> getProdutosNuncaComprados(){
+    public ArrayList<String> getProdutosNuncaComprados() {
         return this.contabilidade.getNuncaComprados();
     }
-
-    public ArrayList<String> getClientesNaoCompradores(){
+    
+    public ArrayList<String> getClientesNaoCompradores() {
         return this.compras.clientesNaoCompradores();
     }
     
-    public ParNComprasNClientes getTotNComprasNClientes(int mes){
-        if(mes>=1&&mes<=12) return this.compras.getTotCompTotCli(mes);
-        else return new ParNComprasNClientes();
+    public ParNComprasNClientes getTotNComprasNClientes(int mes) {
+        return this.compras.getTotCompTotCli(mes);
     }
-    
+
+    public Table getTableCliente(String codigoC) {
+        return this.compras.getTableCliente(codigoC);
+    }
+
+    public Table getTableProduto(String codigoC) {
+        return this.compras.getTableProduto(codigoC);
+    }
+
     public boolean compraValida(Compra c) {
         if (this.clientes.codeExists(c.getCodigoCli()) && this.produtos.codeExists(c.getCodigoProd())) {
             return true;

@@ -47,19 +47,19 @@ public class NodoProdutoComprado implements Serializable{
     }
 
     public int[] getQtdCompN() {
-        return this.qtdCompN;
+        return this.qtdCompN.clone();
     }
 
     public int[] getQtdCompP() {
-        return this.qtdCompP;
+        return this.qtdCompP.clone();
     }
 
     public float[] getValorN() {
-        return this.valorN;
+        return this.valorN.clone();
     }
 
     public float[] getValorP() {
-        return this.valorP;
+        return this.valorP.clone();
     }
 
     public void setCodigoP(String codigoP) {
@@ -67,19 +67,19 @@ public class NodoProdutoComprado implements Serializable{
     }
 
     public void setQtdCompN(int[] qtdCompN) {
-        this.qtdCompN = qtdCompN;
+        this.qtdCompN = qtdCompN.clone();
     }
 
     public void setQtdCompP(int[] qtdCompP) {
-        this.qtdCompP = qtdCompP;
+        this.qtdCompP = qtdCompP.clone();
     }
 
     public void setValorN(float[] valorN) {
-        this.valorN = valorN;
+        this.valorN = valorN.clone();
     }
 
     public void setValorP(float[] valorP) {
-        this.valorP = valorP;
+        this.valorP = valorP.clone();
     }
     
     public int getQtdCompMes(char modo, int mes){

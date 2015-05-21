@@ -82,6 +82,12 @@ public class Hipermercado implements Serializable {
     public ArrayList<String> getClientesNaoCompradores(){
         return this.compras.clientesNaoCompradores();
     }
+    
+    public ParNComprasNClientes getTotNComprasNClientes(int mes){
+        if(mes>=1&&mes<=12) return this.compras.getTotCompTotCli(mes);
+        else return new ParNComprasNClientes();
+    }
+    
     public boolean compraValida(Compra c) {
         if (this.clientes.codeExists(c.getCodigoCli()) && this.produtos.codeExists(c.getCodigoProd())) {
             return true;

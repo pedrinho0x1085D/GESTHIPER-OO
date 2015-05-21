@@ -52,7 +52,7 @@ public class NodoCliente implements Serializable {
     }
 
     public int[] getCompraMes() {
-        return this.compraMes;
+        return this.compraMes.clone();
     }
 
     public int getnCompras() {
@@ -64,7 +64,7 @@ public class NodoCliente implements Serializable {
     }
 
     public void setCompraMes(int[] compraMes) {
-        this.compraMes = compraMes;
+        this.compraMes = compraMes.clone();
     }
 
     public void setnCompras(int nCompras) {
@@ -96,10 +96,35 @@ public class NodoCliente implements Serializable {
     public NodoCliente clone() {
         return new NodoCliente(this);
     }
+<<<<<<< HEAD
     public boolean equals(Object obj){
         if(this == obj) return true;
         if((obj == null) || (this.getClass() != obj.getClass())) return false;
         NodoCliente e = (NodoCliente) obj;
         return (this.codigoC.equals(e.getCodigoC()) && this.compraMes.equals(e.getCompraMes()) && this.nCompras.equals(e.getnCompras()) && this.prodComprados.equals(e.getProdComprados()));
+=======
+
+    public int getNProdutosComprados(int mes) {
+        int counter = 0;
+        for (NodoProdutoComprado ncc : this.prodComprados.values()) {
+            if (ncc.getQtdCompMes('N', mes) != 0 || ncc.getQtdCompMes('P', mes) != 0) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public int getCompraMes(int mes){
+        return this.compraMes[mes-1];
+    }
+    
+    public float getFaturacao(int mes) {
+        float total = 0;
+        for (NodoProdutoComprado ncc : this.prodComprados.values()) {
+            total += ncc.getValorMes('N', mes);
+            total += ncc.getValorMes('P', mes);
+        }
+        return total;
+>>>>>>> origin/master
     }
 }

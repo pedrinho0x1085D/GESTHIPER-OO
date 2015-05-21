@@ -58,7 +58,7 @@ public class NodoProduto implements Serializable {
     }
 
     public int[] getCompradoMes() {
-        return this.compradoMes;
+        return this.compradoMes.clone();
     }
 
     public int getQtdComprada() {
@@ -81,7 +81,7 @@ public class NodoProduto implements Serializable {
     }
 
     public void setCompradoMes(int[] compradoMes) {
-        this.compradoMes = compradoMes;
+        this.compradoMes = compradoMes.clone();
     }
 
     public void setQtdComprada(int qtdComprada) {
@@ -107,6 +107,28 @@ public class NodoProduto implements Serializable {
         this.clientesComp.get(c.getCodigoCli()).incrementaValor(c.getModo(), c.getMes(), c.getQuantidade(), c.getValorUni());
     }
 
+    public int comprasMes(int mes) {
+        return this.compradoMes[mes - 1];
+    }
+
+    public int getNClientesCompradores(int mes) {
+        int counter = 0;
+        for (NodoClienteComprador ncc : this.clientesComp.values()) {
+            if (ncc.getCompraMes('N', mes) != 0 || ncc.getCompraMes('P', mes) != 0) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public float getFaturacao(int mes) {
+        float total = 0;
+        for (NodoClienteComprador ncc : this.clientesComp.values()) {
+            total += ncc.getFaturacaoMes('N', mes);
+            total += ncc.getFaturacaoMes('P', mes);
+        }
+        return total;
+    }
     //public int equals(Object o)
     //public String toString()
 

@@ -17,4 +17,7 @@ public interface IComprasDB {
     public void registerSale(Compra c);
     public IComprasDB clone();
     public ArrayList<String> clientesNaoCompradores();
+    public ParNComprasNClientes getTotCompTotCli(int mes);
+    public Table getTableCliente(String codigoC);
+    public Table getTableProduto(String codigoC);
 }

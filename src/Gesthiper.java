@@ -15,24 +15,26 @@ import java.util.StringTokenizer;
  * @author Pedro Cunha
  */
 public class Gesthiper {
-    private static int linhasClientes,linhasProdutos,linhasCompras;
+
+    private static int linhasClientes, linhasProdutos, linhasCompras,comprasValor0;
     private static Hipermercado hiper;
-    private static ArrayList<Compra> comprasInvalidas=new ArrayList<>();
-    private static Menu menuCarregamento,menuPrincipal,menuQueriesEstat,menuQueriesInter;
-    
-    public void leFicheiroClientes(String filename) throws FileNotFoundException {
-        Gesthiper.linhasClientes=0;
+    private static FileStats estatisticas;
+    private static ArrayList<Compra> comprasInvalidas = new ArrayList<>();
+    private static Menu menuCarregamento, menuPrincipal, menuQueriesEstat, menuQueriesInter;
+
+    public static void leFicheiroClientes(String filename) throws FileNotFoundException {
+        Gesthiper.linhasClientes = 0;
         Scanner fichScan = new Scanner(new FileReader(filename));
         fichScan.useDelimiter(System.getProperty("line.separator"));
         while (fichScan.hasNext()) {
             Gesthiper.hiper.insertCliente(fichScan.next());
             Gesthiper.linhasClientes++;
         }
-        
+
     }
-    
-    public void leFicheiroProdutos(String filename) throws FileNotFoundException {
-        Gesthiper.linhasProdutos=0;
+
+    public static void leFicheiroProdutos(String filename) throws FileNotFoundException {
+        Gesthiper.linhasProdutos = 0;
         Scanner fichScan = new Scanner(new FileReader(filename));
         fichScan.useDelimiter(System.getProperty("line.separator"));
         while (fichScan.hasNext()) {
@@ -40,26 +42,29 @@ public class Gesthiper {
             Gesthiper.linhasProdutos++;
         }
     }
-    
-    public void leFicheiroCompras(String filename) throws FileNotFoundException {
+
+    public static void leFicheiroCompras(String filename) throws FileNotFoundException {
         String st;
         Compra c;
-        Gesthiper.comprasInvalidas=new ArrayList<>();
+        Gesthiper.comprasValor0=0;
+        Gesthiper.linhasCompras=0;
+        Gesthiper.comprasInvalidas = new ArrayList<>();
         Scanner fichScan = new Scanner(new FileReader(filename));
         fichScan.useDelimiter(System.getProperty("line.separator"));
         while (fichScan.hasNext()) {
             st = fichScan.next();
-            c = linhaToCompra(st);
+            c = Gesthiper.linhaToCompra(st);
             if (Gesthiper.hiper.compraValida(c)) {
                 Gesthiper.hiper.registerSale(c);
             } else {
                 Gesthiper.comprasInvalidas.add(c.clone());
             }
+            if(c.getValorUni()==0) Gesthiper.comprasValor0++;
             Gesthiper.linhasCompras++;
         }
     }
-    
-    private Compra linhaToCompra(String st) {
+
+    private static Compra linhaToCompra(String st) {
         Compra c = new Compra();
         StringTokenizer strtok = new StringTokenizer(st);
         c.setCodigoProd(strtok.nextToken());
@@ -70,23 +75,43 @@ public class Gesthiper {
         c.setMes(Integer.parseInt(strtok.nextToken()));
         return c.clone();
     }
-    
-    private String getFileNameWithDefault(String defFileName){
-        String input=Input.lerString();
-        if(input.equals("")) return defFileName;
-        else return input;
+
+    private static String getFileNameWithDefault(String defFileName) {
+        String input = Input.lerString();
+        if (input.equals("")) {
+            return defFileName;
+        } else {
+            return input;
+        }
     }
-    
-    public static void carregaMenus(){
-        String[] carregamento={ "Carregar Ficheiro de Clientes",
-                                "Carregar Ficheiro de Produtos",
-                                "Carregar Ficheiro de Compras"};
+
+    public static void carregaMenus() {
+        String[] carregamento = {"Carregar Ficheiro de Clientes",
+            "Carregar Ficheiro de Produtos",
+            "Carregar Ficheiro de Compras"};
         /*Futuramente aqui serao colocados os outros*/
-        Gesthiper.menuCarregamento=new Menu(carregamento);
+        Gesthiper.menuCarregamento = new Menu(carregamento);
     }
-    
+
+    public static void LeituraFicheiros() {
+        String fileCli, fileProd, fileComp;
+        try {
+            System.out.println("Insira o nome de ficheiro de Clientes pretendido:<ENTER para FichClientes.txt> ");
+            fileCli = Gesthiper.getFileNameWithDefault("FichClientes.txt");
+            Gesthiper.leFicheiroClientes(fileCli);
+            System.out.println("Insira o nome de ficheiro de Produtos pretendido:<ENTER para FichProdutos.txt> ");
+            fileProd = Gesthiper.getFileNameWithDefault("FichProdutos.txt");
+            Gesthiper.leFicheiroProdutos(fileProd);
+            System.out.println("Insira o nome de Ficheiro de Compras pretendido:<Enter para FichCompras.txt> ");
+            fileComp=Gesthiper.getFileNameWithDefault("FichCompras.txt");
+            Gesthiper.leFicheiroCompras(fileComp);
+            //Gesthiper.estatisticas=new FileStats(fileComp, fileProd, fileCli, Gesthiper.linhasClientes, Gesthiper.linhasProdutos, Gesthiper.linhasCompras, linhasClientes, linhasCompras, linhasCompras, linhasCompras, linhasCompras, comprasMes, faturacaoMensal, clientesCompradoresMensal, comprasInvalidas, linhasCompras)
+        } catch (FileNotFoundException e) {
+            System.out.println("Ficheiro Não Encontrado");
+        }
+    }
+
     public static void main(String[] args) {
-        
         
     }
 }

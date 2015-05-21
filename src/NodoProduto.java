@@ -143,7 +143,16 @@ public class NodoProduto implements Serializable {
     public boolean equals(Object obj){
         if(this == obj) return true;
         if((obj == null) || (this.getClass() != obj.getClass())) return false;
-        NodoProduto e = (NodoProduto) obj;
-        return (this.codigoP.equals(e.getCodigoP()) && this.nVezesComprado.equals(e.getnVezesComprado()) && this.qtdComprada.equals(e.getQtdComprada()) && this.compradoMes.equals(e.getcompradoMes()) && this.clientesComp.equals(e.getClientesComp()));
+        else{
+            NodoProduto e = (NodoProduto) obj;
+            boolean flag = true;
+            for (int i = 0; i < 12 && flag; i++) {
+                if (this.compradoMes[i] != e.comprasMes(i + 1)) {
+                    flag = false;
+                } 
+            }
+            return flag && (this.codigoP.equals(e.getCodigoP())) && this.clientesComp.equals(e.getClientesComp()) && this.nVezesComprado==e.getnVezesComprado()&& this.qtdComprada==e.getQtdComprada();
+        }
+        
     }
 }

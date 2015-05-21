@@ -58,7 +58,7 @@ public class NodoProduto implements Serializable {
     }
 
     public int[] getCompradoMes() {
-        return this.compradoMes;
+        return this.compradoMes.clone();
     }
 
     public int getQtdComprada() {
@@ -81,7 +81,7 @@ public class NodoProduto implements Serializable {
     }
 
     public void setCompradoMes(int[] compradoMes) {
-        this.compradoMes = compradoMes;
+        this.compradoMes = compradoMes.clone();
     }
 
     public void setQtdComprada(int qtdComprada) {

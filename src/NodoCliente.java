@@ -52,7 +52,7 @@ public class NodoCliente implements Serializable {
     }
 
     public int[] getCompraMes() {
-        return this.compraMes;
+        return this.compraMes.clone();
     }
 
     public int getnCompras() {
@@ -64,7 +64,7 @@ public class NodoCliente implements Serializable {
     }
 
     public void setCompraMes(int[] compraMes) {
-        this.compraMes = compraMes;
+        this.compraMes = compraMes.clone();
     }
 
     public void setnCompras(int nCompras) {

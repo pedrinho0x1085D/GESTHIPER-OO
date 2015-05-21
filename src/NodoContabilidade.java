@@ -1,7 +1,7 @@
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Objects;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -53,27 +53,27 @@ public class NodoContabilidade implements Serializable{
     }
 
     public float[] getFaturacaoN() {
-        return this.faturacaoN;
+        return this.faturacaoN.clone();
     }
 
     public float[] getFaturacaoP() {
-        return this.faturacaoP;
+        return this.faturacaoP.clone();
     }
 
     public int[] getQtdVendidaN() {
-        return this.qtdVendidaN;
+        return this.qtdVendidaN.clone();
     }
 
     public int[] getQtdVendidaP() {
-        return this.qtdVendidaP;
+        return this.qtdVendidaP.clone();
     }
 
     public int[] getnVendasN() {
-        return this.nVendasN;
+        return this.nVendasN.clone();
     }
 
     public int[] getnVendasP() {
-        return this.nVendasP;
+        return this.nVendasP.clone();
     }
 
     public void setCodigo(String codigo) {
@@ -81,27 +81,27 @@ public class NodoContabilidade implements Serializable{
     }
 
     public void setFaturacaoN(float[] faturacaoN) {
-        this.faturacaoN = faturacaoN;
+        this.faturacaoN = faturacaoN.clone();
     }
 
     public void setFaturacaoP(float[] faturacaoP) {
-        this.faturacaoP = faturacaoP;
+        this.faturacaoP = faturacaoP.clone();
     }
 
     public void setVendasN(int[] vendasN) {
-        this.qtdVendidaN = vendasN;
+        this.qtdVendidaN = vendasN.clone();
     }
 
     public void setVendasP(int[] vendasP) {
-        this.qtdVendidaP = vendasP;
+        this.qtdVendidaP = vendasP.clone();
     }
 
     public void setnVendasN(int[] nVendasN) {
-        this.nVendasN = nVendasN;
+        this.nVendasN = nVendasN.clone();
     }
 
     public void setnVendasP(int[] nVendasP) {
-        this.nVendasP = nVendasP;
+        this.nVendasP = nVendasP.clone();
     }
 
     public boolean compradoNoMes(int mes) {

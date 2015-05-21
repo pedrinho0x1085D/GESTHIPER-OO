@@ -72,6 +72,17 @@ public class Contabilidade implements IContabilidade, Serializable {
         return res;
     }
 
+    
+    public VendasProdutoMensais getVendasMensais(String codigoP){
+        VendasProdutoMensais vpm=new VendasProdutoMensais(codigoP);
+        NodoContabilidade nc=this.contabilidade.get(codigoP);
+        vpm.setFatN(nc.getFaturacaoN());
+        vpm.setFatP(nc.getFaturacaoP());
+        vpm.setVendasN(nc.getnVendasN());
+        vpm.setVendasP(nc.getnVendasP());
+        return vpm.clone();
+    }
+    
     @Override
     public IContabilidade clone() {
         return new Contabilidade(this);

@@ -16,8 +16,8 @@ import java.util.StringTokenizer;
  */
 public class Gesthiper {
 
-    private static int linhasClientes, linhasProdutos, linhasCompras, comprasValor0;
-    private static Hipermercado hiper;
+    private static int linhasClientes=0, linhasProdutos=0, linhasCompras=0, comprasValor0=0;
+    private static Hipermercado hiper=new Hipermercado();
     private static FileStats estatisticas = new FileStats();
     private static ArrayList<Compra> comprasInvalidas = new ArrayList<>();
     private static Menu menuCarregamento, menuPrincipal, menuQueriesEstat, menuQueriesInter;

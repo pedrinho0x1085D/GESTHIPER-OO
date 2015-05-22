@@ -18,7 +18,7 @@ public class Gesthiper {
 
     private static int linhasClientes, linhasProdutos, linhasCompras,comprasValor0;
     private static Hipermercado hiper;
-    private static FileStats estatisticas;
+    private static FileStats estatisticas=new FileStats();
     private static ArrayList<Compra> comprasInvalidas = new ArrayList<>();
     private static Menu menuCarregamento, menuPrincipal, menuQueriesEstat, menuQueriesInter;
 
@@ -86,9 +86,7 @@ public class Gesthiper {
     }
 
     public static void carregaMenus() {
-        String[] carregamento = {"Carregar Ficheiro de Clientes",
-            "Carregar Ficheiro de Produtos",
-            "Carregar Ficheiro de Compras"};
+        String[] carregamento = {"Carregar a partir de ficheiros de texto","Carregar a partir de ficheiro de Objectos"};
         /*Futuramente aqui serao colocados os outros*/
         Gesthiper.menuCarregamento = new Menu(carregamento);
     }
@@ -96,6 +94,7 @@ public class Gesthiper {
     public static void LeituraFicheiros() {
         String fileCli, fileProd, fileComp;
         try {
+            Gesthiper.hiper=new Hipermercado();
             System.out.println("Insira o nome de ficheiro de Clientes pretendido:<ENTER para FichClientes.txt> ");
             fileCli = Gesthiper.getFileNameWithDefault("FichClientes.txt");
             Gesthiper.leFicheiroClientes(fileCli);

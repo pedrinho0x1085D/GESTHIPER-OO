@@ -82,6 +82,24 @@ public class NodoClienteComprador implements Serializable{
         this.valorP = valorP.clone();
     }
     
+    public int getQuantidadeTotal(){
+        int total=0;
+        for(int i=0;i<12;i++){
+            total+=this.qtdCompradaN[i];
+            total+=this.qtdCompradaP[i];
+        }
+        return total;
+    }
+    
+    public float getFaturacaoTotal(){
+        float total=0;
+        for(int i=0;i<12;i++){
+            total+=this.valorN[i];
+            total+=this.valorP[i];
+        }
+        return total;
+    }
+    
     public int getCompraMes(char modo, int mes){
         if(modo=='P') return this.qtdCompradaP[mes-1];
         else if(modo=='N') return this.qtdCompradaN[mes-1];

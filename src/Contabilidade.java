@@ -47,7 +47,7 @@ public class Contabilidade implements IContabilidade, Serializable {
         }
         return res;
     }
-    
+
     @Override
     public void insertCode(String code) {
         this.contabilidade.put(code, new NodoContabilidade(code));
@@ -59,30 +59,37 @@ public class Contabilidade implements IContabilidade, Serializable {
         this.contabilidade.get(c.getCodigoProd()).incrementaNVendas(c.getModo(), c.getMes());
         this.contabilidade.get(c.getCodigoProd()).incrementaQtdComprada(c.getModo(), c.getMes(), c.getQuantidade());
     }
-    
-    public ArrayList<String> getNuncaComprados(){
-        TreeSet<String> resaux=new TreeSet<>();
-        ArrayList<String> res=new ArrayList<>();
-        for(NodoContabilidade nc:this.contabilidade.values())
-            if(nc.nuncaComprado()) resaux.add(nc.getCodigo());
-        
-        for(String st:resaux)
+
+    public ArrayList<String> getNuncaComprados() {
+        TreeSet<String> resaux = new TreeSet<>();
+        ArrayList<String> res = new ArrayList<>();
+        for (NodoContabilidade nc : this.contabilidade.values()) {
+            if (nc.nuncaComprado()) {
+                resaux.add(nc.getCodigo());
+            }
+        }
+
+        for (String st : resaux) {
             res.add(st);
-        
+        }
+
         return res;
     }
 
-    
-    public VendasProdutoMensais getVendasMensais(String codigoP){
-        VendasProdutoMensais vpm=new VendasProdutoMensais(codigoP);
-        NodoContabilidade nc=this.contabilidade.get(codigoP);
-        vpm.setFatN(nc.getFaturacaoN());
-        vpm.setFatP(nc.getFaturacaoP());
-        vpm.setVendasN(nc.getnVendasN());
-        vpm.setVendasP(nc.getnVendasP());
-        return vpm.clone();
+    public VendasProdutoMensais getVendasMensais(String codigoP) throws UnexistentCodeException {
+        if (!(this.contabilidade.containsKey(codigoP))) {
+            throw new UnexistentCodeException(codigoP);
+        } else {
+            VendasProdutoMensais vpm = new VendasProdutoMensais(codigoP);
+            NodoContabilidade nc = this.contabilidade.get(codigoP);
+            vpm.setFatN(nc.getFaturacaoN());
+            vpm.setFatP(nc.getFaturacaoP());
+            vpm.setVendasN(nc.getnVendasN());
+            vpm.setVendasP(nc.getnVendasP());
+            return vpm.clone();
+        }
     }
-    
+
     @Override
     public IContabilidade clone() {
         return new Contabilidade(this);

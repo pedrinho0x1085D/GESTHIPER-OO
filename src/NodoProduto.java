@@ -110,6 +110,10 @@ public class NodoProduto implements Serializable {
     public int comprasMes(int mes) {
         return this.compradoMes[mes - 1];
     }
+    
+    public int getClientesCompradores(){
+        return this.clientesComp.keySet().size();
+    }
 
     public int getNClientesCompradores(int mes) {
         int counter = 0;

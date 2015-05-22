@@ -17,7 +17,11 @@ public interface IComprasDB {
     public void registerSale(Compra c);
     public IComprasDB clone();
     public ArrayList<String> clientesNaoCompradores();
-    public ParNComprasNClientes getTotCompTotCli(int mes);
-    public Table getTableCliente(String codigoC);
-    public Table getTableProduto(String codigoC);
+    public ParNComprasNClientes getTotCompTotCli(int mes) throws InvalidMonthException;
+    public Table getTableCliente(String codigoC) throws UnexistentCodeException;
+    public Table getTableProduto(String codigoC) throws UnexistentCodeException;
+    public ArrayList<ParCodigoQuantidade> getTopCompras(String codigoC) throws UnexistentCodeException;
+    public ArrayList<TrioCodQuantNClientes> getTopComprados(int nElementos);
+    public ArrayList<ParCodigoQuantidade> getClientesMaisProdutosDistintos(int nElementos);
+    public ArrayList<TrioCodQuantFat> getTopCompradores(String codigoP) throws UnexistentCodeException;
 }

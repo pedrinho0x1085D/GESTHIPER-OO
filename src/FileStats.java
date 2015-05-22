@@ -22,6 +22,25 @@ public class FileStats {
     private int clientesCompradoresMensal[];
     private ArrayList<Compra> comprasInvalidas;
     private int nComprasInvalidas;
+    
+    public FileStats(){
+        this.filenameComp = "";
+        this.filenameProd = "";
+        this.filenameCli = "";
+        this.nProds = 0;
+        this.prodsComp = 0;
+        this.prodsNComp = 0;
+        this.nClientes = 0;
+        this.nClientesCompradores = 0;
+        this.nClientesNaoCompraram = 0;
+        this.comprasValor0 = 0;
+        this.faturacaoTotal = 0;
+        this.comprasMes = new int[12];
+        this.faturacaoMensal = new float[12];
+        this.clientesCompradoresMensal = new int[12];
+        this.comprasInvalidas = new ArrayList<>();
+        this.nComprasInvalidas = 0;
+    }
 
     public FileStats(String filenameComp, String filenameProd, String filenameCli, int nProds, int prodsComp, int prodsNComp, int nClientes, int nClientesCompradores, int nClientesNaoCompraram, int comprasValor0, float faturacaoTotal, int[] comprasMes, float[] faturacaoMensal, int[] clientesCompradoresMensal, ArrayList<Compra> comprasInvalidas, int nComprasInvalidas) {
         this.filenameComp = filenameComp;

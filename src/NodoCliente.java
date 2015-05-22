@@ -84,6 +84,10 @@ public class NodoCliente implements Serializable {
         this.atualizaProdutos(c.clone());
 
     }
+    
+    public int getProdutosDistintosComprados(){
+        return this.prodComprados.keySet().size();
+    }
 
     private void atualizaProdutos(Compra c) {
         if (!(this.prodComprados.containsKey(c.getCodigoProd()))) {

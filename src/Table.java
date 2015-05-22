@@ -1,3 +1,6 @@
+
+import java.util.Arrays;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -87,11 +90,28 @@ public class Table {
         this.faturacaoTotal += fat;
     }
 
-    public void adicionaNCompras(int nCompras,int mes){
-        this.nCompras[mes-1]=nCompras;
+    public void adicionaNCompras(int nCompras, int mes) {
+        this.nCompras[mes - 1] = nCompras;
     }
+
     public Table clone() {
         return new Table(this);
     }
 
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if ((!(this.getClass().getSimpleName().equals(o.getClass().getSimpleName()))) || o == null) {
+            return false;
+        } else {
+            Table t=(Table) o;
+            return this.codigo.equals(t.getCodigo()) && this.distintos.equals(t.getDistintos()) && this.faturacaoMensal.equals(t.getFaturacaoMensal()) && this.faturacaoTotal==t.getFaturacaoTotal() && this.nCompras.equals(t.getnCompras());
+        }
+
+    }
+    
+    public int hashCode(){
+        return Arrays.hashCode(new Object[]{this.codigo,this.distintos,this.faturacaoMensal,this.faturacaoTotal,this.nCompras});
+    }
 }

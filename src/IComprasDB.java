@@ -24,4 +24,5 @@ public interface IComprasDB {
     public ArrayList<TrioCodQuantNClientes> getTopComprados(int nElementos);
     public ArrayList<ParCodigoQuantidade> getClientesMaisProdutosDistintos(int nElementos);
     public ArrayList<TrioCodQuantFat> getTopCompradores(String codigoP) throws UnexistentCodeException;
+    public int[] getCompradoresMensal();
 }

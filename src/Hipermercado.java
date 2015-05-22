@@ -100,17 +100,29 @@ public class Hipermercado implements Serializable {
     public ArrayList<ParCodigoQuantidade> getTopCompras(String codigoC) throws UnexistentCodeException {
         return this.compras.getTopCompras(codigoC);
     }
-    
-    public ArrayList<TrioCodQuantNClientes> getTopComprados(int nElementos){
+
+    public ArrayList<TrioCodQuantNClientes> getTopComprados(int nElementos) {
         return this.compras.getTopComprados(nElementos);
     }
-    
-    public ArrayList<ParCodigoQuantidade> getClientesMaisProdutosDistintos(int nElementos){
+
+    public ArrayList<ParCodigoQuantidade> getClientesMaisProdutosDistintos(int nElementos) {
         return this.compras.getClientesMaisProdutosDistintos(nElementos);
     }
-    
-    public ArrayList<TrioCodQuantFat> getTopCompradores(String codigoP) throws UnexistentCodeException{
+
+    public ArrayList<TrioCodQuantFat> getTopCompradores(String codigoP) throws UnexistentCodeException {
         return this.compras.getTopCompradores(codigoP);
+    }
+
+    public int[] comprasMensais() {
+        return this.contabilidade.comprasMensais();
+    }
+
+    public float[] faturacaoMensal() {
+        return this.contabilidade.faturacaoMensal();
+    }
+
+    public int[] getCompradoresMensal() {
+        return this.compras.getCompradoresMensal();
     }
 
     public boolean compraValida(Compra c) {

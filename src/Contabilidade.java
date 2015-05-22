@@ -76,6 +76,28 @@ public class Contabilidade implements IContabilidade, Serializable {
         return res;
     }
 
+    public int[] comprasMensais() {
+        int[] res = new int[12];
+        for (NodoContabilidade nc : this.contabilidade.values()) {
+            for (int i = 1; i <= 12; i++) {
+                res[i - 1] += nc.getNComprasMes('N', i);
+                res[i - 1] += nc.getNComprasMes('P', i);
+            }
+        }
+        return res;
+    }
+    
+    public float[] faturacaoMensal(){
+        float[] res=new float[12];
+        for(NodoContabilidade nc:this.contabilidade.values()){
+            for(int i=1;i<=12;i++){
+                res[i-1]+=nc.getFaturacaoMes('N', i);
+                res[i-1]+=nc.getFaturacaoMes('P', i);
+            }
+        }
+        return res;
+    }
+
     public VendasProdutoMensais getVendasMensais(String codigoP) throws UnexistentCodeException {
         if (!(this.contabilidade.containsKey(codigoP))) {
             throw new UnexistentCodeException(codigoP);

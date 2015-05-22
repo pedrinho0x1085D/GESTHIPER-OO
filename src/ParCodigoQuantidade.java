@@ -1,3 +1,6 @@
+
+import java.util.Arrays;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -50,6 +53,10 @@ public class ParCodigoQuantidade {
             ParCodigoQuantidade pcq=(ParCodigoQuantidade) o;
             return (this.codigo.equals(pcq.getCodigo()))&&(this.quantidade==pcq.getQuantidade());
         }
+    }
+    
+    public int hashCode(){
+        return Arrays.hashCode(new Object[]{this.codigo,this.quantidade});
     }
     
     public ParCodigoQuantidade clone(){

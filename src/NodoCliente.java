@@ -1,6 +1,8 @@
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Objects;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -119,6 +121,11 @@ public class NodoCliente implements Serializable {
             return flag && (this.codigoC.equals(e.getCodigoC())) && this.prodComprados.equals(e.getProdComprados());
 
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(new Object[]{this.codigoC,this.compraMes,this.nCompras,this.prodComprados});
     }
 
     public int getNProdutosComprados(int mes) {

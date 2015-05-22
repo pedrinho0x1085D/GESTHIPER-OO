@@ -16,17 +16,16 @@ public class ComprasDB implements IComprasDB {
 
     private HashMap<String, NodoCliente> clientes;
     private HashMap<String, NodoProduto> produtos;
-    
 
     public ComprasDB() {
         this.clientes = new HashMap<>();
-        
+
         this.produtos = new HashMap<>();
     }
 
     public ComprasDB(ComprasDB other) {
         this.clientes = other.getClientes();
-        
+
         this.produtos = other.getProdutos();
     }
 
@@ -37,8 +36,6 @@ public class ComprasDB implements IComprasDB {
         }
         return res;
     }
-
-    
 
     public HashMap<String, NodoProduto> getProdutos() {
         HashMap<String, NodoProduto> res = new HashMap<>();
@@ -55,8 +52,6 @@ public class ComprasDB implements IComprasDB {
         }
 
     }
-
-    
 
     public void setProdutos(HashMap<String, NodoProduto> res) {
         this.produtos = new HashMap<>();
@@ -145,59 +140,83 @@ public class ComprasDB implements IComprasDB {
             return tab.clone();
         }
     }
-    
-    public ArrayList<ParCodigoQuantidade> getTopCompras(String codigoC) throws UnexistentCodeException{
-        if(!(this.clientes.containsKey(codigoC))) throw new UnexistentCodeException(codigoC);
-        else{
-            ArrayList<ParCodigoQuantidade> res=new ArrayList<>();
-            NodoCliente nc=this.clientes.get(codigoC);
-            TreeSet<ParCodigoQuantidade> auxil=new TreeSet<>(new ComparatorParCodigoQuantidade());
-            for(NodoProdutoComprado npc:nc.getProdComprados().values())
+
+    public ArrayList<ParCodigoQuantidade> getTopCompras(String codigoC) throws UnexistentCodeException {
+        if (!(this.clientes.containsKey(codigoC))) {
+            throw new UnexistentCodeException(codigoC);
+        } else {
+            ArrayList<ParCodigoQuantidade> res = new ArrayList<>();
+            NodoCliente nc = this.clientes.get(codigoC);
+            TreeSet<ParCodigoQuantidade> auxil = new TreeSet<>(new ComparatorParCodigoQuantidade());
+            for (NodoProdutoComprado npc : nc.getProdComprados().values()) {
                 auxil.add(new ParCodigoQuantidade(npc.getCodigoP(), npc.getQtdTotal()));
-            for(ParCodigoQuantidade pcq:auxil)
+            }
+            for (ParCodigoQuantidade pcq : auxil) {
                 res.add(pcq.clone());
+            }
             return res;
         }
     }
-    
-    public ArrayList<TrioCodQuantNClientes> getTopComprados(int nElementos){
-        ArrayList<TrioCodQuantNClientes> res=new ArrayList<>();
-        ArrayList<TrioCodQuantNClientes> resaux=new ArrayList<>();
-        TreeSet<TrioCodQuantNClientes> auxil=new TreeSet<>(new ComparatorTrioCodQuantNClientes());
-        for(NodoProduto np:this.produtos.values())
+
+    public ArrayList<TrioCodQuantNClientes> getTopComprados(int nElementos) {
+        ArrayList<TrioCodQuantNClientes> res = new ArrayList<>();
+        ArrayList<TrioCodQuantNClientes> resaux = new ArrayList<>();
+        TreeSet<TrioCodQuantNClientes> auxil = new TreeSet<>(new ComparatorTrioCodQuantNClientes());
+        for (NodoProduto np : this.produtos.values()) {
             auxil.add(new TrioCodQuantNClientes(np.getCodigoP(), np.getQtdComprada(), np.getClientesCompradores()));
-        for(TrioCodQuantNClientes tcq:auxil)
-            resaux.add(tcq.clone());
-        for(int i=0;i<nElementos && i<resaux.size();i++)
-            res.add(resaux.get(i));
-        return res;
-    }
-    
-    public ArrayList<ParCodigoQuantidade> getClientesMaisProdutosDistintos(int nElementos){
-        ArrayList<ParCodigoQuantidade> res=new ArrayList<>();
-        ArrayList<ParCodigoQuantidade> resAux=new ArrayList<>();
-        TreeSet<ParCodigoQuantidade> auxil=new TreeSet<>();
-        for(NodoCliente nc:this.clientes.values())
-            auxil.add(new ParCodigoQuantidade(nc.getCodigoC(), nc.getProdutosDistintosComprados()));
-        for(ParCodigoQuantidade pcq:auxil)
-            resAux.add(pcq.clone());
-        for(int i=0;i<nElementos && i<resAux.size();i++)
-            res.add(resAux.get(i));
-        return res;
-    }
-    
-    public ArrayList<TrioCodQuantFat> getTopCompradores(String codigoP) throws UnexistentCodeException{
-        if(!(this.produtos.containsKey(codigoP))) throw new UnexistentCodeException(codigoP);
-        else{  
-        TreeSet<TrioCodQuantFat> auxil=new TreeSet<>(new ComparatorTrioCodQuantFat());
-        ArrayList<TrioCodQuantFat> res=new ArrayList<>();
-        NodoProduto np=this.produtos.get(codigoP);
-        for(NodoClienteComprador ncc:np.getClientesComp().values())
-            auxil.add(new TrioCodQuantFat(ncc.getCodigoC(), ncc.getQuantidadeTotal(), ncc.getFaturacaoTotal()));
-        for(TrioCodQuantFat tcqf:auxil)
-            res.add(tcqf.clone());
-        return res;
         }
+        for (TrioCodQuantNClientes tcq : auxil) {
+            resaux.add(tcq.clone());
+        }
+        for (int i = 0; i < nElementos && i < resaux.size(); i++) {
+            res.add(resaux.get(i));
+        }
+        return res;
+    }
+
+    public ArrayList<ParCodigoQuantidade> getClientesMaisProdutosDistintos(int nElementos) {
+        ArrayList<ParCodigoQuantidade> res = new ArrayList<>();
+        ArrayList<ParCodigoQuantidade> resAux = new ArrayList<>();
+        TreeSet<ParCodigoQuantidade> auxil = new TreeSet<>();
+        for (NodoCliente nc : this.clientes.values()) {
+            auxil.add(new ParCodigoQuantidade(nc.getCodigoC(), nc.getProdutosDistintosComprados()));
+        }
+        for (ParCodigoQuantidade pcq : auxil) {
+            resAux.add(pcq.clone());
+        }
+        for (int i = 0; i < nElementos && i < resAux.size(); i++) {
+            res.add(resAux.get(i));
+        }
+        return res;
+    }
+
+    public ArrayList<TrioCodQuantFat> getTopCompradores(String codigoP) throws UnexistentCodeException {
+        if (!(this.produtos.containsKey(codigoP))) {
+            throw new UnexistentCodeException(codigoP);
+        } else {
+            TreeSet<TrioCodQuantFat> auxil = new TreeSet<>(new ComparatorTrioCodQuantFat());
+            ArrayList<TrioCodQuantFat> res = new ArrayList<>();
+            NodoProduto np = this.produtos.get(codigoP);
+            for (NodoClienteComprador ncc : np.getClientesComp().values()) {
+                auxil.add(new TrioCodQuantFat(ncc.getCodigoC(), ncc.getQuantidadeTotal(), ncc.getFaturacaoTotal()));
+            }
+            for (TrioCodQuantFat tcqf : auxil) {
+                res.add(tcqf.clone());
+            }
+            return res;
+        }
+    }
+
+    public int[] getCompradoresMensal() {
+        int[] res = new int[12];
+        for (NodoCliente nc : this.clientes.values()) {
+            for (int mes = 1; mes <= 12; mes++) {
+                if (nc.getCompraMes(mes) != 0) {
+                    res[mes - 1]++;
+                }
+            }
+        }
+        return res;
     }
 
 }

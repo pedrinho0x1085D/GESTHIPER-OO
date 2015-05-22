@@ -26,4 +26,7 @@ public interface IContabilidade {
     public IContabilidade clone();
     public ArrayList<String> getNuncaComprados();
     public VendasProdutoMensais getVendasMensais(String codigoP) throws UnexistentCodeException;
+    public int[] comprasMensais();
+    public float[] faturacaoMensal();
+    
 }

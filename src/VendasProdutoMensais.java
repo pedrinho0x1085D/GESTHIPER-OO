@@ -1,3 +1,6 @@
+
+import java.util.Arrays;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -78,6 +81,19 @@ public class VendasProdutoMensais {
     }
     public VendasProdutoMensais clone(){
         return new VendasProdutoMensais(this);
+    }
+    
+    public boolean equals(Object o){
+        if(this==o) return true;
+        else if((!(this.getClass().getSimpleName().equals(o.getClass().getSimpleName())))||o==null) return false;
+        else{
+            VendasProdutoMensais vpm=(VendasProdutoMensais) o;
+            return this.codigoP.equals(vpm.getCodigoP())&&this.fatN.equals(vpm.getFatN())&&this.fatP.equals(vpm.getFatP())&&this.vendasN.equals(vpm.getVendasN())&&this.vendasP.equals(vpm.getVendasP());
+        }
+    }
+    
+    public int hashCode(){
+        return Arrays.hashCode(new Object[]{this.codigoP,this.fatN,this.fatP,this.vendasN,this.vendasP});
     }
     
 }

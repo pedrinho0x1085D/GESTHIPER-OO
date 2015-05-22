@@ -16,9 +16,9 @@ import java.util.StringTokenizer;
  */
 public class Gesthiper {
 
-    private static int linhasClientes, linhasProdutos, linhasCompras,comprasValor0;
+    private static int linhasClientes, linhasProdutos, linhasCompras, comprasValor0;
     private static Hipermercado hiper;
-    private static FileStats estatisticas=new FileStats();
+    private static FileStats estatisticas = new FileStats();
     private static ArrayList<Compra> comprasInvalidas = new ArrayList<>();
     private static Menu menuCarregamento, menuPrincipal, menuQueriesEstat, menuQueriesInter;
 
@@ -46,8 +46,8 @@ public class Gesthiper {
     public static void leFicheiroCompras(String filename) throws FileNotFoundException {
         String st;
         Compra c;
-        Gesthiper.comprasValor0=0;
-        Gesthiper.linhasCompras=0;
+        Gesthiper.comprasValor0 = 0;
+        Gesthiper.linhasCompras = 0;
         Gesthiper.comprasInvalidas = new ArrayList<>();
         Scanner fichScan = new Scanner(new FileReader(filename));
         fichScan.useDelimiter(System.getProperty("line.separator"));
@@ -59,7 +59,9 @@ public class Gesthiper {
             } else {
                 Gesthiper.comprasInvalidas.add(c.clone());
             }
-            if(c.getValorUni()==0) Gesthiper.comprasValor0++;
+            if (c.getValorUni() == 0) {
+                Gesthiper.comprasValor0++;
+            }
             Gesthiper.linhasCompras++;
         }
     }
@@ -86,7 +88,7 @@ public class Gesthiper {
     }
 
     public static void carregaMenus() {
-        String[] carregamento = {"Carregar a partir de ficheiros de texto","Carregar a partir de ficheiro de Objectos"};
+        String[] carregamento = {"Carregar a partir de ficheiros de texto", "Carregar a partir de ficheiro de Objectos"};
         /*Futuramente aqui serao colocados os outros*/
         Gesthiper.menuCarregamento = new Menu(carregamento);
     }
@@ -94,7 +96,7 @@ public class Gesthiper {
     public static void LeituraFicheiros() {
         String fileCli, fileProd, fileComp;
         try {
-            Gesthiper.hiper=new Hipermercado();
+            Gesthiper.hiper = new Hipermercado();
             System.out.println("Insira o nome de ficheiro de Clientes pretendido:<ENTER para FichClientes.txt> ");
             fileCli = Gesthiper.getFileNameWithDefault("FichClientes.txt");
             Gesthiper.leFicheiroClientes(fileCli);
@@ -102,15 +104,25 @@ public class Gesthiper {
             fileProd = Gesthiper.getFileNameWithDefault("FichProdutos.txt");
             Gesthiper.leFicheiroProdutos(fileProd);
             System.out.println("Insira o nome de Ficheiro de Compras pretendido:<Enter para FichCompras.txt> ");
-            fileComp=Gesthiper.getFileNameWithDefault("FichCompras.txt");
+            fileComp = Gesthiper.getFileNameWithDefault("FichCompras.txt");
             Gesthiper.leFicheiroCompras(fileComp);
-            //Gesthiper.estatisticas=new FileStats(fileComp, fileProd, fileCli, Gesthiper.linhasClientes, Gesthiper.linhasProdutos, Gesthiper.linhasCompras, linhasClientes, linhasCompras, linhasCompras, linhasCompras, linhasCompras, comprasMes, faturacaoMensal, clientesCompradoresMensal, comprasInvalidas, linhasCompras)
+            Gesthiper.estatisticas = new FileStats(fileComp, fileProd, fileCli, Gesthiper.linhasProdutos, Gesthiper.linhasProdutos - Gesthiper.hiper.getProdutosNuncaComprados().size(), Gesthiper.hiper.getProdutosNuncaComprados().size(), Gesthiper.linhasClientes, Gesthiper.linhasClientes - Gesthiper.hiper.getClientesNaoCompradores().size(), Gesthiper.hiper.getClientesNaoCompradores().size(), comprasValor0, linhasCompras, Gesthiper.hiper.comprasMensais(), Gesthiper.hiper.faturacaoMensal(), Gesthiper.hiper.getCompradoresMensal(), Gesthiper.comprasInvalidas, Gesthiper.comprasInvalidas.size());
         } catch (FileNotFoundException e) {
             System.out.println("Ficheiro Não Encontrado");
         }
     }
 
     public static void main(String[] args) {
+        Gesthiper.carregaMenus();
+        Gesthiper.menuCarregamento.executa();
+        switch (Gesthiper.menuCarregamento.getOpcao()) {
+            case 1: Gesthiper.LeituraFicheiros(); break;
+            case 2: /*Leitura Ficheiro Obj*/break;
+            default: break;
+        }
+        if(Gesthiper.menuCarregamento.getOpcao()!=0){
+            
+        }
         
     }
 }

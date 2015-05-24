@@ -43,8 +43,8 @@ public class GlobalStats {
         this.estrutura = new StructureStats(comprasMes, faturacaoMensal, clientesCompradoresMensal, comprasInvalidas, nComprasInvalidas);
     }
 
-    public void toTxtFile(String filename){
-        try{
+    public void toTxtFile(String filename)throws IOException{
+        
         FileWriter fw=new FileWriter(filename);
         fw.write("--------------Estatísticas de Ficheiro----------------\n");
         fw.write("Ficheiro de Clientes: "+this.ficheiro.getFilenameCli()+"\n");
@@ -81,7 +81,6 @@ public class GlobalStats {
             fw.write(c.toString());
         fw.flush();
         fw.close();
-        }
-        catch(IOException fnf){System.out.println("Erro no Disco: "+fnf.getMessage());}
+        
     }
 }

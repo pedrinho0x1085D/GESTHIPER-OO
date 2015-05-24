@@ -1,4 +1,10 @@
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -131,5 +137,19 @@ public class Hipermercado implements Serializable {
         } else {
             return false;
         }
+    }
+
+    public void toObjFile(String filename) throws IOException{
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
+        oos.writeObject(this);
+        oos.flush();
+        oos.close();
+    }
+    
+    public Hipermercado readFromObjFile(String filename)throws IOException,ClassNotFoundException{
+        ObjectInputStream ois= new ObjectInputStream(new FileInputStream(filename));
+        Hipermercado res=(Hipermercado)ois.readObject();
+        ois.close();
+        return res;
     }
 }

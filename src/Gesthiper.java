@@ -18,7 +18,7 @@ public class Gesthiper {
 
     private static int linhasClientes=0, linhasProdutos=0, linhasCompras=0, comprasValor0=0;
     private static Hipermercado hiper=new Hipermercado();
-    private static FileStats estatisticas = new FileStats();
+    private static GlobalStats estatisticas = new GlobalStats();
     private static ArrayList<Compra> comprasInvalidas = new ArrayList<>();
     private static Menu menuCarregamento, menuPrincipal, menuQueriesEstat, menuQueriesInter;
 
@@ -106,7 +106,7 @@ public class Gesthiper {
             System.out.println("Insira o nome de Ficheiro de Compras pretendido:<Enter para FichCompras.txt> ");
             fileComp = Gesthiper.getFileNameWithDefault("FichCompras.txt");
             Gesthiper.leFicheiroCompras(fileComp);
-            Gesthiper.estatisticas = new FileStats(fileComp, fileProd, fileCli, Gesthiper.linhasProdutos, Gesthiper.linhasProdutos - Gesthiper.hiper.getProdutosNuncaComprados().size(), Gesthiper.hiper.getProdutosNuncaComprados().size(), Gesthiper.linhasClientes, Gesthiper.linhasClientes - Gesthiper.hiper.getClientesNaoCompradores().size(), Gesthiper.hiper.getClientesNaoCompradores().size(), comprasValor0, linhasCompras, Gesthiper.hiper.comprasMensais(), Gesthiper.hiper.faturacaoMensal(), Gesthiper.hiper.getCompradoresMensal(), Gesthiper.comprasInvalidas, Gesthiper.comprasInvalidas.size());
+            Gesthiper.estatisticas = new GlobalStats(fileComp, fileProd, fileCli, Gesthiper.linhasProdutos, Gesthiper.linhasProdutos - Gesthiper.hiper.getProdutosNuncaComprados().size(), Gesthiper.hiper.getProdutosNuncaComprados().size(), Gesthiper.linhasClientes, Gesthiper.linhasClientes - Gesthiper.hiper.getClientesNaoCompradores().size(), Gesthiper.hiper.getClientesNaoCompradores().size(), comprasValor0, linhasCompras-Gesthiper.comprasInvalidas.size(), Gesthiper.hiper.comprasMensais(), Gesthiper.hiper.faturacaoMensal(), Gesthiper.hiper.getCompradoresMensal(), Gesthiper.comprasInvalidas, Gesthiper.comprasInvalidas.size());
         } catch (FileNotFoundException e) {
             System.out.println("Ficheiro Não Encontrado");
         }

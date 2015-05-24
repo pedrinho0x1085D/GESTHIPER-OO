@@ -6,24 +6,19 @@ import java.util.ArrayList;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Pedro Cunha
  */
 public class FileStats {
-    private String filenameComp,filenameProd,filenameCli;
-    private int nProds,prodsComp,prodsNComp;
-    private int nClientes,nClientesCompradores,nClientesNaoCompraram;
+
+    private String filenameComp, filenameProd, filenameCli;
+    private int nProds, prodsComp, prodsNComp;
+    private int nClientes, nClientesCompradores, nClientesNaoCompraram;
     private int comprasValor0;
     private float faturacaoTotal;
-    private int comprasMes[];
-    private float faturacaoMensal[];
-    private int clientesCompradoresMensal[];
-    private ArrayList<Compra> comprasInvalidas;
-    private int nComprasInvalidas;
-    
-    public FileStats(){
+
+    public FileStats() {
         this.filenameComp = "";
         this.filenameProd = "";
         this.filenameCli = "";
@@ -35,14 +30,10 @@ public class FileStats {
         this.nClientesNaoCompraram = 0;
         this.comprasValor0 = 0;
         this.faturacaoTotal = 0;
-        this.comprasMes = new int[12];
-        this.faturacaoMensal = new float[12];
-        this.clientesCompradoresMensal = new int[12];
-        this.comprasInvalidas = new ArrayList<>();
-        this.nComprasInvalidas = 0;
+
     }
 
-    public FileStats(String filenameComp, String filenameProd, String filenameCli, int nProds, int prodsComp, int prodsNComp, int nClientes, int nClientesCompradores, int nClientesNaoCompraram, int comprasValor0, float faturacaoTotal, int[] comprasMes, float[] faturacaoMensal, int[] clientesCompradoresMensal, ArrayList<Compra> comprasInvalidas, int nComprasInvalidas) {
+    public FileStats(String filenameComp, String filenameProd, String filenameCli, int nProds, int prodsComp, int prodsNComp, int nClientes, int nClientesCompradores, int nClientesNaoCompraram, int comprasValor0, float faturacaoTotal) {
         this.filenameComp = filenameComp;
         this.filenameProd = filenameProd;
         this.filenameCli = filenameCli;
@@ -54,36 +45,11 @@ public class FileStats {
         this.nClientesNaoCompraram = nClientesNaoCompraram;
         this.comprasValor0 = comprasValor0;
         this.faturacaoTotal = faturacaoTotal;
-        this.comprasMes = comprasMes;
-        this.faturacaoMensal = faturacaoMensal;
-        this.clientesCompradoresMensal = clientesCompradoresMensal;
-        this.comprasInvalidas = new ArrayList<>();
-        for(Compra c:comprasInvalidas)
-            this.comprasInvalidas.add(c.clone());
-        this.nComprasInvalidas = nComprasInvalidas;
-    }
 
-    public int[] getClientesCompradoresMensal() {
-        return this.clientesCompradoresMensal.clone();
-    }
-
-    public ArrayList<Compra> getComprasInvalidas() {
-        ArrayList<Compra> res=new ArrayList<>();
-        for(Compra c:this.comprasInvalidas)
-            res.add(c.clone());
-        return res;
-    }
-
-    public int[] getComprasMes() {
-        return this.comprasMes.clone();
     }
 
     public int getComprasValor0() {
         return this.comprasValor0;
-    }
-
-    public float[] getFaturacaoMensal() {
-        return this.faturacaoMensal.clone();
     }
 
     public float getFaturacaoTotal() {
@@ -102,6 +68,11 @@ public class FileStats {
         return this.filenameProd;
     }
 
+    public int getnProds() {
+        return this.nProds;
+    }
+
+    
     public int getProdsComp() {
         return this.prodsComp;
     }
@@ -122,31 +93,8 @@ public class FileStats {
         return this.nClientesNaoCompraram;
     }
 
-    public int getnComprasInvalidas() {
-        return this.nComprasInvalidas;
-    }
-
-    public void setClientesCompradoresMensal(int[] clientesCompradoresMensal) {
-        this.clientesCompradoresMensal = clientesCompradoresMensal.clone();
-    }
-
-    public void setComprasInvalidas(ArrayList<Compra> comprasInvalidas) {
-        this.comprasInvalidas = new ArrayList<>();
-        for(Compra c:comprasInvalidas)
-            this.comprasInvalidas.add(c.clone());
-        
-    }
-
-    public void setComprasMes(int[] comprasMes) {
-        this.comprasMes = comprasMes.clone();
-    }
-
     public void setComprasValor0(int comprasValor0) {
         this.comprasValor0 = comprasValor0;
-    }
-
-    public void setFaturacaoMensal(float[] faturacaoMensal) {
-        this.faturacaoMensal = faturacaoMensal.clone();
     }
 
     public void setFaturacaoTotal(float faturacaoTotal) {
@@ -185,17 +133,12 @@ public class FileStats {
         this.nClientesNaoCompraram = nClientesNaoCompraram;
     }
 
-    public void setnComprasInvalidas(int nComprasInvalidas) {
-        this.nComprasInvalidas = nComprasInvalidas;
-    }
-
     public void setnProds(int nProds) {
         this.nProds = nProds;
     }
-    
-    public FileStats clone(){
-            return new FileStats(this.filenameComp, this.filenameProd, this.filenameCli, this.nProds, this.prodsComp, this.prodsNComp, this.nClientes, this.nClientesCompradores, this.nClientesNaoCompraram, this.comprasValor0, this.faturacaoTotal, this.comprasMes.clone(), this.faturacaoMensal.clone(), this.clientesCompradoresMensal.clone(), this.comprasInvalidas, nComprasInvalidas);
+
+    public FileStats clone() {
+        return new FileStats(this.filenameComp, this.filenameProd, this.filenameCli, this.nProds, this.prodsComp, this.prodsNComp, this.nClientes, this.nClientesCompradores, this.nClientesNaoCompraram, this.comprasValor0, this.faturacaoTotal);
     }
-    
-    
+
 }

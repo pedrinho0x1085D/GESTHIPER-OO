@@ -146,7 +146,7 @@ public class Hipermercado implements Serializable {
         oos.close();
     }
     
-    public Hipermercado readFromObjFile(String filename)throws IOException,ClassNotFoundException{
+    public static Hipermercado readFromObjFile(String filename)throws IOException,ClassNotFoundException{
         ObjectInputStream ois= new ObjectInputStream(new FileInputStream(filename));
         Hipermercado res=(Hipermercado)ois.readObject();
         ois.close();

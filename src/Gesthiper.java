@@ -235,31 +235,88 @@ public class Gesthiper {
     }
 
     public static void execMenuQueriesInter() {
-        System.out.println("************ GESTHIPER ************");
-        System.out.println("------------ Queries Interactivas -----------");
-        Gesthiper.menuQueriesInter.executa();
+        ArrayList<String> resLista;
+        ParNComprasNClientes resParCompClie;
+        Table resTabl;
+        VendasProdutoMensais resVPM;
+        ArrayList<ParCodigoQuantidade> resListaPCQ;
+        ArrayList<TrioCodQuantNClientes> resTrioCQNC;
+        ArrayList<TrioCodQuantFat> resTrioCQF;
+        double time;
+        String code;
+        int nElementos, mes;
         do {
+            System.out.println("************ GESTHIPER ************");
+            System.out.println("------------ Queries Interactivas -----------");
+            Gesthiper.menuQueriesInter.executa();
             switch (Gesthiper.menuQueriesInter.getOpcao()) {
-                case 1:{}
-                case 2:{}
-                case 3:{}
-                case 4:{}
-                case 5:{}
-                case 6:{}
-                case 7:{}
-                case 8:{}
-                case 9:{}
-                case 10:{}
+                case 1: {
+                    Crono.start();
+                    resLista = Gesthiper.hiper.getProdutosNuncaComprados();
+                    time = Crono.stop();
+                    System.out.println("Query realizada em " + time + " segundos");
+                    System.out.println("Irão ser apresentados " + resLista.size() + " códigos:");
+                    //Navegação ArrayList<String>;
+                }
+                case 2: {
+                    Crono.start();
+                    resLista = Gesthiper.hiper.getClientesNaoCompradores();
+                    time = Crono.stop();
+                    System.out.println("Query realizada em " + time + " segundos");
+                    System.out.println("Irão ser apresentados " + resLista.size() + " códigos:");
+                    //Navegação ArrayList<String>;
+                }
+                case 3: {
+                    System.out.println("Insira um mês (1-12):");
+                    mes = Input.lerInt();
+                    try {
+                        Crono.start();
+                        resParCompClie = Gesthiper.hiper.getTotNComprasNClientes(mes);
+                        time = Crono.stop();
+                        System.out.println("Query realizada em " + time + " segundos");
+                        System.out.println("Total de Compras e Clientes distintos no mes " + mes);
+                        System.out.println("Clientes Distintos: " + resParCompClie.getnClientes() + "\nCompras efectuadas: " + resParCompClie.getnCompras());
+                    } catch (InvalidMonthException ime) {
+                        System.out.println("Mes inválido! " + ime.getMessage());
+                    }
+                }
+                case 4: {
+                    System.out.println("Insira um código: ");
+                    code=Input.lerString();
+                    try{
+                        Crono.start();
+                        resTabl=Gesthiper.hiper.getTableCliente(code);
+                        time=Crono.stop();
+                        System.out.println("Query realizada em " + time + " segundos");
+                        
+                    }
+                    catch(UnexistentCodeException uce){
+                        System.out.println("Código Inexistente! "+uce.getMessage());
+                    }
+                }
+                case 5: {
+                }
+                case 6: {
+                }
+                case 7: {
+                }
+                case 8: {
+                }
+                case 9: {
+                }
+                case 10: {
+                }
             }
         } while (Gesthiper.menuQueriesInter.getOpcao() != 0);
     }
 
     public static void execMenuQueriesEst() {
-        System.out.println("************ GESTHIPER ************");
-        System.out.println("------------ Queries Estatísticas -----------");
-        System.out.println(Gesthiper.estatisticas.toString());
-        Gesthiper.menuQueriesEstat.executa();
+
         do {
+            System.out.println("************ GESTHIPER ************");
+            System.out.println("------------ Queries Estatísticas -----------");
+            System.out.println(Gesthiper.estatisticas.toString());
+            Gesthiper.menuQueriesEstat.executa();
             switch (Gesthiper.menuQueriesEstat.getOpcao()) {
                 case 1:
                     Gesthiper.estatisticasToTXT();

@@ -95,8 +95,8 @@ public class Hipermercado implements Serializable {
         return this.compras.getTableCliente(codigoC);
     }
 
-    public Table getTableProduto(String codigoC) throws UnexistentCodeException {
-        return this.compras.getTableProduto(codigoC);
+    public Table getTableProduto(String codigoP) throws UnexistentCodeException {
+        return this.compras.getTableProduto(codigoP);
     }
 
     public VendasProdutoMensais getVendasMensais(String codigoP) throws UnexistentCodeException {

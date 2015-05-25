@@ -281,30 +281,87 @@ public class Gesthiper {
                     }
                 }
                 case 4: {
-                    System.out.println("Insira um código: ");
-                    code=Input.lerString();
-                    try{
+                    System.out.println("Insira um código de Cliente: ");
+                    code = Input.lerString();
+                    try {
                         Crono.start();
-                        resTabl=Gesthiper.hiper.getTableCliente(code);
-                        time=Crono.stop();
+                        resTabl = Gesthiper.hiper.getTableCliente(code);
+                        time = Crono.stop();
                         System.out.println("Query realizada em " + time + " segundos");
-                        
-                    }
-                    catch(UnexistentCodeException uce){
-                        System.out.println("Código Inexistente! "+uce.getMessage());
+                        //ApresentaTab
+                    } catch (UnexistentCodeException uce) {
+                        System.out.println("Código Inexistente! " + uce.getMessage());
                     }
                 }
                 case 5: {
+                    System.out.println("Insira um código de Produto: ");
+                    code = Input.lerString();
+                    try {
+                        Crono.start();
+                        resTabl = Gesthiper.hiper.getTableProduto(code);
+                        time = Crono.stop();
+                        System.out.println("Query realizada em " + time + " segundos");
+                        //Apresenta tab
+                    } catch (UnexistentCodeException uce) {
+                        System.out.println("Código Inexistente! " + uce.getMessage());
+                    }
                 }
                 case 6: {
+                    System.out.println("Insira um código de Produto: ");
+                    code = Input.lerString();
+                    try {
+                        Crono.start();
+                        resVPM = Gesthiper.hiper.getVendasMensais(code);
+                        time = Crono.stop();
+                        System.out.println("Query realizada em " + time + " segundos");
+                        //Apresenta VPM
+                    } catch (UnexistentCodeException uce) {
+                        System.out.println("Código Inexistente! " + uce.getMessage());
+                    }
                 }
                 case 7: {
+                    System.out.println("Insira um código de Cliente: ");
+                    code = Input.lerString();
+                    try {
+                        Crono.start();
+                        resListaPCQ = Gesthiper.hiper.getTopCompras(code);
+                        time = Crono.stop();
+                        System.out.println("Query realizada em " + time + " segundos");
+                        //Navega LPCQ;
+                    } catch (UnexistentCodeException uce) {
+                        System.out.println("Código Inexistente! " + uce.getMessage());
+                    }
                 }
                 case 8: {
+                    System.out.println("Insira o número de Elementos a apresentar");
+                    nElementos = Input.lerInt();
+                    Crono.start();
+                    resTrioCQNC = Gesthiper.hiper.getTopComprados(nElementos);
+                    time = Crono.stop();
+                    System.out.println("Query realizada em " + time + " segundos");
+                    //Navega ListaT
                 }
                 case 9: {
+                    System.out.println("Insira o número de Elementos a apresentar");
+                    nElementos = Input.lerInt();
+                    Crono.start();
+                    resListaPCQ = Gesthiper.hiper.getClientesMaisProdutosDistintos(nElementos);
+                    time = Crono.stop();
+                    System.out.println("Query realizada em " + time + " segundos");
+                    //Navega ListaT
                 }
                 case 10: {
+                     System.out.println("Insira um código de Produto: ");
+                    code = Input.lerString();
+                    try {
+                        Crono.start();
+                        resTrioCQF = Gesthiper.hiper.getTopCompradores(code);
+                        time = Crono.stop();
+                        System.out.println("Query realizada em " + time + " segundos");
+                        //Apresenta Lista
+                    } catch (UnexistentCodeException uce) {
+                        System.out.println("Código Inexistente! " + uce.getMessage());
+                    }
                 }
             }
         } while (Gesthiper.menuQueriesInter.getOpcao() != 0);

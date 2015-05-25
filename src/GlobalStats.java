@@ -43,6 +43,44 @@ public class GlobalStats {
         this.estrutura = new StructureStats(comprasMes, faturacaoMensal, clientesCompradoresMensal, comprasInvalidas, nComprasInvalidas);
     }
 
+    public String toString(){
+        StringBuilder sb=new StringBuilder();
+        sb.append("--------------Estatísticas de Ficheiro----------------\n");
+        sb.append("Ficheiro de Clientes: "+this.ficheiro.getFilenameCli()+"\n");
+        sb.append("Ficheiro de Produtos: "+this.ficheiro.getFilenameProd()+"\n");
+        sb.append("Ficheiro de Compras: "+this.ficheiro.getFilenameComp()+"\n");
+        sb.append("Número de Linhas de Clientes: "+this.ficheiro.getnClientes()+"\n");
+        sb.append("Dos quais\n");
+        sb.append("\t"+this.ficheiro.getnClientesCompradores()+" clientes realizaram compras\n");
+        sb.append("\t"+this.ficheiro.getnClientesNaoCompraram()+" clientes não realizaram compras\n");
+        sb.append("Número de Linhas de Produtos: "+this.ficheiro.getnProds()+"\n");
+        sb.append("Dos quais\n");
+        sb.append("\t"+this.ficheiro.getProdsComp()+" produtos foram comprados\n");
+        sb.append("\t"+this.ficheiro.getProdsNComp()+" produtos não foram comprados\n");
+        sb.append("Compras com valor 0: "+this.ficheiro.getComprasValor0()+"\n");
+        sb.append("Faturação total: "+this.ficheiro.getFaturacaoTotal()+"€\n");
+        sb.append("--------------Estatísticas de Estruturas----------------\n");
+        sb.append("Faturação Mensal: \n");
+        for(int i=0;i<12;i++){
+            sb.append(" "+ this.estrutura.getFaturacaoMensal()[i]);
+        }
+        sb.append("\n");
+        sb.append("Clientes Compradores por Mês: \n");
+        for(int i=0;i<12;i++){
+            sb.append(" "+ this.estrutura.getClientesCompradoresMensal()[i]);
+        }
+        sb.append("\n");
+        sb.append("Compras Realizadas por Mês: \n");
+        for(int i=0;i<12;i++){
+            sb.append(" "+ this.estrutura.getComprasMes()[i]);
+        }
+        sb.append("\n");
+        sb.append("As seguintes "+this.estrutura.getnComprasInvalidas()+"não foram validadas: \n");
+        for(Compra c:this.estrutura.getComprasInvalidas())
+            sb.append(c.toString());
+        return sb.toString();
+    }
+    
     public void toTxtFile(String filename)throws IOException{
         
         FileWriter fw=new FileWriter(filename);

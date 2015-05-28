@@ -110,6 +110,7 @@ public class StructureStats {
         }
         sb.append("\n");
         sb.append("Número de compras invalidas");
+        // VER MELHOR, qual das duas seguintes esta correta
         sb.append(this.nComprasInvalidas);
         sb.append(this.getnComprasInvalidas());
         sb.append("\n");

@@ -74,4 +74,18 @@ public class ParNComprasNClientes {
         return Arrays.hashCode(new Object[]{this.nClientes,this.nCompras});
     }
 
+    
+    public String toString() {
+       StringBuilder sb = new StringBuilder();
+       
+       
+       sb.append("Número de Compras ");
+       sb.append(this.nCompras);
+       sb.append("\n");
+       sb.append("Número de Clientes ");
+       sb.append(this.nClientes);
+       sb.append("\n");
+       
+       return sb.toString();
+    }
 }

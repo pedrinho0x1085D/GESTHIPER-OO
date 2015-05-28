@@ -75,5 +75,26 @@ public class TrioCodQuantFat {
     public int hashCode(){
         return Arrays.hashCode(new Object[]{this.codigo,this.faturacao,this.quantidade});
     }
+     /**
+  * 
+  * @return representação textual da instância 
+  */
+    public String toString() {
+       StringBuilder sb = new StringBuilder();
+       
+       
+       sb.append("Código do produto ");
+       sb.append(this.codigo);
+       sb.append("\n");
+       sb.append("Quantidade ");
+       sb.append(this.quantidade);
+       sb.append("\n");
+       sb.append("Faturação ");
+       sb.append(this.faturacao);
+       sb.append("\n");
+        
+        return sb.toString();
+    }
+    
 }
 

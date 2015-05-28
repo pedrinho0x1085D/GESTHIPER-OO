@@ -90,4 +90,30 @@ public class StructureStats {
         return new StructureStats(this.comprasMes, this.faturacaoMensal, this.clientesCompradoresMensal, this.comprasInvalidas, this.nComprasInvalidas);
     }
     
+    
+    public String toString(){
+    
+        StringBuilder sb=new StringBuilder();
+        sb.append("Número de Compras Mensal: \n");
+        for(int i=0;i<12;i++){
+            sb.append(this.getComprasMes()[i]);
+        }
+        sb.append("\n");
+        sb.append("Faturação Mensal: \n");
+        for(int i=0;i<12;i++){
+            sb.append(this.getFaturacaoMensal()[i]);
+        }
+        sb.append("\n");
+        sb.append("Clientes Compradores em cada Mês: \n");
+        for(int i=0;i<12;i++){
+            sb.append(this.getClientesCompradoresMensal()[i]);
+        }
+        sb.append("\n");
+        sb.append("Número de compras invalidas");
+        sb.append(this.nComprasInvalidas);
+        sb.append(this.getnComprasInvalidas());
+        sb.append("\n");
+        
+        return sb.toString();
+    }
 }

@@ -114,4 +114,29 @@ public class Table {
     public int hashCode(){
         return Arrays.hashCode(new Object[]{this.codigo,this.distintos,this.faturacaoMensal,this.faturacaoTotal,this.nCompras});
     }
+    
+          /**
+  * 
+  * @return representação textual da instância 
+  */
+    public String toString() {
+       StringBuilder sb = new StringBuilder();
+       
+       
+       sb.append("Código do produto ");
+       sb.append(this.codigo);
+       sb.append("\n");
+       sb.append("Produtos Disintos??? Ver ");
+       for(int i=0;i<12;i++){ sb.append(this.distintos[i]); }
+       sb.append("\n");
+       sb.append("Numero de Compras ");
+       for(int i=0;i<12;i++){ sb.append(this.nCompras[i]); }
+       sb.append("\n");
+       sb.append("Faturção Mensal "); 
+       for(int i=0;i<12;i++){ sb.append(this.faturacaoMensal[i] + "€"); }
+       sb.append("\n");
+       sb.append("Faturção Total "); 
+       sb.append(this.faturacaoTotal + "€");
+       return sb.toString();
+    }
 }

@@ -62,5 +62,16 @@ public class ParCodigoQuantidade {
     public ParCodigoQuantidade clone(){
         return new ParCodigoQuantidade(this);
     }
-    
+
+      public String toString() {
+       StringBuilder sb = new StringBuilder();
+       
+       sb.append("Código do produto ");
+       sb.append(this.codigo);
+       sb.append("\n");
+       sb.append("Qauntidade ");
+       sb.append(this.quantidade);
+       sb.append("\n");
+       return sb.toString();
+    }
 }

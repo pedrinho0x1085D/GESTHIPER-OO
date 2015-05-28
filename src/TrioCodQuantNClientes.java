@@ -74,4 +74,24 @@ public class TrioCodQuantNClientes {
     public int hashCode(){
         return Arrays.hashCode(new Object[]{this.codigo,this.nClientes,this.quantidade});
     }
+        /**
+  * 
+  * @return representação textual da instância 
+  */
+    public String toString() {
+       StringBuilder sb = new StringBuilder();
+       
+       
+       sb.append("Código do produto ");
+       sb.append(this.codigo);
+       sb.append("\n");
+       sb.append("Quantidade ");
+       sb.append(this.quantidade);
+       sb.append("\n");
+       sb.append("Numero de Clientes ");
+       sb.append(this.nClientes);
+       sb.append("\n");
+        
+        return sb.toString();
+    }
 }

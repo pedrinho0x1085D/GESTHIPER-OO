@@ -95,5 +95,29 @@ public class VendasProdutoMensais {
     public int hashCode(){
         return Arrays.hashCode(new Object[]{this.codigoP,this.fatN,this.fatP,this.vendasN,this.vendasP});
     }
+            /**
+  * 
+  * @return representação textual da instância 
+  */
+    public String toString() {
+       StringBuilder sb = new StringBuilder();
+       
+       
+       sb.append("Código do produto ???? Ver");
+       sb.append(this.codigoP);
+       sb.append("\n");
+       sb.append("Vendas modo Normal");
+       for(int i=0;i<12;i++){ sb.append(this.vendasN[i]); }
+       sb.append("\n");
+       sb.append("Vendas modo Promoção ");
+       for(int i=0;i<12;i++){ sb.append(this.vendasP[i]); }
+       sb.append("\n");
+       sb.append("Faturção Normal "); 
+       for(int i=0;i<12;i++){ sb.append(this.fatN[i] + "€"); }
+       sb.append("\n");
+       sb.append("Faturção Promoção "); 
+       sb.append(this.fatP + "€");
+       return sb.toString();
+    }
     
 }

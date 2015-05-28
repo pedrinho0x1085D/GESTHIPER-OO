@@ -140,5 +140,50 @@ public class FileStats {
     public FileStats clone() {
         return new FileStats(this.filenameComp, this.filenameProd, this.filenameCli, this.nProds, this.prodsComp, this.prodsNComp, this.nClientes, this.nClientesCompradores, this.nClientesNaoCompraram, this.comprasValor0, this.faturacaoTotal);
     }
+    
+    /**
+  * 
+  * @return representação textual da instância 
+  */
+    public String toString() {
+       StringBuilder sb = new StringBuilder();
+       
+       
+       sb.append("Ficheiro Compras ");
+       sb.append(this.filenameComp);
+       sb.append("\n");
+       sb.append("Ficheiro Produtos ");
+       sb.append(this.filenameProd);
+       sb.append("\n");
+       sb.append("Ficheiro Clientes ");
+       sb.append(this.filenameCli);
+       sb.append("\n");
+       sb.append("Número de Produtos ");
+       sb.append(this.nProds);
+       sb.append("\n");
+       sb.append("Produtos Comprados -Ver ");
+       sb.append(this.prodsComp);
+       sb.append("\n");
+       sb.append("Total de Produtos Comprados->Ver");
+       sb.append(this.prodsNComp);
+       sb.append("\n");
+       sb.append("Numeros de Clientes");
+       sb.append(this.nClientes);
+       sb.append("\n");
+       sb.append("Numeros de Clientes Compradores");
+       sb.append(this.nClientesCompradores);
+       sb.append("\n");
+       sb.append("Numeros de Clientes que não Compraram");
+       sb.append(this.nClientesNaoCompraram);
+       sb.append("\n");
+       sb.append("Produtos que nunca foram comprados->ver");
+       sb.append(this.comprasValor0);
+       sb.append("\n");
+       sb.append("Faturação Total");
+       sb.append(this.faturacaoTotal);
+       sb.append("\n");
+        
+        return sb.toString();
+    }
 
 }

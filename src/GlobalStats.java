@@ -115,7 +115,7 @@ public class GlobalStats {
         fw.write("\n");
         fw.write("As seguintes "+this.estrutura.getnComprasInvalidas()+"não foram validadas: \n");
         for(Compra c:this.estrutura.getComprasInvalidas())
-            fw.write(c.toString());
+            fw.write(c.toString()+"\n");
         fw.flush();
         fw.close();
         

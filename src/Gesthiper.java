@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -233,16 +234,126 @@ public class Gesthiper {
             System.out.println("Erro no Disco: " + ioe.getMessage());
         }
     }
-    public static void navigate(Navigator<String> navegador){
-        
+
+    public static void navigate(Navigator<String> navegador) {
+        char option;
+        try {
+            List<String> aux = navegador.getNext(Math.min(20, navegador.itemsLeft()));
+            for (String str : aux) {
+                System.out.println(str);
+            }
+            System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
+            System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
+            do {
+                option = Character.toUpperCase(Input.lerString().charAt(0));
+                switch (option) {
+                    case 'S':aux=navegador.getNext(20); break;
+                    case 'B':navegador.back(20); aux=navegador.getNext(20);break;
+                        
+                }
+                for(String str:aux)
+                    System.out.println(str);
+                System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
+                System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
+                if(navegador.current()!=0)System.out.println("Insira <B> para voltar atrás");
+            } while(option!='N');
+        } catch (NoMoreItemsException ex) {
+            System.out.println("Não há mais items");
+        }
+
     }
+
+        public static void navigatePCQ(Navigator<ParCodigoQuantidade> navegador) {
+        char option;
+        try {
+            List<ParCodigoQuantidade> aux = navegador.getNext(Math.min(20, navegador.itemsLeft()));
+            for (ParCodigoQuantidade str : aux) {
+                System.out.println(str.toString());
+            }
+            System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
+            System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
+            do {
+                option = Character.toUpperCase(Input.lerString().charAt(0));
+                switch (option) {
+                    case 'S':aux=navegador.getNext(20); break;
+                    case 'B':navegador.back(20); aux=navegador.getNext(20);break;
+                        
+                }
+                for(ParCodigoQuantidade str:aux)
+                    System.out.println(str.toString());
+                System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
+                System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
+                if(navegador.current()!=0)System.out.println("Insira <B> para voltar atrás");
+            } while(option!='N');
+        } catch (NoMoreItemsException ex) {
+            System.out.println("Não há mais items");
+        }
+
+    }
+    
+        public static void navigateTrioCQN(Navigator<TrioCodQuantNClientes> navegador) {
+        char option;
+        try {
+            List<TrioCodQuantNClientes> aux = navegador.getNext(Math.min(20, navegador.itemsLeft()));
+            for (TrioCodQuantNClientes str : aux) {
+                System.out.println(str.toString());
+            }
+            System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
+            System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
+            do {
+                option = Character.toUpperCase(Input.lerString().charAt(0));
+                switch (option) {
+                    case 'S':aux=navegador.getNext(20); break;
+                    case 'B':navegador.back(20); aux=navegador.getNext(20);break;
+                        
+                }
+                for(TrioCodQuantNClientes str:aux)
+                    System.out.println(str.toString());
+                System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
+                System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
+                if(navegador.current()!=0)System.out.println("Insira <B> para voltar atrás");
+            } while(option!='N');
+        } catch (NoMoreItemsException ex) {
+            System.out.println("Não há mais items");
+        }
+
+    }
+    
+        public static void navigateTrioCQF(Navigator<TrioCodQuantFat> navegador) {
+        char option;
+        try {
+            List<TrioCodQuantFat> aux = navegador.getNext(Math.min(20, navegador.itemsLeft()));
+            for (TrioCodQuantFat str : aux) {
+                System.out.println(str.toString());
+            }
+            System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
+            System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
+            do {
+                option = Character.toUpperCase(Input.lerString().charAt(0));
+                switch (option) {
+                    case 'S':aux=navegador.getNext(20); break;
+                    case 'B':navegador.back(20); aux=navegador.getNext(20);break;
+                        
+                }
+                for(TrioCodQuantFat str:aux)
+                    System.out.println(str.toString());
+                System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
+                System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
+                if(navegador.current()!=0)System.out.println("Insira <B> para voltar atrás");
+            } while(option!='N');
+        } catch (NoMoreItemsException ex) {
+            System.out.println("Não há mais items");
+        }
+
+    }
+        
+        
     public static void execMenuQueriesInter() {
         ArrayList<String> resLista;
         ParNComprasNClientes resParCompClie;
         Table resTabl;
         Navigator<String> navegador;
         Navigator<ParCodigoQuantidade> navegPCQ;
-        Navigator<ParNComprasNClientes> navegNCNC;
         Navigator<TrioCodQuantFat> navegTCQF;
         Navigator<TrioCodQuantNClientes> navig;
         VendasProdutoMensais resVPM;
@@ -263,7 +374,8 @@ public class Gesthiper {
                     time = Crono.stop();
                     System.out.println("Query realizada em " + time + " segundos");
                     System.out.println("Irão ser apresentados " + resLista.size() + " códigos:");
-                    navegador=new Navigator<>(resLista);
+                    navegador = new Navigator<>(resLista);
+                    Gesthiper.navigate(navegador);
                 }
                 case 2: {
                     Crono.start();
@@ -271,7 +383,8 @@ public class Gesthiper {
                     time = Crono.stop();
                     System.out.println("Query realizada em " + time + " segundos");
                     System.out.println("Irão ser apresentados " + resLista.size() + " códigos:");
-                    navegador=new Navigator<>(resLista);
+                    navegador = new Navigator<>(resLista);
+                    Gesthiper.navigate(navegador);
                 }
                 case 3: {
                     System.out.println("Insira um mês (1-12):");
@@ -334,7 +447,8 @@ public class Gesthiper {
                         resListaPCQ = Gesthiper.hiper.getTopCompras(code);
                         time = Crono.stop();
                         System.out.println("Query realizada em " + time + " segundos");
-                        navegPCQ=new Navigator<>(resListaPCQ);
+                        navegPCQ = new Navigator<>(resListaPCQ);
+                        Gesthiper.navigatePCQ(navegPCQ);
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }
@@ -346,7 +460,8 @@ public class Gesthiper {
                     resTrioCQNC = Gesthiper.hiper.getTopComprados(nElementos);
                     time = Crono.stop();
                     System.out.println("Query realizada em " + time + " segundos");
-                    navig=new Navigator<>(resTrioCQNC);
+                    navig = new Navigator<>(resTrioCQNC);
+                    Gesthiper.navigateTrioCQN(navig);
                 }
                 case 9: {
                     System.out.println("Insira o número de Elementos a apresentar");
@@ -355,17 +470,19 @@ public class Gesthiper {
                     resListaPCQ = Gesthiper.hiper.getClientesMaisProdutosDistintos(nElementos);
                     time = Crono.stop();
                     System.out.println("Query realizada em " + time + " segundos");
-                    navegPCQ=new Navigator<>(resListaPCQ);
+                    navegPCQ = new Navigator<>(resListaPCQ);
+                    Gesthiper.navigatePCQ(navegPCQ);
                 }
                 case 10: {
-                     System.out.println("Insira um código de Produto: ");
+                    System.out.println("Insira um código de Produto: ");
                     code = Input.lerString();
                     try {
                         Crono.start();
                         resTrioCQF = Gesthiper.hiper.getTopCompradores(code);
                         time = Crono.stop();
                         System.out.println("Query realizada em " + time + " segundos");
-                        navegTCQF=new Navigator<>(resTrioCQF);
+                        navegTCQF = new Navigator<>(resTrioCQF);
+                        Gesthiper.navigateTrioCQF(navegTCQF);
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }

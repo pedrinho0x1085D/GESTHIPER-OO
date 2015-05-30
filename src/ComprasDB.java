@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -13,7 +14,7 @@ import java.util.TreeSet;
  *
  * @author Pedro Cunha
  */
-public class ComprasDB implements IComprasDB {
+public class ComprasDB implements IComprasDB,Serializable {
 
     private Map<String, NodoCliente> clientes;
     private Map<String, NodoProduto> produtos;

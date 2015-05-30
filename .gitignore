@@ -43,3 +43,4 @@ Temporary Items
 .apdisk
 /GESTHIPER-OO/nbproject/private/
 /build/
+*.obj

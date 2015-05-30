@@ -161,10 +161,10 @@ public class FileStats {
        sb.append("Número de Produtos ");
        sb.append(this.nProds);
        sb.append("\n");
-       sb.append("Produtos Comprados -Ver ");
+       sb.append("Produtos Comprados ");
        sb.append(this.prodsComp);
        sb.append("\n");
-       sb.append("Total de Produtos Comprados->Ver");
+       sb.append("Total de Produtos Comprados");
        sb.append(this.prodsNComp);
        sb.append("\n");
        sb.append("Numeros de Clientes");
@@ -176,7 +176,7 @@ public class FileStats {
        sb.append("Numeros de Clientes que não Compraram");
        sb.append(this.nClientesNaoCompraram);
        sb.append("\n");
-       sb.append("Produtos que nunca foram comprados->ver");
+       sb.append("Produtos que nunca foram comprados");
        sb.append(this.comprasValor0);
        sb.append("\n");
        sb.append("Faturação Total");

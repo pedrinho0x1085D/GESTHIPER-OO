@@ -126,16 +126,16 @@ public class Table {
        sb.append("Código do produto ");
        sb.append(this.codigo);
        sb.append("\n");
-       sb.append("Produtos Disintos??? Ver ");
+       sb.append("Disintos \n");
        for(int i=0;i<12;i++){ sb.append(this.distintos[i]); }
        sb.append("\n");
        sb.append("Numero de Compras ");
        for(int i=0;i<12;i++){ sb.append(this.nCompras[i]); }
        sb.append("\n");
-       sb.append("Faturção Mensal "); 
-       for(int i=0;i<12;i++){ sb.append(this.faturacaoMensal[i] + "€"); }
+       sb.append("Faturção Mensal \n"); 
+       for(int i=0;i<12;i++){ sb.append(this.faturacaoMensal[i] + "€  "); }
        sb.append("\n");
-       sb.append("Faturção Total "); 
+       sb.append("Faturção Total \n"); 
        sb.append(this.faturacaoTotal + "€");
        return sb.toString();
     }

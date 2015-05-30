@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 /*
@@ -14,13 +15,13 @@ import java.util.TreeSet;
  */
 public class ComprasDB implements IComprasDB {
 
-    private HashMap<String, NodoCliente> clientes;
-    private HashMap<String, NodoProduto> produtos;
+    private Map<String, NodoCliente> clientes;
+    private Map<String, NodoProduto> produtos;
 
     public ComprasDB() {
-        this.clientes = new HashMap<>();
+        this.clientes = new TreeMap<>();
 
-        this.produtos = new HashMap<>();
+        this.produtos = new TreeMap<>();
     }
 
     public ComprasDB(ComprasDB other) {
@@ -29,32 +30,32 @@ public class ComprasDB implements IComprasDB {
         this.produtos = other.getProdutos();
     }
 
-    public HashMap<String, NodoCliente> getClientes() {
-        HashMap<String, NodoCliente> res = new HashMap<>();
+    public Map<String, NodoCliente> getClientes() {
+        TreeMap<String, NodoCliente> res = new TreeMap<>();
         for (NodoCliente nc : this.clientes.values()) {
             res.put(nc.getCodigoC(), nc.clone());
         }
         return res;
     }
 
-    public HashMap<String, NodoProduto> getProdutos() {
-        HashMap<String, NodoProduto> res = new HashMap<>();
+    public Map<String, NodoProduto> getProdutos() {
+        TreeMap<String, NodoProduto> res = new TreeMap<>();
         for (NodoProduto np : this.produtos.values()) {
             res.put(np.getCodigoP(), np.clone());
         }
         return res;
     }
 
-    public void setClientes(HashMap<String, NodoCliente> res) {
-        this.clientes = new HashMap<>();
+    public void setClientes(Map<String, NodoCliente> res) {
+        this.clientes = new TreeMap<>();
         for (NodoCliente nc : res.values()) {
             this.clientes.put(nc.getCodigoC(), nc.clone());
         }
 
     }
 
-    public void setProdutos(HashMap<String, NodoProduto> res) {
-        this.produtos = new HashMap<>();
+    public void setProdutos(Map<String, NodoProduto> res) {
+        this.produtos = new TreeMap<>();
         for (NodoProduto np : res.values()) {
             this.produtos.put(np.getCodigoP(), np.clone());
         }

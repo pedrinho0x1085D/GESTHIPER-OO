@@ -75,9 +75,8 @@ public class GlobalStats {
             sb.append(" "+ this.estrutura.getComprasMes()[i]);
         }
         sb.append("\n");
-        sb.append("As seguintes "+this.estrutura.getnComprasInvalidas()+"não foram validadas: \n");
-        for(Compra c:this.estrutura.getComprasInvalidas())
-            sb.append(c.toString());
+        sb.append("As seguintes "+this.estrutura.getnComprasInvalidas()+" compras não foram validadas: \n");
+        
         return sb.toString();
     }
     

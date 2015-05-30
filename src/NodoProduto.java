@@ -1,7 +1,8 @@
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.Map;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,19 +19,19 @@ public class NodoProduto implements Serializable {
     private int nVezesComprado;
     private int qtdComprada;
     private int compradoMes[];
-    private HashMap<String, NodoClienteComprador> clientesComp;
+    private Map<String, NodoClienteComprador> clientesComp;
 
     public NodoProduto() {
         this.codigoP = "";
         this.compradoMes = new int[12];
         this.nVezesComprado = 0;
         this.qtdComprada = 0;
-        this.clientesComp = new HashMap<>();
+        this.clientesComp = new TreeMap<>();
     }
 
     public NodoProduto(String codigoP) {
         this.codigoP = codigoP;
-        this.clientesComp = new HashMap<>();
+        this.clientesComp = new TreeMap<>();
         this.compradoMes = new int[12];
         this.qtdComprada = 0;
         this.nVezesComprado = 0;
@@ -45,8 +46,8 @@ public class NodoProduto implements Serializable {
         this.qtdComprada = other.getQtdComprada();
     }
 
-    public HashMap<String, NodoClienteComprador> getClientesComp() {
-        HashMap<String, NodoClienteComprador> res = new HashMap<>();
+    public Map<String, NodoClienteComprador> getClientesComp() {
+        TreeMap<String, NodoClienteComprador> res = new TreeMap<>();
         for (NodoClienteComprador ncc : this.clientesComp.values()) {
             res.put(ncc.getCodigoC(), ncc.clone());
         }
@@ -69,8 +70,8 @@ public class NodoProduto implements Serializable {
         return this.nVezesComprado;
     }
 
-    public void setClientesComp(HashMap<String, NodoClienteComprador> clientesComp) {
-        this.clientesComp = new HashMap<>();
+    public void setClientesComp(Map<String, NodoClienteComprador> clientesComp) {
+        this.clientesComp = new TreeMap<>();
         for (NodoClienteComprador ncc : clientesComp.values()) {
             this.clientesComp.put(ncc.getCodigoC(), ncc.clone());
         }
@@ -133,8 +134,7 @@ public class NodoProduto implements Serializable {
         }
         return total;
     }
-    //public int equals(Object o)
-    //public String toString()
+    
 
     public NodoProduto clone() {
         return new NodoProduto(this);

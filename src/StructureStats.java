@@ -96,23 +96,23 @@ public class StructureStats {
         StringBuilder sb=new StringBuilder();
         sb.append("Número de Compras Mensal: \n");
         for(int i=0;i<12;i++){
-            sb.append(this.getComprasMes()[i]);
+            sb.append(this.getComprasMes()[i]+" ");
         }
         sb.append("\n");
         sb.append("Faturação Mensal: \n");
         for(int i=0;i<12;i++){
-            sb.append(this.getFaturacaoMensal()[i]);
+            sb.append(this.getFaturacaoMensal()[i]+" ");
         }
         sb.append("\n");
         sb.append("Clientes Compradores em cada Mês: \n");
         for(int i=0;i<12;i++){
-            sb.append(this.getClientesCompradoresMensal()[i]);
+            sb.append(this.getClientesCompradoresMensal()[i]+" ");
         }
         sb.append("\n");
         sb.append("Número de compras invalidas");
-        // VER MELHOR, qual das duas seguintes esta correta
+        
         sb.append(this.nComprasInvalidas);
-        sb.append(this.getnComprasInvalidas());
+        
         sb.append("\n");
         
         return sb.toString();

@@ -1,8 +1,9 @@
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.TreeMap;
+import java.util.Map;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,20 +19,20 @@ public class NodoCliente implements Serializable {
     private String codigoC;
     private int compraMes[];
     private int nCompras;
-    private HashMap<String, NodoProdutoComprado> prodComprados;
+    private Map<String, NodoProdutoComprado> prodComprados;
 
     public NodoCliente(String codigoC, int[] compraMes, int nCompras) {
         this.codigoC = codigoC;
         this.compraMes = compraMes;
         this.nCompras = nCompras;
-        this.prodComprados = new HashMap<>();
+        this.prodComprados = new TreeMap<>();
     }
 
     public NodoCliente(String codigoC) {
         this.codigoC = codigoC;
         this.compraMes = new int[12];
         this.nCompras = 0;
-        this.prodComprados = new HashMap<>();
+        this.prodComprados = new TreeMap<>();
     }
 
     public NodoCliente(NodoCliente other) {
@@ -45,8 +46,8 @@ public class NodoCliente implements Serializable {
         return this.codigoC;
     }
 
-    public HashMap<String, NodoProdutoComprado> getProdComprados() {
-        HashMap<String, NodoProdutoComprado> res = new HashMap<>();
+    public Map<String, NodoProdutoComprado> getProdComprados() {
+        TreeMap<String, NodoProdutoComprado> res = new TreeMap<>();
         for (NodoProdutoComprado npc : this.prodComprados.values()) {
             res.put(npc.getCodigoP(), npc.clone());
         }
@@ -73,8 +74,8 @@ public class NodoCliente implements Serializable {
         this.nCompras = nCompras;
     }
 
-    public void setProdComprados(HashMap<String, NodoProdutoComprado> produtosC) {
-        this.prodComprados = new HashMap<>();
+    public void setProdComprados(Map<String, NodoProdutoComprado> produtosC) {
+        this.prodComprados = new TreeMap<>();
         for (NodoProdutoComprado npc : produtosC.values()) {
             this.prodComprados.put(npc.getCodigoP(), npc.clone());
         }

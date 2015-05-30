@@ -2,6 +2,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeSet;
 
 /*
@@ -15,13 +16,13 @@ import java.util.TreeSet;
  */
 public class Contabilidade implements IContabilidade, Serializable {
 
-    private HashMap<String, NodoContabilidade> contabilidade;
+    private Map<String, NodoContabilidade> contabilidade;
 
     public Contabilidade() {
         this.contabilidade = new HashMap<>();
     }
 
-    public Contabilidade(HashMap<String, NodoContabilidade> cont) {
+    public Contabilidade(Map<String, NodoContabilidade> cont) {
         this.contabilidade = new HashMap<>();
         for (NodoContabilidade nc : cont.values()) {
             this.contabilidade.put(nc.getCodigo(), nc.clone());
@@ -32,7 +33,7 @@ public class Contabilidade implements IContabilidade, Serializable {
         this.contabilidade = other.getContabilidade();
     }
 
-    public void setContabilidade(HashMap<String, NodoContabilidade> cont) {
+    public void setContabilidade(Map<String, NodoContabilidade> cont) {
         this.contabilidade = new HashMap<>();
         for (NodoContabilidade nc : cont.values()) {
             this.contabilidade.put(nc.getCodigo(), nc.clone());
@@ -40,8 +41,8 @@ public class Contabilidade implements IContabilidade, Serializable {
 
     }
 
-    public HashMap<String, NodoContabilidade> getContabilidade() {
-        HashMap<String, NodoContabilidade> res = new HashMap<>();
+    public Map<String, NodoContabilidade> getContabilidade() {
+        Map<String, NodoContabilidade> res = new HashMap<>();
         for (NodoContabilidade nc : this.contabilidade.values()) {
             res.put(nc.getCodigo(), nc.clone());
         }

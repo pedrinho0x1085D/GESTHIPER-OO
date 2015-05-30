@@ -130,8 +130,8 @@ public class Gesthiper {
             tempoDecorrido = Crono.stop();
             System.out.println("Leitura de " + Gesthiper.linhasProdutos + " linhas concluída em " + tempoDecorrido + " segundos");
             System.out.println("");
-            System.out.println("Insira o nome de Ficheiro de Compras pretendido:<Enter para FichCompras.txt> ");
-            fileComp = Gesthiper.getFileNameWithDefault("FichCompras.txt");
+            System.out.println("Insira o nome de Ficheiro de Compras pretendido:<Enter para Compras.txt> ");
+            fileComp = Gesthiper.getFileNameWithDefault("Compras.txt");
             Crono.start();
             Gesthiper.leFicheiroCompras(fileComp);
             tempoDecorrido = Crono.stop();
@@ -233,11 +233,18 @@ public class Gesthiper {
             System.out.println("Erro no Disco: " + ioe.getMessage());
         }
     }
-
+    public static void navigate(Navigator<String> navegador){
+        
+    }
     public static void execMenuQueriesInter() {
         ArrayList<String> resLista;
         ParNComprasNClientes resParCompClie;
         Table resTabl;
+        Navigator<String> navegador;
+        Navigator<ParCodigoQuantidade> navegPCQ;
+        Navigator<ParNComprasNClientes> navegNCNC;
+        Navigator<TrioCodQuantFat> navegTCQF;
+        Navigator<TrioCodQuantNClientes> navig;
         VendasProdutoMensais resVPM;
         ArrayList<ParCodigoQuantidade> resListaPCQ;
         ArrayList<TrioCodQuantNClientes> resTrioCQNC;
@@ -256,7 +263,7 @@ public class Gesthiper {
                     time = Crono.stop();
                     System.out.println("Query realizada em " + time + " segundos");
                     System.out.println("Irão ser apresentados " + resLista.size() + " códigos:");
-                    //Navegação ArrayList<String>;
+                    navegador=new Navigator<>(resLista);
                 }
                 case 2: {
                     Crono.start();
@@ -264,7 +271,7 @@ public class Gesthiper {
                     time = Crono.stop();
                     System.out.println("Query realizada em " + time + " segundos");
                     System.out.println("Irão ser apresentados " + resLista.size() + " códigos:");
-                    //Navegação ArrayList<String>;
+                    navegador=new Navigator<>(resLista);
                 }
                 case 3: {
                     System.out.println("Insira um mês (1-12):");
@@ -288,7 +295,7 @@ public class Gesthiper {
                         resTabl = Gesthiper.hiper.getTableCliente(code);
                         time = Crono.stop();
                         System.out.println("Query realizada em " + time + " segundos");
-                        //ApresentaTab
+                        System.out.println(resTabl.toString());
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }
@@ -301,7 +308,7 @@ public class Gesthiper {
                         resTabl = Gesthiper.hiper.getTableProduto(code);
                         time = Crono.stop();
                         System.out.println("Query realizada em " + time + " segundos");
-                        //Apresenta tab
+                        System.out.println(resTabl.toString());
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }
@@ -314,7 +321,7 @@ public class Gesthiper {
                         resVPM = Gesthiper.hiper.getVendasMensais(code);
                         time = Crono.stop();
                         System.out.println("Query realizada em " + time + " segundos");
-                        //Apresenta VPM
+                        System.out.println(resVPM.toString());
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }
@@ -327,7 +334,7 @@ public class Gesthiper {
                         resListaPCQ = Gesthiper.hiper.getTopCompras(code);
                         time = Crono.stop();
                         System.out.println("Query realizada em " + time + " segundos");
-                        //Navega LPCQ;
+                        navegPCQ=new Navigator<>(resListaPCQ);
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }
@@ -339,7 +346,7 @@ public class Gesthiper {
                     resTrioCQNC = Gesthiper.hiper.getTopComprados(nElementos);
                     time = Crono.stop();
                     System.out.println("Query realizada em " + time + " segundos");
-                    //Navega ListaT
+                    navig=new Navigator<>(resTrioCQNC);
                 }
                 case 9: {
                     System.out.println("Insira o número de Elementos a apresentar");
@@ -348,7 +355,7 @@ public class Gesthiper {
                     resListaPCQ = Gesthiper.hiper.getClientesMaisProdutosDistintos(nElementos);
                     time = Crono.stop();
                     System.out.println("Query realizada em " + time + " segundos");
-                    //Navega ListaT
+                    navegPCQ=new Navigator<>(resListaPCQ);
                 }
                 case 10: {
                      System.out.println("Insira um código de Produto: ");
@@ -358,7 +365,7 @@ public class Gesthiper {
                         resTrioCQF = Gesthiper.hiper.getTopCompradores(code);
                         time = Crono.stop();
                         System.out.println("Query realizada em " + time + " segundos");
-                        //Apresenta Lista
+                        navegTCQF=new Navigator<>(resTrioCQF);
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }

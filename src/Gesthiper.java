@@ -244,6 +244,7 @@ public class Gesthiper {
             }
             System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
             System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
+            
             do {
                 option = Character.toUpperCase(Input.lerString().charAt(0));
                 switch (option) {
@@ -251,6 +252,7 @@ public class Gesthiper {
                     case 'B':navegador.back(20); aux=navegador.getNext(20);break;
                         
                 }
+                if(option=='N')break;
                 for(String str:aux)
                     System.out.println(str);
                 System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
@@ -376,6 +378,7 @@ public class Gesthiper {
                     System.out.println("Irão ser apresentados " + resLista.size() + " códigos:");
                     navegador = new Navigator<>(resLista);
                     Gesthiper.navigate(navegador);
+                    break;
                 }
                 case 2: {
                     Crono.start();
@@ -385,6 +388,7 @@ public class Gesthiper {
                     System.out.println("Irão ser apresentados " + resLista.size() + " códigos:");
                     navegador = new Navigator<>(resLista);
                     Gesthiper.navigate(navegador);
+                    break;
                 }
                 case 3: {
                     System.out.println("Insira um mês (1-12):");
@@ -399,6 +403,7 @@ public class Gesthiper {
                     } catch (InvalidMonthException ime) {
                         System.out.println("Mes inválido! " + ime.getMessage());
                     }
+                    break;
                 }
                 case 4: {
                     System.out.println("Insira um código de Cliente: ");
@@ -412,6 +417,7 @@ public class Gesthiper {
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }
+                    break;
                 }
                 case 5: {
                     System.out.println("Insira um código de Produto: ");
@@ -425,6 +431,7 @@ public class Gesthiper {
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }
+                    break;
                 }
                 case 6: {
                     System.out.println("Insira um código de Produto: ");
@@ -438,6 +445,7 @@ public class Gesthiper {
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }
+                    break;
                 }
                 case 7: {
                     System.out.println("Insira um código de Cliente: ");
@@ -452,6 +460,7 @@ public class Gesthiper {
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }
+                    break;
                 }
                 case 8: {
                     System.out.println("Insira o número de Elementos a apresentar");
@@ -462,6 +471,7 @@ public class Gesthiper {
                     System.out.println("Query realizada em " + time + " segundos");
                     navig = new Navigator<>(resTrioCQNC);
                     Gesthiper.navigateTrioCQN(navig);
+                    break;
                 }
                 case 9: {
                     System.out.println("Insira o número de Elementos a apresentar");
@@ -472,6 +482,7 @@ public class Gesthiper {
                     System.out.println("Query realizada em " + time + " segundos");
                     navegPCQ = new Navigator<>(resListaPCQ);
                     Gesthiper.navigatePCQ(navegPCQ);
+                    break;
                 }
                 case 10: {
                     System.out.println("Insira um código de Produto: ");
@@ -486,6 +497,7 @@ public class Gesthiper {
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }
+                    break;
                 }
             }
         } while (Gesthiper.menuQueriesInter.getOpcao() != 0);

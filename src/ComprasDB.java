@@ -5,32 +5,36 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author Pedro Cunha
+ * Classe que implementa o módulo de Compras 
+ * @author Pedro Cunha, Stéphane Fernandes, Filipe de Oliveira
  */
 public class ComprasDB implements IComprasDB,Serializable {
 
     private Map<String, NodoCliente> clientes;
     private Map<String, NodoProduto> produtos;
-
+    /**
+     * Construtor Vazio 
+     */
     public ComprasDB() {
         this.clientes = new TreeMap<>();
 
         this.produtos = new TreeMap<>();
     }
 
+    /**
+     * Construtor de Cópia de um objecto ComprasDB
+     * @param other Objecto a ser Copiado
+     */
     public ComprasDB(ComprasDB other) {
         this.clientes = other.getClientes();
 
         this.produtos = other.getProdutos();
     }
-
+    /**
+     * 
+     * @return Estrutura Relativa aos Clientes da Base de Dados
+     */
     public Map<String, NodoCliente> getClientes() {
         TreeMap<String, NodoCliente> res = new TreeMap<>();
         for (NodoCliente nc : this.clientes.values()) {
@@ -39,6 +43,10 @@ public class ComprasDB implements IComprasDB,Serializable {
         return res;
     }
 
+    /**
+     * 
+     * @return Estrutura Relativa aos Produtos da Base de Dados
+     */
     public Map<String, NodoProduto> getProdutos() {
         TreeMap<String, NodoProduto> res = new TreeMap<>();
         for (NodoProduto np : this.produtos.values()) {
@@ -46,7 +54,11 @@ public class ComprasDB implements IComprasDB,Serializable {
         }
         return res;
     }
-
+    
+    /**
+     * Atualiza os Clientes existentes na Base de Dados
+     * @param res Objecto a ser colocado
+     */
     public void setClientes(Map<String, NodoCliente> res) {
         this.clientes = new TreeMap<>();
         for (NodoCliente nc : res.values()) {
@@ -55,6 +67,10 @@ public class ComprasDB implements IComprasDB,Serializable {
 
     }
 
+    /**
+     * Atualiza os Produtos existentes na Base de Dados
+     * @param res Objecto a ser Colocado
+     */
     public void setProdutos(Map<String, NodoProduto> res) {
         this.produtos = new TreeMap<>();
         for (NodoProduto np : res.values()) {
@@ -62,27 +78,43 @@ public class ComprasDB implements IComprasDB,Serializable {
         }
     }
 
-    @Override
+    /**
+     * Insere um Código de Cliente na Estrutura
+     * @param codigoC Código a ser inserido
+     */
     public void insertCodigoCliente(String codigoC) {
         this.clientes.put(codigoC, new NodoCliente(codigoC));
     }
 
-    @Override
+    /**
+     * Insere um Código de Produto na Estrutura
+     * @param codigoP Código a ser inserido
+     */
     public void insertCodigoProduto(String codigoP) {
         this.produtos.put(codigoP, new NodoProduto(codigoP));
     }
 
-    @Override
+    /**
+     * Regista uma Compra na Estrutura
+     * @param c Compra a ser Registada
+     */
     public void registerSale(Compra c) {
         this.clientes.get(c.getCodigoCli()).registaCompra(c.clone());
         this.produtos.get(c.getCodigoProd()).registaCompra(c.clone());
     }
 
-    @Override
+    /**
+     * 
+     * @return Nova instância como cópia da actual
+     */
     public IComprasDB clone() {
         return new ComprasDB(this);
     }
-
+    
+    /**
+     * 
+     * @return Lista com os clientes que não realizaram qualquer compra 
+     */
     public ArrayList<String> clientesNaoCompradores() {
         TreeSet<String> resaux = new TreeSet<>();
         ArrayList<String> res = new ArrayList<>();
@@ -96,7 +128,12 @@ public class ComprasDB implements IComprasDB,Serializable {
         }
         return res;
     }
-
+    /**
+     * Apresenta o número de Compras e Clientes num dado mês
+     * @param mes Mês para o qual é pretendida 
+     * @return Par com o Número de Compras e Número de Clientes num dado mês
+     * @throws InvalidMonthException Caso o mês seja inferior a 1 ou superior a 12
+     */
     public ParNComprasNClientes getTotCompTotCli(int mes) throws InvalidMonthException {
         if (mes < 1 || mes > 12) {
             throw new InvalidMonthException(mes);
@@ -111,6 +148,12 @@ public class ComprasDB implements IComprasDB,Serializable {
         }
     }
 
+    /**
+     * Tabela de Produtos Distintos Comprados, Faturação e Número de Compras por mês de um Cliente
+     * @param codigoC Código de Cliente a ser procurado
+     * @return Tabela de Produtos Distintos Comprados, Faturação e Número de Compras por mês de um Cliente
+     * @throws UnexistentCodeException Caso o código de Cliente não exista
+     */
     public Table getTableCliente(String codigoC) throws UnexistentCodeException {
         if (!(this.clientes.containsKey(codigoC))) {
             throw new UnexistentCodeException(codigoC);
@@ -127,6 +170,12 @@ public class ComprasDB implements IComprasDB,Serializable {
         }
     }
 
+    /**
+     * Tabela de Compradores Distintos, Faturação e Número de Compras por mês de um Produto
+     * @param codigoP Código de Produto a ser procurado
+     * @return Tabela de Compradores Distintos, Faturação e Número de Compras por mês de um Produto
+     * @throws UnexistentCodeException Caso o código de Produto não exista
+     */
     public Table getTableProduto(String codigoP) throws UnexistentCodeException {
         if (!(this.produtos.containsKey(codigoP))) {
             throw new UnexistentCodeException(codigoP);
@@ -143,6 +192,12 @@ public class ComprasDB implements IComprasDB,Serializable {
         }
     }
 
+    /**
+     * 
+     * @param codigoC Código a ser procurado
+     * @return Lista Ordenada com os Pares de Código Quantidade, ordenada por quantidade e para quantidades iguais ordenada alfabeticamente
+     * @throws UnexistentCodeException 
+     */
     public ArrayList<ParCodigoQuantidade> getTopCompras(String codigoC) throws UnexistentCodeException {
         if (!(this.clientes.containsKey(codigoC))) {
             throw new UnexistentCodeException(codigoC);
@@ -159,7 +214,11 @@ public class ComprasDB implements IComprasDB,Serializable {
             return res;
         }
     }
-
+    /**
+     * 
+     * @param nElementos Número de Elementos pretendidos na Lista
+     * @return Lista Ordenada com a Quantidade Comprada, Código de Produto e Número de Clientes Compradores de Todos os Produtos
+     */
     public ArrayList<TrioCodQuantNClientes> getTopComprados(int nElementos) {
         ArrayList<TrioCodQuantNClientes> res = new ArrayList<>();
         ArrayList<TrioCodQuantNClientes> resaux = new ArrayList<>();
@@ -175,7 +234,11 @@ public class ComprasDB implements IComprasDB,Serializable {
         }
         return res;
     }
-
+    /**
+     * 
+     * @param nElementos Número de Elementos a conter na lista
+     * @return Lista ordenada com os Clientes com mais produtos distintos Comprados
+     */
     public ArrayList<ParCodigoQuantidade> getClientesMaisProdutosDistintos(int nElementos) {
         ArrayList<ParCodigoQuantidade> res = new ArrayList<>();
         ArrayList<ParCodigoQuantidade> resAux = new ArrayList<>();
@@ -191,7 +254,12 @@ public class ComprasDB implements IComprasDB,Serializable {
         }
         return res;
     }
-
+    /**
+     * 
+     * @param codigoP Código de Produto a ser procurado
+     * @return Lista Ordenada com a Quantidade Comprada, Código de Cliente e Faturação de um Produto
+     * @throws UnexistentCodeException Caso o código de Produto nao exista
+     */
     public ArrayList<TrioCodQuantFat> getTopCompradores(String codigoP) throws UnexistentCodeException {
         if (!(this.produtos.containsKey(codigoP))) {
             throw new UnexistentCodeException(codigoP);
@@ -208,7 +276,10 @@ public class ComprasDB implements IComprasDB,Serializable {
             return res;
         }
     }
-
+    /**
+     * 
+     * @return Array com o número de Clientes Compradores por mês
+     */
     public int[] getCompradoresMensal() {
         int[] res = new int[12];
         for (NodoCliente nc : this.clientes.values()) {

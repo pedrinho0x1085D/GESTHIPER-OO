@@ -2,14 +2,10 @@
 import java.io.Serializable;
 import java.util.Arrays;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
- *
+ * Classe que guarda o estado de uma compra
  * @author Pedro Cunha
  */
 public class Compra implements Serializable{
@@ -33,11 +29,11 @@ public class Compra implements Serializable{
     }
 /**
  * construtor parametrizado 
- * @param codigoProd string correspondente ao código de produto
- * @param valorUni float correspondente ao preço de cada unidade do produto
- * @param quantidade quantidade vendida do produto
- * @param modo corresponde ao modo de venda (N- Normal/P -Promocional)
- * @param codigoCli string correspondente ao código de cliente
+ * @param codigoProd String correspondente ao código de produto
+ * @param valorUni Float correspondente ao preço de cada unidade do produto
+ * @param quantidade Quantidade vendida do produto
+ * @param modo Corresponde ao modo de venda (N- Normal/P -Promocional)
+ * @param codigoCli String correspondente ao código de cliente
  * @param mes 
  */
     
@@ -49,7 +45,10 @@ public class Compra implements Serializable{
         this.codigoCli = codigoCli;
         this.mes = mes;
     }
-    
+    /**
+     * Construtor de Cópia de uma Compra
+     * @param c Compra a ser copiada
+     */
     public Compra(Compra c){
         this.codigoProd = c.getCodigoProd();
         this.valorUni = c.getValorUni();
@@ -60,14 +59,14 @@ public class Compra implements Serializable{
     }
 /**
  * 
- * @return o código de um cliente
+ * @return O código de um cliente
  */
     public String getCodigoCli() {
         return this.codigoCli;
     }
 /**
  * 
- * @return o código de um produto 
+ * @return O código de um produto 
  */    
 
     public String getCodigoProd() {
@@ -76,14 +75,14 @@ public class Compra implements Serializable{
 
 /**
  * 
- * @return um mês 
+ * @return  O mês 
  */    
     public int getMes() {
         return this.mes;
     }
 /**
  * 
- * @return o modo de venda de um produto 
+ * @return O modo de venda de um produto 
  */    
 
     public char getModo() {
@@ -91,7 +90,7 @@ public class Compra implements Serializable{
     }
 /**
  * 
- * @return a quantidade vendida de um produto
+ * @return A quantidade vendida de um produto
  */    
 
     public int getQuantidade() {
@@ -99,7 +98,7 @@ public class Compra implements Serializable{
     }
 /**
  * 
- * @return o valor de uma unidade de um produto
+ * @return O valor de uma unidade de um produto
  */    
 
     public float getValorUni() {
@@ -108,7 +107,7 @@ public class Compra implements Serializable{
 
 /**
  * 
- * @param codigoCli string com o nome de um produto a ser colocada na instância
+ * @param codigoCli String com o nome de um produto a ser colocada na instância
  */    
     public void setCodigoCli(String codigoCli) {
         this.codigoCli = codigoCli;
@@ -116,7 +115,7 @@ public class Compra implements Serializable{
 
 /**
  * 
- * @param codigoProd string com o nome de um cliente a ser colocada na instância
+ * @param codigoProd String com o nome de um cliente a ser colocada na instância
  */    
     public void setCodigoProd(String codigoProd) {
         this.codigoProd = codigoProd;
@@ -124,7 +123,7 @@ public class Compra implements Serializable{
 
 /**
  * 
- * @param mes corresponde ao mês a ser colocado na instância
+ * @param mes Corresponde ao mês a ser colocado na instância
  */    
     public void setMes(int mes) {
         this.mes = mes;
@@ -132,7 +131,7 @@ public class Compra implements Serializable{
 
 /**
  * 
- * @param modo corresponde ao modo em que foi feita uma compra (N/P)
+ * @param modo Corresponde ao modo em que foi feita uma compra (N/P) a ser colocado na instância
  */    
     public void setModo(char modo) {
         this.modo = modo;
@@ -140,7 +139,7 @@ public class Compra implements Serializable{
 
 /**
  * 
- * @param quantidade corresponde a quantidade a ser colocada na instância
+ * @param quantidade Corresponde a quantidade a ser colocada na instância
  */    
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
@@ -148,7 +147,7 @@ public class Compra implements Serializable{
 
 /**
  * 
- * @param valorUni corresponde ao preço de uma unidade de um produto a ser colocada na instância
+ * @param valorUni Corresponde ao preço de uma unidade de um produto a ser colocada na instância
  */    
     public void setValorUni(float valorUni) {
         this.valorUni = valorUni;
@@ -156,7 +155,7 @@ public class Compra implements Serializable{
 
  /**
   * 
-  * @return representação textual da instância 
+  * @return Representação textual da instância 
   */
     public String toString() {
        StringBuilder sb = new StringBuilder();
@@ -184,9 +183,9 @@ public class Compra implements Serializable{
         return sb.toString();
     }
 /**
- * 
- * @param o
- * @return 
+ * Teste de igualdade entre uma instância de Compra e uma outra qualquer instância 
+ * @param o Objecto a ser comparado
+ * @return Valor de igualdade entre este objecto e o
  */
     
     public boolean equals(Object o) {
@@ -202,7 +201,7 @@ public class Compra implements Serializable{
 
 /**
  * 
- * @return 
+ * @return HashCode de um objecto Compra
  */    
     public int hashCode() {
         return Arrays.hashCode(new Object[]{this.codigoCli,this.codigoProd,this.mes,this.modo,this.quantidade,this.valorUni});
@@ -210,7 +209,7 @@ public class Compra implements Serializable{
 
 /**
  * 
- * @return 
+ * @return Nova instância como cópia da instância actual
  */
     @Override
     public Compra clone(){

@@ -3,11 +3,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
  *
  * @author Pedro Cunha
@@ -163,9 +159,9 @@ public class NodoContabilidade implements Serializable{
     }
 
     public boolean nuncaComprado(){
-        boolean flag=false;
-        for(int i = 0; i<12&&!flag;i++)
-            if(this.nVendasN[i]!=0||this.nVendasP[i]!=0) flag=true;
+        boolean flag=true;
+        for(int i = 0; i<12&&flag;i++)
+            if(this.nVendasN[i]!=0||this.nVendasP[i]!=0) flag=false;
         return flag;
     }
     

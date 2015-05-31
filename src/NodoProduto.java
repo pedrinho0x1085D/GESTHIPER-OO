@@ -102,7 +102,7 @@ public class NodoProduto implements Serializable {
 
     private void atualizaClientes(Compra c) {
         if (!(this.clientesComp.containsKey(c.getCodigoCli()))) {
-            this.clientesComp.put(c.getCodigoCli(), new NodoClienteComprador());
+            this.clientesComp.put(c.getCodigoCli(), new NodoClienteComprador(c.getCodigoCli()));
         }
         this.clientesComp.get(c.getCodigoCli()).incrementaQtd(c.getModo(), c.getMes(), c.getQuantidade());
         this.clientesComp.get(c.getCodigoCli()).incrementaValor(c.getModo(), c.getMes(), c.getQuantidade(), c.getValorUni());

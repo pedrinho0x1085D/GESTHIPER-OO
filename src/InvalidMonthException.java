@@ -1,17 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
- *
- * @author Pedro Cunha
+ * Excepção que trata um Mês que não seja válido (Inferior a 1 ou Superior a 12)
+ * @author Pedro Cunha, Stéphane Fernandes, Filipe de Oliveira
  */
 public class InvalidMonthException extends Exception{
+    /**
+     * Construtor Vazio
+     */
     public InvalidMonthException(){
         super();
     }
+    /**
+     * Construtor parametrizado
+     * @param mes Mês que despoletou a Excepção
+     */
     public InvalidMonthException(int mes){
         super(mes+"");
     }

@@ -2,15 +2,11 @@
 import java.util.ArrayList;
 
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
- *
- * @author Pedro Cunha
+ * Interface IContabilidade
+ * @author Pedro Cunha, Stéphane Fernandes, Filipe de Oliveira
  */
 public interface IContabilidade {
     /**
@@ -23,10 +19,32 @@ public interface IContabilidade {
      * @param c Compra a ser registada
      */
     public void registerSale(Compra c);
+     /**
+     * 
+     * @return Novo Objecto como cópia da instância Actual
+     */
     public IContabilidade clone();
+    /**
+     * 
+     * @return Lista Com os Códigos de Produtos nunca Comprados
+     */
     public ArrayList<String> getNuncaComprados();
+    /**
+     * 
+     * @param codigoP Código a ser procurado
+     * @return Vendas de um produto mensalmente
+     * @throws UnexistentCodeException Caso o código não exista
+     */
     public VendasProdutoMensais getVendasMensais(String codigoP) throws UnexistentCodeException;
+    /**
+     * 
+     * @return Compras realizadas mensalmente
+     */
     public int[] comprasMensais();
+    /**
+     * 
+     * @return Faturação registada mensalmente
+     */
     public float[] faturacaoMensal();
     
 }

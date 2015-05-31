@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
- * @author Pedro Cunha
+ * Excepção para quando não houverem mais elementos numa lista
+ * @author Pedro Cunha, Stéphane Fernandes, Filipe de Oliveira
  */
 public class NoMoreItemsException extends Exception{
+    /**
+     * Construtor Vazio
+     */
     public NoMoreItemsException(){
         super();
     }

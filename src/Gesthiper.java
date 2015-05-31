@@ -9,14 +9,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
+ * Classe de interface com o Utilizador
  *
- * @author Pedro Cunha
+ * @author Pedro Cunha, Stéphane Fernandes, Filipe de Oliveira
  */
 public class Gesthiper {
 
@@ -26,6 +22,12 @@ public class Gesthiper {
     private static ArrayList<Compra> comprasInvalidas = new ArrayList<>();
     private static Menu menuCarregamento, menuPrincipal, menuQueriesEstat, menuQueriesInter;
 
+    /**
+     * Método de Leitura de um ficheiro de Clientes
+     *
+     * @param filename Nome do Ficheiro
+     * @throws FileNotFoundException Caso o ficheiro especificado não exista
+     */
     public static void leFicheiroClientes(String filename) throws FileNotFoundException {
         Gesthiper.linhasClientes = 0;
         Scanner fichScan = new Scanner(new FileReader(filename));
@@ -37,6 +39,12 @@ public class Gesthiper {
 
     }
 
+    /**
+     * Método de Leitura de um ficheiro de Produtos
+     *
+     * @param filename Nome do Ficheiro
+     * @throws FileNotFoundException Caso o ficheiro especificado não exista
+     */
     public static void leFicheiroProdutos(String filename) throws FileNotFoundException {
         Gesthiper.linhasProdutos = 0;
         Scanner fichScan = new Scanner(new FileReader(filename));
@@ -47,6 +55,12 @@ public class Gesthiper {
         }
     }
 
+    /**
+     * Método de Leitura de um ficheiro de Compras
+     *
+     * @param filename Nome do Ficheiro
+     * @throws FileNotFoundException Caso o ficheiro especificado não exista
+     */
     public static void leFicheiroCompras(String filename) throws FileNotFoundException {
         String st;
         Compra c;
@@ -70,6 +84,13 @@ public class Gesthiper {
         }
     }
 
+    /**
+     * Método que separa uma linha do ficheiro de Compras e a separa nas várias
+     * tokens
+     *
+     * @param st Linha a ser processada
+     * @return Compra com os valores das tokens da linha processada
+     */
     private static Compra linhaToCompra(String st) {
         Compra c = new Compra();
         StringTokenizer strtok = new StringTokenizer(st);
@@ -82,6 +103,13 @@ public class Gesthiper {
         return c.clone();
     }
 
+    /**
+     * Método de leitura de strings com valor por omissão
+     *
+     * @param defFileName Valor por omissão
+     * @return Valor inserido no teclado ou defFileName caso a String inserida
+     * for vazia
+     */
     private static String getFileNameWithDefault(String defFileName) {
         String input = Input.lerString();
         if (input.equals("")) {
@@ -91,6 +119,9 @@ public class Gesthiper {
         }
     }
 
+    /**
+     * Carregamento dos Menus
+     */
     public static void carregaMenus() {
         String[] carregamento = {"Carregar a partir de ficheiros de texto", "Carregar a partir de ficheiro de Objectos"};
         String[] principal = {"Estatísticas da estrutura de dados", "Queries interactivas", "Guardar Estado", "Recarregar Estruturas"};
@@ -112,6 +143,9 @@ public class Gesthiper {
         Gesthiper.menuQueriesInter = new Menu(inter);
     }
 
+    /**
+     * Leitura de Ficheiros
+     */
     public static void LeituraFicheiros() {
         String fileCli, fileProd, fileComp;
         double tempoDecorrido;
@@ -148,6 +182,9 @@ public class Gesthiper {
         }
     }
 
+    /**
+     * Gravação em Ficheiro de Objectos
+     */
     public static void GuardaObjecto() {
         String objFilename;
         double tempoDecorrido;
@@ -163,6 +200,9 @@ public class Gesthiper {
         }
     }
 
+    /**
+     * Carrega a partir de Ficheiro de Objectos
+     */
     public static void CarregaObjecto() {
         String objFilename;
         double tempoDecorrido;
@@ -184,6 +224,9 @@ public class Gesthiper {
         }
     }
 
+    /**
+     * Processamento do Menu principal
+     */
     public static void processaMenuPrincipal() {
         do {
             System.out.println("************ GESTHIPER ************");
@@ -209,7 +252,9 @@ public class Gesthiper {
         } while (Gesthiper.menuPrincipal.getOpcao() != 0);
 
     }
-
+    /**
+     * Execução do Menu de Carregamento de ficheiros
+     */
     public static void execMenuCarregamento() {
         Gesthiper.menuCarregamento.executa();
         switch (Gesthiper.menuCarregamento.getOpcao()) {
@@ -223,7 +268,9 @@ public class Gesthiper {
                 break;
         }
     }
-
+    /**
+     * Escrita das Estatísticas existentes para um ficheiro externo
+     */
     public static void estatisticasToTXT() {
         String fileName;
         System.out.println("Insira o nome do ficheiro de destino:<ENTER para GHStats.stat> ");
@@ -234,7 +281,10 @@ public class Gesthiper {
             System.out.println("Erro no Disco: " + ioe.getMessage());
         }
     }
-
+    /**
+     * Navegação de uma lista de Strings
+     * @param navegador Lista a ser navegada
+     */
     public static void navigate(Navigator<String> navegador) {
         char option;
         try {
@@ -244,28 +294,41 @@ public class Gesthiper {
             }
             System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
             System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
-            
+
             do {
                 option = Character.toUpperCase(Input.lerString().charAt(0));
                 switch (option) {
-                    case 'S':aux=navegador.getNext(20); break;
-                    case 'B':navegador.back(20); aux=navegador.getNext(20);break;
-                        
+                    case 'S':
+                        aux = navegador.getNext(20);
+                        break;
+                    case 'B':
+                        navegador.back(20);
+                        aux = navegador.getNext(20);
+                        break;
+
                 }
-                if(option=='N')break;
-                for(String str:aux)
+                if (option == 'N') {
+                    break;
+                }
+                for (String str : aux) {
                     System.out.println(str);
+                }
                 System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
                 System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
-                if(navegador.current()!=0)System.out.println("Insira <B> para voltar atrás");
-            } while(option!='N');
+                if (navegador.current() != 0) {
+                    System.out.println("Insira <B> para voltar atrás");
+                }
+            } while (option != 'N');
         } catch (NoMoreItemsException ex) {
             System.out.println("Não há mais items");
         }
 
     }
-
-        public static void navigatePCQ(Navigator<ParCodigoQuantidade> navegador) {
+    /**
+     * Navegaçao numa lista de Pares Código Quantidade
+     * @param navegador Lista a ser navegada
+     */
+    public static void navigatePCQ(Navigator<ParCodigoQuantidade> navegador) {
         char option;
         try {
             List<ParCodigoQuantidade> aux = navegador.getNext(Math.min(20, navegador.itemsLeft()));
@@ -277,23 +340,34 @@ public class Gesthiper {
             do {
                 option = Character.toUpperCase(Input.lerString().charAt(0));
                 switch (option) {
-                    case 'S':aux=navegador.getNext(20); break;
-                    case 'B':navegador.back(20); aux=navegador.getNext(20);break;
-                        
+                    case 'S':
+                        aux = navegador.getNext(20);
+                        break;
+                    case 'B':
+                        navegador.back(20);
+                        aux = navegador.getNext(20);
+                        break;
+
                 }
-                for(ParCodigoQuantidade str:aux)
+                for (ParCodigoQuantidade str : aux) {
                     System.out.println(str.toString());
+                }
                 System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
                 System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
-                if(navegador.current()!=0)System.out.println("Insira <B> para voltar atrás");
-            } while(option!='N');
+                if (navegador.current() != 0) {
+                    System.out.println("Insira <B> para voltar atrás");
+                }
+            } while (option != 'N');
         } catch (NoMoreItemsException ex) {
             System.out.println("Não há mais items");
         }
 
     }
-    
-        public static void navigateTrioCQN(Navigator<TrioCodQuantNClientes> navegador) {
+/**
+ * Navegação numa Lista de Trios Código Quantidade Número de Clientes
+ * @param navegador Lista a ser navegada
+ */
+    public static void navigateTrioCQN(Navigator<TrioCodQuantNClientes> navegador) {
         char option;
         try {
             List<TrioCodQuantNClientes> aux = navegador.getNext(Math.min(20, navegador.itemsLeft()));
@@ -305,23 +379,35 @@ public class Gesthiper {
             do {
                 option = Character.toUpperCase(Input.lerString().charAt(0));
                 switch (option) {
-                    case 'S':aux=navegador.getNext(20); break;
-                    case 'B':navegador.back(20); aux=navegador.getNext(20);break;
-                        
+                    case 'S':
+                        aux = navegador.getNext(20);
+                        break;
+                    case 'B':
+                        navegador.back(20);
+                        aux = navegador.getNext(20);
+                        break;
+
                 }
-                for(TrioCodQuantNClientes str:aux)
+                for (TrioCodQuantNClientes str : aux) {
                     System.out.println(str.toString());
+                }
                 System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
                 System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
-                if(navegador.current()!=0)System.out.println("Insira <B> para voltar atrás");
-            } while(option!='N');
+                if (navegador.current() != 0) {
+                    System.out.println("Insira <B> para voltar atrás");
+                }
+            } while (option != 'N');
         } catch (NoMoreItemsException ex) {
             System.out.println("Não há mais items");
         }
 
     }
-    
-        public static void navigateTrioCQF(Navigator<TrioCodQuantFat> navegador) {
+
+    /**
+     * Navegação numa Lista de Trios Código Quantidade Faturação
+     * @param navegador Lista a ser navegada
+     */
+    public static void navigateTrioCQF(Navigator<TrioCodQuantFat> navegador) {
         char option;
         try {
             List<TrioCodQuantFat> aux = navegador.getNext(Math.min(20, navegador.itemsLeft()));
@@ -333,23 +419,32 @@ public class Gesthiper {
             do {
                 option = Character.toUpperCase(Input.lerString().charAt(0));
                 switch (option) {
-                    case 'S':aux=navegador.getNext(20); break;
-                    case 'B':navegador.back(20); aux=navegador.getNext(20);break;
-                        
+                    case 'S':
+                        aux = navegador.getNext(20);
+                        break;
+                    case 'B':
+                        navegador.back(20);
+                        aux = navegador.getNext(20);
+                        break;
+
                 }
-                for(TrioCodQuantFat str:aux)
+                for (TrioCodQuantFat str : aux) {
                     System.out.println(str.toString());
+                }
                 System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
                 System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
-                if(navegador.current()!=0)System.out.println("Insira <B> para voltar atrás");
-            } while(option!='N');
+                if (navegador.current() != 0) {
+                    System.out.println("Insira <B> para voltar atrás");
+                }
+            } while (option != 'N');
         } catch (NoMoreItemsException ex) {
             System.out.println("Não há mais items");
         }
 
     }
-        
-        
+    /**
+     * Execução do Menu de queries Interativas
+     */
     public static void execMenuQueriesInter() {
         ArrayList<String> resLista;
         ParNComprasNClientes resParCompClie;
@@ -502,7 +597,9 @@ public class Gesthiper {
             }
         } while (Gesthiper.menuQueriesInter.getOpcao() != 0);
     }
-
+    /**
+     * Execução do menu de Queries Estatísticas
+     */
     public static void execMenuQueriesEst() {
 
         do {
@@ -516,7 +613,10 @@ public class Gesthiper {
             }
         } while (Gesthiper.menuQueriesEstat.getOpcao() != 0);
     }
-
+/**
+ * Método Main
+ * @param args Argumentos passados na linha de comando (não serão utilizados) 
+ */
     public static void main(String[] args) {
         Gesthiper.carregaMenus();
         Gesthiper.execMenuCarregamento();

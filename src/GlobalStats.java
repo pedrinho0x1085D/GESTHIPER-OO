@@ -130,7 +130,7 @@ public class GlobalStats {
         }
         sb.append("\n");
         sb.append("As seguintes " + this.estrutura.getnComprasInvalidas() + " compras não foram validadas: \n");
-        for(int i=0;i<5;i++)
+        for(int i=0;i<Math.min(5,this.estrutura.getnComprasInvalidas());i++)
             sb.append(this.estrutura.getComprasInvalidas().get(i)+"\n");
         return sb.toString();
     }

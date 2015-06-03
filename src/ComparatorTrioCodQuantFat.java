@@ -18,7 +18,7 @@ public class ComparatorTrioCodQuantFat implements Comparator<TrioCodQuantFat>,Se
      * @return Valor comparativo entre tcqf1 e tcqf2
      */
     public int compare(TrioCodQuantFat tcqf1,TrioCodQuantFat tcqf2){
-        if(tcqf1.getQuantidade()!=tcqf2.getQuantidade()) return tcqf1.getQuantidade()-tcqf2.getQuantidade();
+        if(tcqf1.getQuantidade()!=tcqf2.getQuantidade()) return tcqf2.getQuantidade()-tcqf1.getQuantidade();
         else if(!(tcqf1.getCodigo().equals(tcqf2.getCodigo()))) return tcqf1.getCodigo().compareTo(tcqf2.getCodigo());
         else return (int)(tcqf1.getFaturacao()-tcqf2.getFaturacao());
     }

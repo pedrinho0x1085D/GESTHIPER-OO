@@ -242,7 +242,7 @@ public class ComprasDB implements IComprasDB,Serializable {
     public ArrayList<ParCodigoQuantidade> getClientesMaisProdutosDistintos(int nElementos) {
         ArrayList<ParCodigoQuantidade> res = new ArrayList<>();
         ArrayList<ParCodigoQuantidade> resAux = new ArrayList<>();
-        TreeSet<ParCodigoQuantidade> auxil = new TreeSet<>();
+        TreeSet<ParCodigoQuantidade> auxil = new TreeSet<>(new ComparatorParCodigoQuantidade());
         for (NodoCliente nc : this.clientes.values()) {
             auxil.add(new ParCodigoQuantidade(nc.getCodigoC(), nc.getProdutosDistintosComprados()));
         }

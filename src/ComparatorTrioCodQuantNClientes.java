@@ -18,7 +18,7 @@ public class ComparatorTrioCodQuantNClientes implements Comparator<TrioCodQuantN
      * @return Valor comparativo entre t1 e t2
      */
     public int compare(TrioCodQuantNClientes t1,TrioCodQuantNClientes t2){
-        if(t1.getQuantidade()!=t2.getQuantidade()) return t1.getQuantidade()-t2.getQuantidade();
+        if(t1.getQuantidade()!=t2.getQuantidade()) return t2.getQuantidade()-t1.getQuantidade();
         else if(!(t1.getCodigo().equals(t2.getCodigo()))) return t1.getCodigo().compareTo(t2.getCodigo());
         else return t1.getnClientes()-t2.getnClientes();
     }

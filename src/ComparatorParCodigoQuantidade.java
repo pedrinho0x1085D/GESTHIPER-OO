@@ -18,7 +18,7 @@ public class ComparatorParCodigoQuantidade implements Comparator<ParCodigoQuanti
      * @return Valor comparativo entre pcq1 e pcq2
      */
     public int compare(ParCodigoQuantidade pcq1,ParCodigoQuantidade pcq2){
-        if(pcq1.getQuantidade()!=pcq2.getQuantidade()) return pcq1.getQuantidade()-pcq2.getQuantidade();
+        if(pcq1.getQuantidade()!=pcq2.getQuantidade()) return pcq2.getQuantidade()-pcq1.getQuantidade();
         else return pcq1.getCodigo().compareTo(pcq2.getCodigo());
     }
 }

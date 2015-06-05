@@ -303,7 +303,6 @@ public class Gesthiper {
                         break;
                     case 'B':
                         navegador.back(20);
-                        aux = navegador.getNext(20);
                         break;
 
                 }
@@ -345,7 +344,6 @@ public class Gesthiper {
                         break;
                     case 'B':
                         navegador.back(20);
-                        aux = navegador.getNext(20);
                         break;
 
                 }
@@ -384,7 +382,6 @@ public class Gesthiper {
                         break;
                     case 'B':
                         navegador.back(20);
-                        aux = navegador.getNext(20);
                         break;
 
                 }
@@ -424,7 +421,6 @@ public class Gesthiper {
                         break;
                     case 'B':
                         navegador.back(20);
-                        aux = navegador.getNext(20);
                         break;
 
                 }

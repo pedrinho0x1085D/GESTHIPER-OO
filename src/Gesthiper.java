@@ -3,10 +3,10 @@ import java.io.FileNotFoundException;
 
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 import java.util.StringTokenizer;
 
 /**
@@ -28,12 +28,12 @@ public class Gesthiper {
      * @param filename Nome do Ficheiro
      * @throws FileNotFoundException Caso o ficheiro especificado não exista
      */
-    public static void leFicheiroClientes(String filename) throws FileNotFoundException {
+    public static void leFicheiroClientes(String filename) throws IOException {
         Gesthiper.linhasClientes = 0;
-        Scanner fichScan = new Scanner(new FileReader(filename));
-        fichScan.useDelimiter(System.getProperty("line.separator"));
-        while (fichScan.hasNext()) {
-            Gesthiper.hiper.insertCliente(fichScan.next());
+        String linha;
+        BufferedReader fichReader=new BufferedReader(new FileReader(filename));
+        while ((linha=fichReader.readLine())!=null){
+            Gesthiper.hiper.insertCliente(linha);
             Gesthiper.linhasClientes++;
         }
 
@@ -45,12 +45,12 @@ public class Gesthiper {
      * @param filename Nome do Ficheiro
      * @throws FileNotFoundException Caso o ficheiro especificado não exista
      */
-    public static void leFicheiroProdutos(String filename) throws FileNotFoundException {
+    public static void leFicheiroProdutos(String filename) throws IOException {
         Gesthiper.linhasProdutos = 0;
-        Scanner fichScan = new Scanner(new FileReader(filename));
-        fichScan.useDelimiter(System.getProperty("line.separator"));
-        while (fichScan.hasNext()) {
-            Gesthiper.hiper.insertProduto(fichScan.next());
+        String linha;
+        BufferedReader fichReader=new BufferedReader(new FileReader(filename));
+        while ((linha=fichReader.readLine())!=null){
+            Gesthiper.hiper.insertProduto(linha);
             Gesthiper.linhasProdutos++;
         }
     }
@@ -61,17 +61,18 @@ public class Gesthiper {
      * @param filename Nome do Ficheiro
      * @throws FileNotFoundException Caso o ficheiro especificado não exista
      */
-    public static void leFicheiroCompras(String filename) throws FileNotFoundException {
+    public static void leFicheiroCompras(String filename) throws IOException {
         String st;
         Compra c;
         Gesthiper.comprasValor0 = 0;
         Gesthiper.linhasCompras = 0;
         Gesthiper.comprasInvalidas = new ArrayList<>();
-        Scanner fichScan = new Scanner(new FileReader(filename));
-        fichScan.useDelimiter(System.getProperty("line.separator"));
-        while (fichScan.hasNext()) {
-            st = fichScan.next();
-            c = Gesthiper.linhaToCompra(st);
+        String linha;
+        BufferedReader fichReader=new BufferedReader(new FileReader(filename));
+        while ((linha=fichReader.readLine())!=null){
+         
+            
+            c = Gesthiper.linhaToCompra(linha);
             if (Gesthiper.hiper.compraValida(c)) {
                 Gesthiper.hiper.registerSale(c);
             } else {
@@ -177,7 +178,7 @@ public class Gesthiper {
             tempoDecorrido = Crono.stop();
             System.out.println("Estatísticas criadas em " + tempoDecorrido + " segundos");
             System.out.println("");
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             System.out.println("Ficheiro Não Encontrado");
         }
     }

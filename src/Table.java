@@ -214,12 +214,12 @@ public class Table {
         sb.append("\n");
         sb.append("Disintos \n");
         for (int i = 0; i < 12; i++) {
-            sb.append(this.distintos[i]);
+            sb.append(this.distintos[i]+" ");
         }
         sb.append("\n");
         sb.append("Numero de Compras ");
         for (int i = 0; i < 12; i++) {
-            sb.append(this.nCompras[i]);
+            sb.append(this.nCompras[i]+" ");
         }
         sb.append("\n");
         sb.append("Faturção Mensal \n");

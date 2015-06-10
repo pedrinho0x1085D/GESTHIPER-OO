@@ -161,12 +161,12 @@ public class VendasProdutoMensais {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("Código do produto ???? Ver");
+        sb.append("Código do produto: ");
         sb.append(this.codigoP);
         sb.append("\n");
         sb.append("Vendas modo Normal\n");
         for (int i = 0; i < 12; i++) {
-            sb.append(this.vendasN[i]);
+            sb.append(this.vendasN[i]+" ");
         }
         sb.append("\n");
         sb.append("Vendas modo Promoção \n");

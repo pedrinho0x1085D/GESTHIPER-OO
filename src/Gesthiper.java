@@ -325,6 +325,48 @@ public class Gesthiper {
 
     }
     /**
+     * Método de navegação sobre uma lista de Compras
+     * @param navegador Lista a ser navegada
+     */
+    public static void navigateCompras(Navigator<Compra> navegador) {
+        char option;
+        try {
+            List<Compra> aux = navegador.getNext(Math.min(5, navegador.itemsLeft()));
+            for (Compra str : aux) {
+                System.out.println(str.toString());
+            }
+            System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
+            System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
+
+            do {
+                option = Character.toUpperCase(Input.lerString().charAt(0));
+                switch (option) {
+                    case 'S':
+                        aux = navegador.getNext(5);
+                        break;
+                    case 'B':
+                        navegador.back(5);
+                        break;
+
+                }
+                if (option == 'N') {
+                    break;
+                }
+                for (Compra str : aux) {
+                    System.out.println(str.toString());
+                }
+                System.out.println("Items apresentados: " + navegador.current() + "/" + navegador.size());
+                System.out.println("Insira <S> para obter mais items ou <N> para terminar a navegação");
+                if (navegador.current() != 0) {
+                    System.out.println("Insira <B> para voltar atrás");
+                }
+            } while (option != 'N');
+        } catch (NoMoreItemsException ex) {
+            System.out.println("Não há mais items");
+        }
+
+    }
+    /**
      * Navegaçao numa lista de Pares Código Quantidade
      * @param navegador Lista a ser navegada
      */
@@ -603,6 +645,8 @@ public class Gesthiper {
             System.out.println("************ GESTHIPER ************");
             System.out.println("------------ Queries Estatísticas -----------");
             System.out.println(Gesthiper.estatisticas.toString());
+            Navigator<Compra> navegador=new Navigator<>(Gesthiper.estatisticas.getEstatEstrutura().getComprasInvalidas());
+            Gesthiper.navigateCompras(navegador);
             Gesthiper.menuQueriesEstat.executa();
             switch (Gesthiper.menuQueriesEstat.getOpcao()) {
                 case 1:

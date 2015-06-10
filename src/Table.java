@@ -222,12 +222,12 @@ public class Table {
             sb.append(this.nCompras[i]+" ");
         }
         sb.append("\n");
-        sb.append("Faturção Mensal \n");
+        sb.append("Faturação Mensal \n");
         for (int i = 0; i < 12; i++) {
             sb.append(this.faturacaoMensal[i] + "€  ");
         }
         sb.append("\n");
-        sb.append("Faturção Total \n");
+        sb.append("Faturação Total \n");
         sb.append(this.faturacaoTotal + "€");
         return sb.toString();
     }

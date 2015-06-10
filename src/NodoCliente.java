@@ -1,7 +1,7 @@
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.TreeMap;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -33,7 +33,7 @@ public class NodoCliente implements Serializable {
         this.codigoC = codigoC;
         this.compraMes = compraMes;
         this.nCompras = nCompras;
-        this.prodComprados = new TreeMap<>();
+        this.prodComprados = new HashMap<>();
     }
     /**
      * Construtor Parametrizado
@@ -43,7 +43,7 @@ public class NodoCliente implements Serializable {
         this.codigoC = codigoC;
         this.compraMes = new int[12];
         this.nCompras = 0;
-        this.prodComprados = new TreeMap<>();
+        this.prodComprados = new HashMap<>();
     }
     /**
      * Construtor de Cópia
@@ -67,7 +67,7 @@ public class NodoCliente implements Serializable {
      * @return Mapeamento dos Produtos Comprados pelo Cliente
      */
     public Map<String, NodoProdutoComprado> getProdComprados() {
-        TreeMap<String, NodoProdutoComprado> res = new TreeMap<>();
+        HashMap<String, NodoProdutoComprado> res = new HashMap<>();
         for (NodoProdutoComprado npc : this.prodComprados.values()) {
             res.put(npc.getCodigoP(), npc.clone());
         }
@@ -113,7 +113,7 @@ public class NodoCliente implements Serializable {
      * @param produtosC Novo mapeamento de produtos comprados
      */
     public void setProdComprados(Map<String, NodoProdutoComprado> produtosC) {
-        this.prodComprados = new TreeMap<>();
+        this.prodComprados = new HashMap<>();
         for (NodoProdutoComprado npc : produtosC.values()) {
             this.prodComprados.put(npc.getCodigoP(), npc.clone());
         }

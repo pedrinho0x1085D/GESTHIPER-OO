@@ -1,7 +1,7 @@
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Map;
 import java.util.TreeSet;
 
@@ -17,14 +17,14 @@ public class Contabilidade implements IContabilidade, Serializable {
      * Construtor Vazio
      */
     public Contabilidade() {
-        this.contabilidade = new HashMap<>();
+        this.contabilidade = new TreeMap<>();
     }
     /**
      * Construtor Parametrizado
      * @param cont Map a ser colocado na Contabilidade
      */
     public Contabilidade(Map<String, NodoContabilidade> cont) {
-        this.contabilidade = new HashMap<>();
+        this.contabilidade = new TreeMap<>();
         for (NodoContabilidade nc : cont.values()) {
             this.contabilidade.put(nc.getCodigo(), nc.clone());
         }
@@ -41,7 +41,7 @@ public class Contabilidade implements IContabilidade, Serializable {
      * @param cont Novo Map a ser colocado na instância
      */
     public void setContabilidade(Map<String, NodoContabilidade> cont) {
-        this.contabilidade = new HashMap<>();
+        this.contabilidade = new TreeMap<>();
         for (NodoContabilidade nc : cont.values()) {
             this.contabilidade.put(nc.getCodigo(), nc.clone());
         }
@@ -52,7 +52,7 @@ public class Contabilidade implements IContabilidade, Serializable {
      * @return Map de Contabilidade
      */
     public Map<String, NodoContabilidade> getContabilidade() {
-        Map<String, NodoContabilidade> res = new HashMap<>();
+        Map<String, NodoContabilidade> res = new TreeMap<>();
         for (NodoContabilidade nc : this.contabilidade.values()) {
             res.put(nc.getCodigo(), nc.clone());
         }

@@ -2,7 +2,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
 import java.util.TreeSet;
 
 /**
@@ -17,9 +17,9 @@ public class ComprasDB implements IComprasDB,Serializable {
      * Construtor Vazio 
      */
     public ComprasDB() {
-        this.clientes = new TreeMap<>();
+        this.clientes = new HashMap<>();
 
-        this.produtos = new TreeMap<>();
+        this.produtos = new HashMap<>();
     }
 
     /**
@@ -36,7 +36,7 @@ public class ComprasDB implements IComprasDB,Serializable {
      * @return Estrutura Relativa aos Clientes da Base de Dados
      */
     public Map<String, NodoCliente> getClientes() {
-        TreeMap<String, NodoCliente> res = new TreeMap<>();
+        HashMap<String, NodoCliente> res = new HashMap<>();
         for (NodoCliente nc : this.clientes.values()) {
             res.put(nc.getCodigoC(), nc.clone());
         }
@@ -48,7 +48,7 @@ public class ComprasDB implements IComprasDB,Serializable {
      * @return Estrutura Relativa aos Produtos da Base de Dados
      */
     public Map<String, NodoProduto> getProdutos() {
-        TreeMap<String, NodoProduto> res = new TreeMap<>();
+        HashMap<String, NodoProduto> res = new HashMap<>();
         for (NodoProduto np : this.produtos.values()) {
             res.put(np.getCodigoP(), np.clone());
         }
@@ -60,7 +60,7 @@ public class ComprasDB implements IComprasDB,Serializable {
      * @param res Objecto a ser colocado
      */
     public void setClientes(Map<String, NodoCliente> res) {
-        this.clientes = new TreeMap<>();
+        this.clientes = new HashMap<>();
         for (NodoCliente nc : res.values()) {
             this.clientes.put(nc.getCodigoC(), nc.clone());
         }
@@ -72,7 +72,7 @@ public class ComprasDB implements IComprasDB,Serializable {
      * @param res Objecto a ser Colocado
      */
     public void setProdutos(Map<String, NodoProduto> res) {
-        this.produtos = new TreeMap<>();
+        this.produtos = new HashMap<>();
         for (NodoProduto np : res.values()) {
             this.produtos.put(np.getCodigoP(), np.clone());
         }

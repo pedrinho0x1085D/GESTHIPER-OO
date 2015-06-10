@@ -99,7 +99,7 @@ public class ParCodigoQuantidade {
        sb.append("Código ");
        sb.append(this.codigo);
        sb.append("\n");
-       sb.append("Qauntidade ");
+       sb.append("Quantidade ");
        sb.append(this.quantidade);
        sb.append("\n");
        return sb.toString();

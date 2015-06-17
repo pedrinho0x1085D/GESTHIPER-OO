@@ -8,6 +8,7 @@ dos vários ficheiros, para que, posteriormente, possam ser realizadas diversas
 consultas (“queries”), algumas estatísticas e alguns testes de “performance”.
 
 Melhorias a realizar:
+
 --> Melhorar a apresentação das queries;
 
 --> Permitir ao utilizador selecionar o tamanho da "página" a apresentar.

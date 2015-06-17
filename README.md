@@ -16,5 +16,7 @@ consultas (“queries”), algumas estatísticas e alguns testes de “performan
 
 --> Permitir ao utilizador selecionar o tamanho da "página" a apresentar.
 
+--> Separar o código em packages para separar as camadas do programa
 
-Classificação: __/20 Aguardando Classificação
+
+###Classificação: __/20 Aguarda Classificação

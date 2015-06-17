@@ -9,6 +9,8 @@ consultas (“queries”), algumas estatísticas e alguns testes de “performan
 
 Melhorias a realizar:
 --> Melhorar a apresentação das queries;
+
 --> Permitir ao utilizador selecionar o tamanho da "página" a apresentar.
+
 
 Classificação: __/20 Aguardando Classificação

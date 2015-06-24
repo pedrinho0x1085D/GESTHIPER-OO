@@ -64,17 +64,20 @@ Será apresentado ao utilizador em três secções sequenciais:
 
 As queries interactivas têm o seguinte Menu:
 
+![alt text](http://i.imgur.com/k1xssNU.png "Menu Queries Interactivas")
 
-* Query 1
-* Query 2
-* Query 3
-* Query 4
-* Query 5
-* Query 6
-* Query 7
-* Query 8
-* Query 9
-* Query 10
+Por omissão deverá ser apresentado o tempo de procura dos dados para a resposta à query previamente à apresentação da mesma.
+
+* Query 1 - Não serão pedidos quaisquer parâmetros ao utilizador; Apresenta a lista de códigos de produto que não têm registadas quaisquer compras.
+* Query 2 - Não serão pedidos quaisquer parâmetros ao utilizador; Apresenta a lista de códigos de cliente que não têm registadas quaisquer compras.
+* Query 3 - É pedido o mês para apresentar as compras realizadas e clientes compradores distintos nesse mesmo mês.
+* Query 4 - Tabela para um cliente (Produtos distintos, Faturação e Compras).
+* Query 5 - Tabela para um produto (Clientes distintos, Faturação e Compras).
+* Query 6 - Vendas mensais de um produto.
+* Query 7 - Apresentar os Produtos mais comprados por um cliente.
+* Query 8 - Apresentar os Produtos mais comprados no Ano.
+* Query 9 - Apresentar os Clientes com mais Produtos distintos comprados.
+* Query 10 - Apresentar os Clientes que mais compraram um dado Produto.
 
   
 

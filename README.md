@@ -49,9 +49,32 @@ Aqui o utilizador pode consultar dados estatísticos dos ficheiros lidos bem com
   
 Será apresentado ao utilizador em três secções sequenciais:
 * Estatísticas de Ficheiro
+
+![alt text](http://i.imgur.com/SxozWVu.png "Estatísticas dos últimos ficheiros lidos") 
+
 * Estatísticas da Estrutura
+ 
+![alt text](http://i.imgur.com/oLAlOII.png "Estatísticas da estrutura de dados")
+
 * Lista de Compras Inválidas, em que permite-se ao utilizador navegar, apresentando 5 a 5 enquanto o utilizador pretender visualizar as compras que não passaram nos testes de validação
 
+![alt text](http://i.imgur.com/qbnlhS8.png "Estatísticas da estrutura de dados")
+
+ **2.3.** Queries Interactivas:
+
+As queries interactivas têm o seguinte Menu:
+
+
+* Query 1
+* Query 2
+* Query 3
+* Query 4
+* Query 5
+* Query 6
+* Query 7
+* Query 8
+* Query 9
+* Query 10
 
   
 

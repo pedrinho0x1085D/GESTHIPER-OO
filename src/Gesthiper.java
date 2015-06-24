@@ -26,13 +26,13 @@ public class Gesthiper {
      * Método de Leitura de um ficheiro de Clientes
      *
      * @param filename Nome do Ficheiro
-     * @throws FileNotFoundException Caso o ficheiro especificado não exista
+     * @throws IOException Caso o ficheiro especificado não exista
      */
     public static void leFicheiroClientes(String filename) throws IOException {
         Gesthiper.linhasClientes = 0;
         String linha;
-        BufferedReader fichReader=new BufferedReader(new FileReader(filename));
-        while ((linha=fichReader.readLine())!=null){
+        BufferedReader fichReader = new BufferedReader(new FileReader(filename));
+        while ((linha = fichReader.readLine()) != null) {
             Gesthiper.hiper.insertCliente(linha);
             Gesthiper.linhasClientes++;
         }
@@ -43,13 +43,13 @@ public class Gesthiper {
      * Método de Leitura de um ficheiro de Produtos
      *
      * @param filename Nome do Ficheiro
-     * @throws FileNotFoundException Caso o ficheiro especificado não exista
+     * @throws IOException Caso o ficheiro especificado não exista
      */
     public static void leFicheiroProdutos(String filename) throws IOException {
         Gesthiper.linhasProdutos = 0;
         String linha;
-        BufferedReader fichReader=new BufferedReader(new FileReader(filename));
-        while ((linha=fichReader.readLine())!=null){
+        BufferedReader fichReader = new BufferedReader(new FileReader(filename));
+        while ((linha = fichReader.readLine()) != null) {
             Gesthiper.hiper.insertProduto(linha);
             Gesthiper.linhasProdutos++;
         }
@@ -59,20 +59,20 @@ public class Gesthiper {
      * Método de Leitura de um ficheiro de Compras
      *
      * @param filename Nome do Ficheiro
-     * @throws FileNotFoundException Caso o ficheiro especificado não exista
+     * @throws IOException Caso o ficheiro especificado não exista
+     * @throws MalformedCompraException Caso hajam linhas malformadas
      */
-    public static void leFicheiroCompras(String filename) throws IOException {
+    public static void leFicheiroCompras(String filename) throws IOException, MalformedCompraException {
         String st;
         Compra c;
         Gesthiper.comprasValor0 = 0;
         Gesthiper.linhasCompras = 0;
         Gesthiper.comprasInvalidas = new ArrayList<>();
         String linha;
-        BufferedReader fichReader=new BufferedReader(new FileReader(filename));
-        while ((linha=fichReader.readLine())!=null){
-         
-            
-            c = Gesthiper.linhaToCompra(linha);
+        BufferedReader fichReader = new BufferedReader(new FileReader(filename));
+        while ((linha = fichReader.readLine()) != null) {
+
+            c = Compra.parseCompra(linha);
             if (Gesthiper.hiper.compraValida(c)) {
                 Gesthiper.hiper.registerSale(c);
             } else {
@@ -180,6 +180,8 @@ public class Gesthiper {
             System.out.println("");
         } catch (IOException e) {
             System.out.println("Ficheiro Não Encontrado");
+        } catch (MalformedCompraException mfe) {
+            System.out.println("Compra malformada");
         }
     }
 
@@ -253,6 +255,7 @@ public class Gesthiper {
         } while (Gesthiper.menuPrincipal.getOpcao() != 0);
 
     }
+
     /**
      * Execução do Menu de Carregamento de ficheiros
      */
@@ -269,6 +272,7 @@ public class Gesthiper {
                 break;
         }
     }
+
     /**
      * Escrita das Estatísticas existentes para um ficheiro externo
      */
@@ -282,8 +286,10 @@ public class Gesthiper {
             System.out.println("Erro no Disco: " + ioe.getMessage());
         }
     }
+
     /**
      * Navegação de uma lista de Strings
+     *
      * @param navegador Lista a ser navegada
      */
     public static void navigate(Navigator<String> navegador) {
@@ -324,8 +330,10 @@ public class Gesthiper {
         }
 
     }
+
     /**
      * Método de navegação sobre uma lista de Compras
+     *
      * @param navegador Lista a ser navegada
      */
     public static void navigateCompras(Navigator<Compra> navegador) {
@@ -366,8 +374,10 @@ public class Gesthiper {
         }
 
     }
+
     /**
      * Navegaçao numa lista de Pares Código Quantidade
+     *
      * @param navegador Lista a ser navegada
      */
     public static void navigatePCQ(Navigator<ParCodigoQuantidade> navegador) {
@@ -404,10 +414,12 @@ public class Gesthiper {
         }
 
     }
-/**
- * Navegação numa Lista de Trios Código Quantidade Número de Clientes
- * @param navegador Lista a ser navegada
- */
+
+    /**
+     * Navegação numa Lista de Trios Código Quantidade Número de Clientes
+     *
+     * @param navegador Lista a ser navegada
+     */
     public static void navigateTrioCQN(Navigator<TrioCodQuantNClientes> navegador) {
         char option;
         try {
@@ -445,6 +457,7 @@ public class Gesthiper {
 
     /**
      * Navegação numa Lista de Trios Código Quantidade Faturação
+     *
      * @param navegador Lista a ser navegada
      */
     public static void navigateTrioCQF(Navigator<TrioCodQuantFat> navegador) {
@@ -481,6 +494,7 @@ public class Gesthiper {
         }
 
     }
+
     /**
      * Execução do Menu de queries Interativas
      */
@@ -534,6 +548,7 @@ public class Gesthiper {
                         System.out.println("Query realizada em " + time + " segundos");
                         System.out.println("Total de Compras e Clientes distintos no mes " + mes);
                         System.out.println("Clientes Distintos: " + resParCompClie.getnClientes() + "\nCompras efectuadas: " + resParCompClie.getnCompras());
+                        Input.lerString();
                     } catch (InvalidMonthException ime) {
                         System.out.println("Mes inválido! " + ime.getMessage());
                     }
@@ -548,6 +563,7 @@ public class Gesthiper {
                         time = Crono.stop();
                         System.out.println("Query realizada em " + time + " segundos");
                         System.out.println(resTabl.toString());
+                        Input.lerString();
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }
@@ -562,6 +578,7 @@ public class Gesthiper {
                         time = Crono.stop();
                         System.out.println("Query realizada em " + time + " segundos");
                         System.out.println(resTabl.toString());
+                        Input.lerString();
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }
@@ -576,6 +593,7 @@ public class Gesthiper {
                         time = Crono.stop();
                         System.out.println("Query realizada em " + time + " segundos");
                         System.out.println(resVPM.toString());
+                        Input.lerString();
                     } catch (UnexistentCodeException uce) {
                         System.out.println("Código Inexistente! " + uce.getMessage());
                     }
@@ -636,6 +654,7 @@ public class Gesthiper {
             }
         } while (Gesthiper.menuQueriesInter.getOpcao() != 0);
     }
+
     /**
      * Execução do menu de Queries Estatísticas
      */
@@ -644,8 +663,11 @@ public class Gesthiper {
         do {
             System.out.println("************ GESTHIPER ************");
             System.out.println("------------ Queries Estatísticas -----------");
-            System.out.println(Gesthiper.estatisticas.toString());
-            Navigator<Compra> navegador=new Navigator<>(Gesthiper.estatisticas.getEstatEstrutura().getComprasInvalidas());
+            System.out.println(Gesthiper.estatisticas.getEstatFicheiro().toString());
+            Input.lerString();
+            System.out.println(Gesthiper.estatisticas.getEstatEstrutura().toString());
+            Input.lerString();
+            Navigator<Compra> navegador = new Navigator<>(Gesthiper.estatisticas.getEstatEstrutura().getComprasInvalidas());
             Gesthiper.navigateCompras(navegador);
             Gesthiper.menuQueriesEstat.executa();
             switch (Gesthiper.menuQueriesEstat.getOpcao()) {
@@ -654,10 +676,13 @@ public class Gesthiper {
             }
         } while (Gesthiper.menuQueriesEstat.getOpcao() != 0);
     }
-/**
- * Método Main
- * @param args Argumentos passados na linha de comando (não serão utilizados) 
- */
+
+    /**
+     * Método Main
+     *
+     * @param args Argumentos passados na linha de comando (não serão
+     * utilizados)
+     */
     public static void main(String[] args) {
         Gesthiper.carregaMenus();
         Gesthiper.execMenuCarregamento();

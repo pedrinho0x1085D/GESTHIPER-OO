@@ -149,7 +149,7 @@ public class StructureStats {
             sb.append(this.getClientesCompradoresMensal()[i]+" ");
         }
         sb.append("\n");
-        sb.append("Número de compras invalidas");
+        sb.append("Número de compras invalidas ");
         
         sb.append(this.nComprasInvalidas);
         

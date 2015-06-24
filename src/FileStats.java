@@ -278,22 +278,22 @@ public class FileStats {
         sb.append("Produtos Comprados ");
         sb.append(this.prodsComp);
         sb.append("\n");
-        sb.append("Total de Produtos Comprados");
+        sb.append("Total de Produtos Não Comprados ");
         sb.append(this.prodsNComp);
         sb.append("\n");
-        sb.append("Numeros de Clientes");
+        sb.append("Numero de Clientes ");
         sb.append(this.nClientes);
         sb.append("\n");
-        sb.append("Numeros de Clientes Compradores");
+        sb.append("Numero de Clientes Compradores ");
         sb.append(this.nClientesCompradores);
         sb.append("\n");
-        sb.append("Numeros de Clientes que não Compraram");
+        sb.append("Numero de Clientes que não Compraram ");
         sb.append(this.nClientesNaoCompraram);
         sb.append("\n");
-        sb.append("Produtos que nunca foram comprados");
+        sb.append("Compras de valor 0: ");
         sb.append(this.comprasValor0);
         sb.append("\n");
-        sb.append("Faturação Total");
+        sb.append("Faturação Total ");
         sb.append(this.faturacaoTotal);
         sb.append("\n");
 

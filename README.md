@@ -19,7 +19,7 @@ consultas (“queries”), algumas estatísticas e alguns testes de “performan
 --> Separar o código em packages para separar as camadas do programa. (Feito)
 
 
-###Classificação: __/20 Aguarda Classificação
+###Classificação: 13/20 Aguarda Classificação
 
 ##Detalhes do Programa:
 1. Carregamento dos dados

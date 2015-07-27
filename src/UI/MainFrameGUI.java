@@ -12,6 +12,8 @@ import Utils.InvalidMonthException;
 import Utils.ParCodigoQuantidade;
 import Utils.ParNComprasNClientes;
 import Utils.Table;
+import Utils.TrioCodQuantFat;
+import Utils.TrioCodQuantNClientes;
 import Utils.UnexistentCodeException;
 import Utils.VendasProdutoMensais;
 import java.io.IOException;
@@ -40,6 +42,21 @@ public class MainFrameGUI extends javax.swing.JFrame {
         fillStructStats();
         loadQ1();
         loadQ2();
+        loadQ8();
+        loadQ9();
+    }
+
+    public void loadQ9() {
+        double time;
+        DefaultListModel<ParCodigoQuantidade> dlm = new DefaultListModel<>();
+        Crono.start();
+        ArrayList<ParCodigoQuantidade> res = hipermercado.getClientesMaisProdutosDistintos(10);
+        time = Crono.stop();
+        for (ParCodigoQuantidade pcq : res) {
+            dlm.addElement(pcq);
+        }
+        jList5.setModel(dlm);
+        jLabel78.setText(time + " segundos");
     }
 
     public void fillFileStats() {
@@ -55,6 +72,19 @@ public class MainFrameGUI extends javax.swing.JFrame {
         jLabel21.setText(estatisticas.getEstatFicheiro().getFilenameProd());
         jLabel22.setText(estatisticas.getEstatFicheiro().getFilenameComp());
 
+    }
+
+    public void loadQ8() {
+        double time;
+        DefaultListModel<TrioCodQuantNClientes> dlm = new DefaultListModel<>();
+        Crono.start();
+        ArrayList<TrioCodQuantNClientes> res = hipermercado.getTopComprados(10);
+        time = Crono.stop();
+        for (TrioCodQuantNClientes trio : res) {
+            dlm.addElement(trio);
+        }
+        jList4.setModel(dlm);
+        jLabel74.setText(time + " segundos");
     }
 
     public void fillStructStats() {
@@ -232,9 +262,41 @@ public class MainFrameGUI extends javax.swing.JFrame {
         jLabel66 = new javax.swing.JLabel();
         jLabel67 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
+        jLabel68 = new javax.swing.JLabel();
+        jLabel69 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
+        jLabel70 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jList3 = new javax.swing.JList();
         jPanel12 = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jList4 = new javax.swing.JList();
+        jSpinner2 = new javax.swing.JSpinner();
+        jLabel72 = new javax.swing.JLabel();
+        jLabel73 = new javax.swing.JLabel();
+        jLabel74 = new javax.swing.JLabel();
+        jLabel75 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
+        jLabel76 = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jList5 = new javax.swing.JList();
+        jLabel77 = new javax.swing.JLabel();
+        jLabel78 = new javax.swing.JLabel();
+        jSpinner3 = new javax.swing.JSpinner();
+        jLabel79 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
+        jLabel80 = new javax.swing.JLabel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        jList6 = new javax.swing.JList();
+        jLabel81 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jButton9 = new javax.swing.JButton();
+        jLabel82 = new javax.swing.JLabel();
+        jLabel83 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -605,7 +667,7 @@ public class MainFrameGUI extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(jLabel29))
                     .addComponent(jLabel33))
-                .addContainerGap(490, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -651,7 +713,7 @@ public class MainFrameGUI extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel34)))
-                .addContainerGap(493, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -731,7 +793,7 @@ public class MainFrameGUI extends javax.swing.JFrame {
                                 .addComponent(jLabel32)
                                 .addGap(57, 57, 57)
                                 .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1090,16 +1152,14 @@ public class MainFrameGUI extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel64, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel65, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addComponent(jLabel67)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel66)))
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel64, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel65, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel66, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -1135,54 +1195,317 @@ public class MainFrameGUI extends javax.swing.JFrame {
 
         jTabbedPane3.addTab("Consulta 6", jPanel10);
 
+        jLabel68.setText("Insira o Código de Cliente");
+
+        jLabel69.setText("Produtos mais comprados por um Cliente");
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Aceder");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jLabel70.setText("Concluído em");
+
+        jLabel71.setText("jLabel71");
+        jLabel71.setVisible(false);
+
+        jList3.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane9.setViewportView(jList3);
+        jScrollPane9.setVisible(false);
+        jList3.setVisible(false);
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 923, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(241, 241, 241)
+                        .addComponent(jLabel68)
+                        .addGap(50, 50, 50)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(295, 295, 295)
+                        .addComponent(jLabel69))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(355, 355, 355)
+                        .addComponent(jButton6))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(298, 298, 298)
+                        .addComponent(jLabel70)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel71))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 652, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel69)
+                .addGap(40, 40, 40)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel68)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jButton6)
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel70)
+                    .addComponent(jLabel71))
+                .addGap(40, 40, 40))
         );
 
         jTabbedPane3.addTab("Consulta 7", jPanel11);
+
+        jList4.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane10.setViewportView(jList4);
+
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(10), Integer.valueOf(0), null, Integer.valueOf(1)));
+
+        jLabel72.setText("Produtos mais comprados do ano");
+
+        jLabel73.setText("Concluido em");
+
+        jLabel74.setText("jLabel74");
+
+        jLabel75.setText("Nº de Elementos a apresentar");
+
+        jButton7.setText("Aceder");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 923, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(jLabel75))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton7))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel73)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel74))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(360, 360, 360)
+                        .addComponent(jLabel72)))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 652, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel72)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel73)
+                            .addComponent(jLabel74))
+                        .addGap(116, 116, 116))))
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addComponent(jLabel75)
+                .addGap(18, 18, 18)
+                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Consulta 8", jPanel12);
+
+        jLabel76.setText("Clientes com mais produtos distintos comprados");
+
+        jList5.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane11.setViewportView(jList5);
+
+        jLabel77.setText("Concluído em");
+
+        jLabel78.setText("jLabel78");
+
+        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(10), Integer.valueOf(0), null, Integer.valueOf(1)));
+
+        jLabel79.setText("Nº de elementos a apresentar");
+
+        jButton8.setText("Consultar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 923, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(365, 365, 365)
+                        .addComponent(jLabel76))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(jLabel79))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addComponent(jButton8)))
+                        .addGap(57, 57, 57)
+                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel77)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel78)))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 652, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel76)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel77)
+                            .addComponent(jLabel78))
+                        .addGap(86, 86, 86))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel79)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton8)
+                        .addContainerGap(478, Short.MAX_VALUE))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane11)
+                        .addContainerGap())))
         );
 
         jTabbedPane3.addTab("Consulta 9", jPanel13);
+
+        jLabel80.setText("Clientes que mais compraram um produto");
+
+        jList6.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane12.setViewportView(jList6);
+
+        jLabel81.setText("Código de Produto");
+
+        jButton9.setText("Consultar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        jLabel82.setText("Concluido em");
+
+        jLabel83.setText("jLabel83");
+        jLabel83.setVisible(false);
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 923, Short.MAX_VALUE)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGap(364, 364, 364)
+                        .addComponent(jLabel80))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel81)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addGap(89, 89, 89)
+                                .addComponent(jButton9))
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(jLabel82)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel83)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 652, Short.MAX_VALUE)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel80)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel81)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addComponent(jButton9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 411, Short.MAX_VALUE)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel82)
+                            .addComponent(jLabel83))
+                        .addGap(86, 86, 86))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane12))))
         );
 
         jTabbedPane3.addTab("Consulta 10", jPanel14);
@@ -1294,19 +1617,27 @@ public class MainFrameGUI extends javax.swing.JFrame {
             try {
                 double time;
                 Crono.start();
-                Table res=hipermercado.getTableCliente(jTextField1.getText());
-                time=Crono.stop();
-                DefaultTableModel dtm=new DefaultTableModel();
-                dtm.addColumn("Jan");dtm.addColumn("Fev");dtm.addColumn("Mar");
-                dtm.addColumn("Abr");dtm.addColumn("Mai");dtm.addColumn("Jun");
-                dtm.addColumn("Jul");dtm.addColumn("Ago");dtm.addColumn("Set");
-                dtm.addColumn("Out");dtm.addColumn("Nov");dtm.addColumn("Dez");
-                int[] dist=res.getDistintos();
-                dtm.addRow(new Object[]{dist[0],dist[1],dist[2],dist[3],dist[4],dist[5],dist[6],dist[7],dist[8],dist[9],dist[10],dist[11]});
-                int[] compr=res.getnCompras();
-                dtm.addRow(new Object[]{compr[0],compr[1],compr[2],compr[3],compr[4],compr[5],compr[6],compr[7],compr[8],compr[9],compr[10],compr[11]});
-                float[] fat=res.getFaturacaoMensal();
-                dtm.addRow(new Object[]{fat[0],fat[1],fat[2],fat[3],fat[4],fat[5],fat[6],fat[7],fat[8],fat[9],fat[10],fat[11]});
+                Table res = hipermercado.getTableCliente(jTextField1.getText());
+                time = Crono.stop();
+                DefaultTableModel dtm = new DefaultTableModel();
+                dtm.addColumn("Jan");
+                dtm.addColumn("Fev");
+                dtm.addColumn("Mar");
+                dtm.addColumn("Abr");
+                dtm.addColumn("Mai");
+                dtm.addColumn("Jun");
+                dtm.addColumn("Jul");
+                dtm.addColumn("Ago");
+                dtm.addColumn("Set");
+                dtm.addColumn("Out");
+                dtm.addColumn("Nov");
+                dtm.addColumn("Dez");
+                int[] dist = res.getDistintos();
+                dtm.addRow(new Object[]{dist[0], dist[1], dist[2], dist[3], dist[4], dist[5], dist[6], dist[7], dist[8], dist[9], dist[10], dist[11]});
+                int[] compr = res.getnCompras();
+                dtm.addRow(new Object[]{compr[0], compr[1], compr[2], compr[3], compr[4], compr[5], compr[6], compr[7], compr[8], compr[9], compr[10], compr[11]});
+                float[] fat = res.getFaturacaoMensal();
+                dtm.addRow(new Object[]{fat[0], fat[1], fat[2], fat[3], fat[4], fat[5], fat[6], fat[7], fat[8], fat[9], fat[10], fat[11]});
                 jTable4.setModel(dtm);
                 jScrollPane6.setVisible(true);
                 jTable4.setVisible(true);
@@ -1315,11 +1646,11 @@ public class MainFrameGUI extends javax.swing.JFrame {
                 jLabel46.setVisible(true);
                 jLabel47.setVisible(true);
                 jLabel48.setVisible(true);
-                jLabel48.setText(res.getFaturacaoTotal()+"");
+                jLabel48.setText(res.getFaturacaoTotal() + "");
                 jLabel50.setVisible(true);
-                jLabel50.setText(time+" segundos");
+                jLabel50.setText(time + " segundos");
             } catch (UnexistentCodeException ex) {
-                infoBox("Insira outro Código","Código Inexistente");
+                infoBox("Insira outro Código", "Código Inexistente");
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -1332,19 +1663,27 @@ public class MainFrameGUI extends javax.swing.JFrame {
             try {
                 double time;
                 Crono.start();
-                Table res=hipermercado.getTableProduto(jTextField2.getText());
-                time=Crono.stop();
-                DefaultTableModel dtm=new DefaultTableModel();
-                dtm.addColumn("Jan");dtm.addColumn("Fev");dtm.addColumn("Mar");
-                dtm.addColumn("Abr");dtm.addColumn("Mai");dtm.addColumn("Jun");
-                dtm.addColumn("Jul");dtm.addColumn("Ago");dtm.addColumn("Set");
-                dtm.addColumn("Out");dtm.addColumn("Nov");dtm.addColumn("Dez");
-                int[] dist=res.getDistintos();
-                dtm.addRow(new Object[]{dist[0],dist[1],dist[2],dist[3],dist[4],dist[5],dist[6],dist[7],dist[8],dist[9],dist[10],dist[11]});
-                int[] compr=res.getnCompras();
-                dtm.addRow(new Object[]{compr[0],compr[1],compr[2],compr[3],compr[4],compr[5],compr[6],compr[7],compr[8],compr[9],compr[10],compr[11]});
-                float[] fat=res.getFaturacaoMensal();
-                dtm.addRow(new Object[]{fat[0],fat[1],fat[2],fat[3],fat[4],fat[5],fat[6],fat[7],fat[8],fat[9],fat[10],fat[11]});
+                Table res = hipermercado.getTableProduto(jTextField2.getText());
+                time = Crono.stop();
+                DefaultTableModel dtm = new DefaultTableModel();
+                dtm.addColumn("Jan");
+                dtm.addColumn("Fev");
+                dtm.addColumn("Mar");
+                dtm.addColumn("Abr");
+                dtm.addColumn("Mai");
+                dtm.addColumn("Jun");
+                dtm.addColumn("Jul");
+                dtm.addColumn("Ago");
+                dtm.addColumn("Set");
+                dtm.addColumn("Out");
+                dtm.addColumn("Nov");
+                dtm.addColumn("Dez");
+                int[] dist = res.getDistintos();
+                dtm.addRow(new Object[]{dist[0], dist[1], dist[2], dist[3], dist[4], dist[5], dist[6], dist[7], dist[8], dist[9], dist[10], dist[11]});
+                int[] compr = res.getnCompras();
+                dtm.addRow(new Object[]{compr[0], compr[1], compr[2], compr[3], compr[4], compr[5], compr[6], compr[7], compr[8], compr[9], compr[10], compr[11]});
+                float[] fat = res.getFaturacaoMensal();
+                dtm.addRow(new Object[]{fat[0], fat[1], fat[2], fat[3], fat[4], fat[5], fat[6], fat[7], fat[8], fat[9], fat[10], fat[11]});
                 jTable5.setModel(dtm);
                 jScrollPane7.setVisible(true);
                 jTable5.setVisible(true);
@@ -1353,47 +1692,140 @@ public class MainFrameGUI extends javax.swing.JFrame {
                 jLabel55.setVisible(true);
                 jLabel56.setVisible(true);
                 jLabel57.setVisible(true);
-                jLabel57.setText(res.getFaturacaoTotal()+"");
+                jLabel57.setText(res.getFaturacaoTotal() + "");
                 jLabel59.setVisible(true);
-                jLabel59.setText(time+" segundos");
-                
+                jLabel59.setText(time + " segundos");
+
             } catch (UnexistentCodeException ex) {
-                infoBox("Insira outro Código","Código Inexistente");
+                infoBox("Insira outro Código", "Código Inexistente");
             }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        if(jTextField3.getText().equals("")){
+        if (jTextField3.getText().equals("")) {
             infoBox("Insira um código", "Atenção");
-        }
-        else{
+        } else {
             try {
                 double time;
                 Crono.start();
-                VendasProdutoMensais res=hipermercado.getVendasMensais(jTextField3.getText());
-                time=Crono.stop();
-                DefaultTableModel dtm=new DefaultTableModel();
-                dtm.addColumn("Jan");dtm.addColumn("Fev");dtm.addColumn("Mar");
-                dtm.addColumn("Abr");dtm.addColumn("Mai");dtm.addColumn("Jun");
-                dtm.addColumn("Jul");dtm.addColumn("Ago");dtm.addColumn("Set");
-                dtm.addColumn("Out");dtm.addColumn("Nov");dtm.addColumn("Dez");
-                int[] vend=res.getVendasN();
-                dtm.addRow(new Object[]{vend[0],vend[1],vend[2],vend[3],vend[4],vend[5],vend[6],vend[7],vend[8],vend[9],vend[10],vend[11]});
-                vend=res.getVendasP();
-                dtm.addRow(new Object[]{vend[0],vend[1],vend[2],vend[3],vend[4],vend[5],vend[6],vend[7],vend[8],vend[9],vend[10],vend[11]});
-                float[] fat=res.getFatN();
-                dtm.addRow(new Object[]{fat[0],fat[1],fat[2],fat[3],fat[4],fat[5],fat[6],fat[7],fat[8],fat[9],fat[10],fat[11]});
-                fat=res.getFatP();
-                dtm.addRow(new Object[]{fat[0],fat[1],fat[2],fat[3],fat[4],fat[5],fat[6],fat[7],fat[8],fat[9],fat[10],fat[11]});
+                VendasProdutoMensais res = hipermercado.getVendasMensais(jTextField3.getText());
+                time = Crono.stop();
+                DefaultTableModel dtm = new DefaultTableModel();
+                dtm.addColumn("Jan");
+                dtm.addColumn("Fev");
+                dtm.addColumn("Mar");
+                dtm.addColumn("Abr");
+                dtm.addColumn("Mai");
+                dtm.addColumn("Jun");
+                dtm.addColumn("Jul");
+                dtm.addColumn("Ago");
+                dtm.addColumn("Set");
+                dtm.addColumn("Out");
+                dtm.addColumn("Nov");
+                dtm.addColumn("Dez");
+                int[] vend = res.getVendasN();
+                dtm.addRow(new Object[]{vend[0], vend[1], vend[2], vend[3], vend[4], vend[5], vend[6], vend[7], vend[8], vend[9], vend[10], vend[11]});
+                vend = res.getVendasP();
+                dtm.addRow(new Object[]{vend[0], vend[1], vend[2], vend[3], vend[4], vend[5], vend[6], vend[7], vend[8], vend[9], vend[10], vend[11]});
+                float[] fat = res.getFatN();
+                dtm.addRow(new Object[]{fat[0], fat[1], fat[2], fat[3], fat[4], fat[5], fat[6], fat[7], fat[8], fat[9], fat[10], fat[11]});
+                fat = res.getFatP();
+                dtm.addRow(new Object[]{fat[0], fat[1], fat[2], fat[3], fat[4], fat[5], fat[6], fat[7], fat[8], fat[9], fat[10], fat[11]});
                 jTable6.setModel(dtm);
                 jScrollPane8.setVisible(true);
+                jTable6.setVisible(true);
+                jLabel64.setVisible(true);
+                jLabel65.setVisible(true);
+                jLabel66.setVisible(true);
+                jLabel67.setVisible(true);
+                jLabel63.setText(time + " segundos");
+                jLabel63.setVisible(true);
             } catch (UnexistentCodeException ex) {
-                infoBox("Insira outro código","Código Inexistente");
+                infoBox("Insira outro código", "Código Inexistente");
             }
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        if (jTextField4.getText().equals("")) {
+            infoBox("Insira um código", "Atenção");
+        } else {
+            try {
+                double time;
+                Crono.start();
+                ArrayList<ParCodigoQuantidade> res = hipermercado.getTopCompras(jTextField4.getText());
+                time = Crono.stop();
+                DefaultListModel<ParCodigoQuantidade> dlm = new DefaultListModel<>();
+                for (ParCodigoQuantidade pcq : res) {
+                    dlm.addElement(pcq);
+                }
+                jList3.setModel(dlm);
+                jScrollPane9.setVisible(true);
+                jList3.setVisible(true);
+                jLabel71.setVisible(true);
+                jLabel71.setText(time + " segundos");
+            } catch (UnexistentCodeException uce) {
+                infoBox("Insira outro código", "Código Inexistente");
+            }
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        double time;
+        Crono.start();
+        ArrayList<TrioCodQuantNClientes> res = hipermercado.getTopComprados((Integer) jSpinner2.getValue());
+        time = Crono.stop();
+        DefaultListModel<TrioCodQuantNClientes> dlm = new DefaultListModel<>();
+        for (TrioCodQuantNClientes trio : res) {
+            dlm.addElement(trio);
+        }
+        jList4.setModel(dlm);
+        jLabel74.setText(time + " segundos");
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        double time;
+        Crono.start();
+        ArrayList<ParCodigoQuantidade> res = hipermercado.getClientesMaisProdutosDistintos((Integer) jSpinner3.getValue());
+        time = Crono.stop();
+        DefaultListModel<ParCodigoQuantidade> dlm = new DefaultListModel<>();
+        for (ParCodigoQuantidade trio : res) {
+            dlm.addElement(trio);
+        }
+        jList5.setModel(dlm);
+        jLabel78.setText(time + " segundos");
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        if (jTextField5.getText().equals("")) {
+            infoBox("Insira um código", "Atenção");
+        } else {
+            try {
+                double time;
+                Crono.start();
+                ArrayList<TrioCodQuantFat> res = hipermercado.getTopCompradores(jTextField5.getText());
+                time = Crono.stop();
+                DefaultListModel<TrioCodQuantFat> dlm = new DefaultListModel<>();
+                for (TrioCodQuantFat trio : res) {
+                    dlm.addElement(trio);
+                }
+                jList6.setModel(dlm);
+                jLabel83.setText(time+" segundos");
+                jLabel83.setVisible(true);
+            } catch (UnexistentCodeException uce) {
+                infoBox("Insira outro código", "Código Inexistente");
+            }
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1455,6 +1887,10 @@ public class MainFrameGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1519,11 +1955,31 @@ public class MainFrameGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
+    private javax.swing.JList jList3;
+    private javax.swing.JList jList4;
+    private javax.swing.JList jList5;
+    private javax.swing.JList jList6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -1545,6 +2001,9 @@ public class MainFrameGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1552,7 +2011,10 @@ public class MainFrameGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
@@ -1565,5 +2027,7 @@ public class MainFrameGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

@@ -138,13 +138,13 @@ public class TrioCodQuantFat {
 
         sb.append("Código do produto ");
         sb.append(this.codigo);
-        sb.append("\n");
+        sb.append("; ");
         sb.append("Quantidade ");
         sb.append(this.quantidade);
-        sb.append("\n");
+        sb.append("; ");
         sb.append("Faturação ");
         sb.append(this.faturacao);
-        sb.append("\n");
+        
 
         return sb.toString();
     }

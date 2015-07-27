@@ -98,12 +98,12 @@ public class ParCodigoQuantidade {
     public String toString() {
        StringBuilder sb = new StringBuilder();
        
-       sb.append("Código ");
+       sb.append("Código: ");
        sb.append(this.codigo);
-       sb.append("\n");
-       sb.append("Quantidade ");
+       sb.append("; ");
+       sb.append("Quantidade: ");
        sb.append(this.quantidade);
-       sb.append("\n");
+
        return sb.toString();
     }
 }

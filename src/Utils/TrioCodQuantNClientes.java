@@ -121,14 +121,13 @@ public class TrioCodQuantNClientes {
         StringBuilder sb = new StringBuilder();
         sb.append("Código do produto ");
         sb.append(this.codigo);
-        sb.append("\n");
+        sb.append("; ");
         sb.append("Quantidade ");
         sb.append(this.quantidade);
-        sb.append("\n");
+        sb.append("; ");
         sb.append("Numero de Clientes ");
         sb.append(this.nClientes);
-        sb.append("\n");
-
+        
         return sb.toString();
     }
 }
